@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -23,23 +24,35 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         CommandName commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
         Command command = provider.getCommand(String.valueOf(commandName));
+
+        String name = (String) session.getAttribute("name");
+
+        if (name == null) {
+            session.setAttribute("name", "Anonymous");
+        }
+
+        out.println("Name: " + name);
 
         switch (commandName) {
             case SIGN_IN:
             case REGISTRATION:
                 try {
                     out.println(command.execute(login + " " + password));
+                    session.setAttribute("name", login);
                 } catch (ControllerException e) {
                     out.println(e.getMessage());
                     System.out.println(e + "\n");
                 }
                 break;
+            case SIGN_OUT:
+                session.removeAttribute("name");
             default:
                 try {
                     out.println(command.execute("Wrong request"));

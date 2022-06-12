@@ -77,9 +77,6 @@ public class SQLUserDAO implements UserDAO {
 
             Class.forName(driverClassname);
             connection = DriverManager.getConnection(url, username, password);
-            /*connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1/mydb?useSSL=false",
-                    "root", "admin");*/
         } catch (ClassNotFoundException e) {
             throw new DAOException("Driver for database didn't find", e);
         } catch (SQLException e) {

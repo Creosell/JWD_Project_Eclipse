@@ -19,6 +19,11 @@
         <input type="submit" value="Регистрация">
     </form>
 </form>
+<br>
+<form action="controller" method="post">
+    <input type="hidden" name="command" value="sign_out">
+    <input type="submit" value="Выйти из системы">
+</form>
 
 
 </body>
