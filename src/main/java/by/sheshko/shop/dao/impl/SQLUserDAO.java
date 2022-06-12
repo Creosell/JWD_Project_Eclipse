@@ -3,6 +3,7 @@ package by.sheshko.shop.dao.impl;
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.exception.DAOException;
+import by.sheshko.shop.dao.exception.DAOUserAuthorizationException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,10 +29,10 @@ public class SQLUserDAO implements UserDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
-                throw new DAOException("Wrong login or password");
+                throw new DAOUserAuthorizationException();
             }
-        } catch (DAOException e) {
-            throw new DAOException(e.getMessage());
+        } catch (DAOUserAuthorizationException e) {
+            throw new DAOException("Wrong login or password", e);
         } catch (SQLException e) {
             throw new DAOException("Error while working with database", e);
         }
