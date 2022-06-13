@@ -59,10 +59,48 @@ public class SQLUserDAO implements UserDAO {
         }
     }
 
+    @Override
+    public User getUserInfo(String login) throws DAOException {
+        User user = new User();
+        try (Connection connection = connectToDataBase()) {
+            PreparedStatement preparedStatement;
+            ResultSet resultSet;
+
+
+            preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE login = ?;");
+            preparedStatement.setString(1, login);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                user.setUserID(resultSet.getInt(1));
+                user.setLogin(resultSet.getString(2));
+                user.setPassword(resultSet.getString(3));
+                user.setUsername(resultSet.getString(4));
+                user.setEmail(resultSet.getString(5));
+                user.setPhonenumber(resultSet.getString(6));
+                user.setRegistrationTime(resultSet.getTimestamp(7));
+                user.setStatus(resultSet.getString(8));
+                switch (resultSet.getInt(9)) {
+                    case 1:
+                        user.setRole("admin");
+                        break;
+                    case 2:
+                        user.setRole("user");
+                        break;
+                    default:
+                        user.setRole("anon");
+                        break;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
+    }
+
     private Connection connectToDataBase() throws DAOException {
         Connection connection;
         Properties properties = new Properties();
-
 
         try {
             FileInputStream in = new FileInputStream(

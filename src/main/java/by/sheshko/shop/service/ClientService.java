@@ -9,4 +9,6 @@ public interface ClientService {
     void signOut(String login) throws ServiceException;
 
     void registration(User user) throws ServiceException;
+
+    User getUserInfo(String login) throws ServiceException;
 }

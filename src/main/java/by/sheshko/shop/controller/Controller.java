@@ -38,7 +38,7 @@ public class Controller extends HttpServlet {
             session.setAttribute("name", "Anonymous");
         }
 
-        out.println("Name: " + name);
+        out.println("Name: " + name + "<br>");
 
         switch (commandName) {
             case SIGN_IN:
@@ -46,6 +46,9 @@ public class Controller extends HttpServlet {
                 try {
                     out.println(command.execute(login + " " + password));
                     session.setAttribute("name", login);
+
+                    command = provider.getCommand("USER_INFO");
+                    out.println("<br>" + command.execute(login));
                 } catch (ControllerException e) {
                     out.println(e.getMessage());
                     System.out.println(e + "\n");

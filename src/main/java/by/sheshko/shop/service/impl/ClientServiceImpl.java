@@ -40,4 +40,18 @@ public class ClientServiceImpl implements ClientService {
             }
         }
     }
+
+    @Override
+    public User getUserInfo(String login) throws ServiceException {
+        if (!login.equals("")) {
+            try {
+                DAOFactory daoFactory = DAOFactory.getInstance();
+                UserDAO userDAO = daoFactory.getUserDAOImpl();
+                return userDAO.getUserInfo(login);
+            } catch (DAOException e) {
+                throw new ServiceException(e.getMessage());
+            }
+        }
+        return null;
+    }
 }

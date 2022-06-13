@@ -7,4 +7,6 @@ public interface UserDAO {
     void signIn(final String login, final String password) throws DAOException;
 
     void registration(User user) throws DAOException;
+
+    User getUserInfo(final String login) throws DAOException;
 }
