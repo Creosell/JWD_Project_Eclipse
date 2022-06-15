@@ -6,15 +6,6 @@
 
 
     <servlet>
-        <servlet-name>leraServlet</servlet-name>
-        <jsp-file>/WEB-INF/jsp/lera.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>leraServlet</servlet-name>
-        <url-pattern>/main</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>registrationServlet</servlet-name>
         <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
     </servlet>

@@ -6,8 +6,6 @@
 </head>
 <body>
 <h1>Приветствуем в нашем интернет-магазине Smart Things!</h1>
-<br/>
-<a href="main">Для поднятия настроения :)</a>
 <br>
 <br>
 <form name="$loginForm" action="controller" method="post">
