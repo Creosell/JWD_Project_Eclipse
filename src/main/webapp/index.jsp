@@ -6,17 +6,17 @@
 </head>
 <body>
 <h1>Приветствуем в нашем интернет-магазине Smart Things!</h1>
+
 <br>
-<br>
-<form name="loginForm" action="controller" method="post">
+<p><<form name="loginForm" action="controller" method="post">
     <input type="hidden" name="command" value="sign_in">
     <input type="text" name="login" value="" placeholder="Введите ваш логин...">
     <input type="password" name="password" value="" placeholder="Введите ваш пароль...">
     <input type="submit" value="Войти">
-    <form action="registration" method="post">
-        <input type="submit" value="Регистрация">
-    </form>
 </form>
+<form action="registration" method="post">
+    <input type="submit" value="Регистрация">
+</form>/p>
 <br>
 <form action="controller" method="post">
     <input type="hidden" name="command" value="sign_out">
