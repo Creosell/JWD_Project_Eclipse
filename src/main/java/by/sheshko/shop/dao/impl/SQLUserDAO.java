@@ -80,17 +80,7 @@ public class SQLUserDAO implements UserDAO {
                 user.setPhonenumber(resultSet.getString(6));
                 user.setRegistrationTime(resultSet.getTimestamp(7));
                 user.setStatus(resultSet.getString(8));
-                switch (resultSet.getInt(9)) {
-                    case 1:
-                        user.setRole("admin");
-                        break;
-                    case 2:
-                        user.setRole("user");
-                        break;
-                    default:
-                        user.setRole("anon");
-                        break;
-                }
+                user.setRole(resultSet.getInt(9));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

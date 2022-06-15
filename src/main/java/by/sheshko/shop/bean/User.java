@@ -1,8 +1,12 @@
 package by.sheshko.shop.bean;
 
+import by.sheshko.shop.entity.role.Role;
+import by.sheshko.shop.entity.role.RoleName;
+
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 147947946884646719L;
@@ -76,21 +80,8 @@ public class User implements Serializable {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(login, user.login) && Objects.equals(password, user.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(login, password);
+    public void setRole(Integer roleID) {
+        this.role = new Role().getRoleName(roleID);;
     }
 
     public String getLogin() {

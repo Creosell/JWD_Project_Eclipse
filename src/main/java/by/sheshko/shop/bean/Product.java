@@ -1,34 +1,17 @@
 package by.sheshko.shop.bean;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.ArrayList;
 
 public class Product implements Serializable {
     private static final long serialVersionUID = 574829538859146812L;
     private String title;
     private String description;
     private double price;
+    private int availableQuantity;
+    private int quantityInOrders;
 
     public Product() {
-    }
-
-    public Product(String title, String description, double price) {
-        this.title = title;
-        this.description = description;
-        this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && Objects.equals(title, product.title) && Objects.equals(description, product.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, description, price);
     }
 
     public String getTitle() {
@@ -54,4 +37,21 @@ public class Product implements Serializable {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public int getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(int availableQuantity) {
+        this.availableQuantity = availableQuantity;
+    }
+
+    public int getQuantityInOrders() {
+        return quantityInOrders;
+    }
+
+    public void setQuantityInOrders(int quantityInOrders) {
+        this.quantityInOrders = quantityInOrders;
+    }
+
 }
