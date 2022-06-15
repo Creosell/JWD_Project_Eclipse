@@ -8,7 +8,7 @@
 <h1>Приветствуем в нашем интернет-магазине Smart Things!</h1>
 <br>
 <br>
-<form name="$loginForm" action="controller" method="post">
+<form name="loginForm" action="controller" method="post">
     <input type="hidden" name="command" value="sign_in">
     <input type="text" name="login" value="" placeholder="Введите ваш логин...">
     <input type="password" name="password" value="" placeholder="Введите ваш пароль...">
