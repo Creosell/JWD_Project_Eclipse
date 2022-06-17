@@ -49,11 +49,8 @@ public class Controller extends HttpServlet {
             case REGISTRATION:
                 try {
                     out.println(command.execute(userSessionInfo.getLogin() + " " + userSessionInfo.getPassword()));
-                    command = provider.getCommand("USER_INFO");
-                    out.println("<br>" + command.execute(userSessionInfo.getName()));
                 } catch (ControllerException e) {
                     out.println(e.getMessage());
-                    System.out.println(e + "\n");
                 }
                 break;
             case SIGN_OUT:

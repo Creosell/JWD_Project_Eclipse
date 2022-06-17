@@ -16,6 +16,7 @@ import java.util.Properties;
 public class SQLUserDAO implements UserDAO {
     private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
     private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password, roles_id) VALUES(?, ?, ?);";
+    private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
 
     @Override
     public void signIn(User user) throws DAOException {
@@ -32,8 +33,6 @@ public class SQLUserDAO implements UserDAO {
             if (!resultSet.next()) {
                 throw new DAOException("Wrong login or password");
             }
-        } catch (DAOException e) {
-            throw new DAOException(e.getMessage(), e);
         } catch (SQLException e) {
             throw new DAOException("Error while working with database", e);
         }
@@ -55,7 +54,7 @@ public class SQLUserDAO implements UserDAO {
             if (e.toString().contains("Duplicate")) {
                 throw new DAOException("User with same name is already registered", e);
             } else {
-                throw new DAOException("Error while registering user" ,e);
+                throw new DAOException("Error while registering user", e);
             }
         }
     }
@@ -68,7 +67,7 @@ public class SQLUserDAO implements UserDAO {
             ResultSet resultSet;
 
 
-            preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE login = ?;");
+            preparedStatement = connection.prepareStatement(GET_USER_INFO);
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
 
@@ -96,7 +95,7 @@ public class SQLUserDAO implements UserDAO {
         try {
             File file = new File(Objects.requireNonNull(this.getClass().getResource("/db.properties")).toURI());
             FileInputStream in = new FileInputStream(
-                   (file));
+                    (file));
             properties.load(in);
             in.close();
 
@@ -112,7 +111,7 @@ public class SQLUserDAO implements UserDAO {
         } catch (SQLException e) {
             throw new DAOException("Error while trying authorizing to database", e);
         } catch (FileNotFoundException e) {
-            throw new DAOException("Can't create stream for reading configuration file for database",e);
+            throw new DAOException("Can't create stream for reading configuration file for database", e);
         } catch (IOException e) {
             throw new DAOException("Error while reading from database configuration file", e);
         } catch (NullPointerException e) {
