@@ -6,20 +6,20 @@
     <title>Smart Things - интернет-магазин в Беларуси</title>
 </head>
 <body>
-<jsp:useBean id="userSessionInfo" type="by.sheshko.shop.bean.UserSessionInfo"/>
+<jsp:useBean id="userSessionInfo" class="by.sheshko.shop.bean.UserSessionInfo"/>
 <c:set var="username" scope="session" value="${userSessionInfo.login}"/>
 <h1>Приветствуем, <c:out value="${username}"/>в нашем интернет-магазине Smart Things!</h1>
 
 <br>
-<p><<form name="loginForm" action="controller" method="post">
+<div id="loginForm"><form name="loginForm" action="controller" method="post">
     <input type="hidden" name="command" value="sign_in">
     <input type="text" name="login" value="" placeholder="Введите ваш логин...">
     <input type="password" name="password" value="" placeholder="Введите ваш пароль...">
     <input type="submit" value="Войти">
-</form>
-<form action="registration" method="post">
+</form></div>
+<div id="registrationButton"><form action="registration" method="post">
     <input type="submit" value="Регистрация">
-</form>/p>
+</form></div>
 <br>
 <form action="controller" method="post">
     <input type="hidden" name="command" value="sign_out">

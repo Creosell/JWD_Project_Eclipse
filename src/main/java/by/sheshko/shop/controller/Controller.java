@@ -41,7 +41,7 @@ public class Controller extends HttpServlet {
 
 
         if (userSessionInfo.getName() == null) {
-            userSessionInfo.setName("Anonymous");
+            userSessionInfo.setLogin("Anonymous");
         }
 
         out.println("Name: " + userSessionInfo.getName() + "<br>");
@@ -50,8 +50,7 @@ public class Controller extends HttpServlet {
             case SIGN_IN:
             case REGISTRATION:
                 try {
-                    out.println(command.execute(userSessionInfo.getLogin()) + " " + userSessionInfo.getPassword());
-
+                    out.println(command.execute(userSessionInfo.getPassword()+" "+userSessionInfo.getLogin()));
                     command = provider.getCommand("USER_INFO");
                     out.println("<br>" + command.execute(userSessionInfo.getName()));
                 } catch (ControllerException e) {

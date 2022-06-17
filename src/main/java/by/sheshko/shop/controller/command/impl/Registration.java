@@ -7,6 +7,8 @@ import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.exception.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
 
+import java.util.Arrays;
+
 public class Registration implements Command {
     @Override
     public String execute(String request) throws ControllerException {
@@ -17,11 +19,15 @@ public class Registration implements Command {
 
         try {
             String[] requestParameters = request.split(" ");
-            login = requestParameters[0];
-            password = requestParameters[1];
+            for(int i = 0; i < requestParameters.length; i++) {
+              System.out.println(requestParameters[i]);
+            }
+            login = requestParameters[1];
+            password = requestParameters[0];
             user = new User(login, password);
+
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Login or password is empty");
+            System.out.println("Login or password is empty"+e+"\n");
             throw new ControllerException("Login or password is empty", e);
         }
 

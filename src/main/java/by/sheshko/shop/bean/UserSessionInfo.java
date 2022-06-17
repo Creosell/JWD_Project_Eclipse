@@ -31,7 +31,7 @@ public class UserSessionInfo implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return name==null ? login : name ;
     }
 
     public void setName(String name) {
@@ -59,6 +59,16 @@ public class UserSessionInfo implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         UserSessionInfo that = (UserSessionInfo) o;
         return Objects.equals(login, that.login) && Objects.equals(name, that.name) && Objects.equals(session, that.session);
+    }
+
+    @Override
+    public String toString() {
+        return "UserSessionInfo{" +
+                "login='" + login + '\'' +
+                ", name='" + name + '\'' +
+                ", session=" + session +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     @Override
