@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -39,7 +38,6 @@ public class Controller extends HttpServlet {
         userSessionInfo.setPassword(request.getParameter("password"));
 
 
-
         if (userSessionInfo.getName() == null) {
             userSessionInfo.setLogin("Anonymous");
         }
@@ -50,7 +48,7 @@ public class Controller extends HttpServlet {
             case SIGN_IN:
             case REGISTRATION:
                 try {
-                    out.println(command.execute(userSessionInfo.getPassword()+" "+userSessionInfo.getLogin()));
+                    out.println(command.execute(userSessionInfo.getLogin() + " " + userSessionInfo.getPassword()));
                     command = provider.getCommand("USER_INFO");
                     out.println("<br>" + command.execute(userSessionInfo.getName()));
                 } catch (ControllerException e) {

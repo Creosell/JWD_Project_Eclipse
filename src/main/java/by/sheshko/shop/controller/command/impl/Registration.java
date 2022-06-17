@@ -19,9 +19,8 @@ public class Registration implements Command {
 
         try {
             String[] requestParameters = request.split(" ");
-            login = requestParameters[1];
-            password = requestParameters[0];
-
+            login = requestParameters[0];
+            password = requestParameters[1];
             user = new User(login, password);
 
         } catch (ArrayIndexOutOfBoundsException e) {

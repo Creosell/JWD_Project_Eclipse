@@ -6,9 +6,8 @@
     <title>Smart Things - интернет-магазин в Беларуси</title>
 </head>
 <body>
-<jsp:useBean id="userSessionInfo" class="by.sheshko.shop.bean.UserSessionInfo"/>
-<c:set var="username" scope="session" value="${userSessionInfo.login}"/>
-<h1>Приветствуем, <c:out value="${username}"/>в нашем интернет-магазине Smart Things!</h1>
+
+<h1>Приветствуем в нашем интернет-магазине Smart Things!</h1>
 
 <br>
 <div id="loginForm"><form name="loginForm" action="controller" method="post">
