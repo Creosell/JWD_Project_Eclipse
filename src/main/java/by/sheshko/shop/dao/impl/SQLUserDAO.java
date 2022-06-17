@@ -3,7 +3,6 @@ package by.sheshko.shop.dao.impl;
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.exception.DAOException;
-import by.sheshko.shop.dao.exception.DAOUserAuthorizationException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,10 +28,10 @@ public class SQLUserDAO implements UserDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
-                throw new DAOUserAuthorizationException();
+                throw new DAOException("Wrong login or password");
             }
-        } catch (DAOUserAuthorizationException e) {
-            throw new DAOException("Wrong login or password", e);
+        } catch (DAOException e) {
+            throw new DAOException(e.getMessage(), e);
         } catch (SQLException e) {
             throw new DAOException("Error while working with database", e);
         }
@@ -54,7 +53,7 @@ public class SQLUserDAO implements UserDAO {
             if (e.toString().contains("Duplicate")) {
                 throw new DAOException("User with same name is already registered", e);
             } else {
-                throw new DAOException(e.getMessage());
+                throw new DAOException("Error while registering user" ,e);
             }
         }
     }
@@ -83,7 +82,7 @@ public class SQLUserDAO implements UserDAO {
                 user.setRole(resultSet.getInt(9));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new DAOException("Error while getting info about user", e);
         }
         return user;
     }

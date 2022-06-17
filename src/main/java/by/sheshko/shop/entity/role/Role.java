@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Role implements Serializable {
-    private final HashMap<Integer, RoleName> roles = new HashMap<>();
+    private final Map<Integer, RoleName> roles = new HashMap<>();
 
     public Role() {
         roles.put(1, RoleName.ADMIN);
@@ -13,7 +13,7 @@ public class Role implements Serializable {
         roles.put(3, RoleName.ANONYMOUS);
     }
 
-    public HashMap<Integer, RoleName> getRoles() {
+    public Map<Integer, RoleName> getRoles() {
         return roles;
     }
 

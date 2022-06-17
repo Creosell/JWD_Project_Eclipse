@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -5,7 +6,9 @@
     <title>Smart Things - интернет-магазин в Беларуси</title>
 </head>
 <body>
-<h1>Приветствуем в нашем интернет-магазине Smart Things!</h1>
+<jsp:useBean id="userSessionInfo" type="by.sheshko.shop.bean.UserSessionInfo"/>
+<c:set var="username" scope="session" value="${userSessionInfo.login}"/>
+<h1>Приветствуем, <c:out value="${username}"/>в нашем интернет-магазине Smart Things!</h1>
 
 <br>
 <p><<form name="loginForm" action="controller" method="post">
