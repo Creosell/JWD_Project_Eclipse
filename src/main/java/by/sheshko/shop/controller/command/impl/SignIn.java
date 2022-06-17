@@ -1,5 +1,6 @@
 package by.sheshko.shop.controller.command.impl;
 
+import by.sheshko.shop.bean.User;
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.exception.ControllerException;
 import by.sheshko.shop.service.ClientService;
@@ -12,16 +13,18 @@ public class SignIn implements Command {
         String login = null;
         String password = null;
         String response = null;
+        User user;
 
         try {
             String[] requestParameters = request.split(" ");
             login = requestParameters[0];
             password = requestParameters[1];
+            user = new User(login, password);
 
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
 
-            clientService.singIn(login, password);
+            clientService.singIn(user);
             response = "Добро пожаловать, " + login;
         } catch (ServiceException e) {
             System.out.println("Error while log on site for login:" + login + "\n" + e.getMessage());

@@ -4,9 +4,11 @@ import by.sheshko.shop.bean.User;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.exception.DAOException;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.Objects;
 import java.util.Properties;
@@ -16,15 +18,15 @@ public class SQLUserDAO implements UserDAO {
     private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password, roles_id) VALUES(?, ?, ?);";
 
     @Override
-    public void signIn(String login, String password) throws DAOException {
+    public void signIn(User user) throws DAOException {
 
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement = null;
             ResultSet resultSet = null;
 
             preparedStatement = connection.prepareStatement(LOGIN);
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
@@ -92,8 +94,9 @@ public class SQLUserDAO implements UserDAO {
         Properties properties = new Properties();
 
         try {
+            File file = new File(Objects.requireNonNull(this.getClass().getResource("/db.properties")).toURI());
             FileInputStream in = new FileInputStream(
-                    Objects.requireNonNull(this.getClass().getResource("/db.properties")).getPath());
+                   (file));
             properties.load(in);
             in.close();
 
@@ -109,11 +112,13 @@ public class SQLUserDAO implements UserDAO {
         } catch (SQLException e) {
             throw new DAOException("Error while trying authorizing to database", e);
         } catch (FileNotFoundException e) {
-            throw new DAOException("Can't create stream for reading configuration file for database", e);
+            throw new DAOException("Can't create stream for reading configuration file for database",e);
         } catch (IOException e) {
             throw new DAOException("Error while reading from database configuration file", e);
         } catch (NullPointerException e) {
             throw new DAOException("Can't find configuration file for database", e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
 
         return connection;

@@ -9,12 +9,12 @@ import by.sheshko.shop.service.exception.ServiceException;
 
 public class ClientServiceImpl implements ClientService {
     @Override
-    public void singIn(String login, String password) throws ServiceException {
-        if (!login.equals("") && !password.equals("")) {
+    public void singIn(User user) throws ServiceException {
+        if (!user.getLogin().equals("") && !user.getPassword().equals("")) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
-                userDAO.signIn(login, password);
+                userDAO.signIn(user);
             } catch (DAOException e) {
                 throw new ServiceException(e.getMessage());
             }
