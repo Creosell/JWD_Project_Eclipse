@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Role implements Serializable {
+    private static final long serialVersionUID = -4919966976903480589L;
     private final Map<Integer, RoleName> roles = new HashMap<>();
 
     public Role() {
@@ -25,6 +26,16 @@ public class Role implements Serializable {
             }
         }
         return roleName;
+    }
+
+    public Integer setRoleIDByName(RoleName roleName) {
+        Integer roleID = null;
+        for (Map.Entry<Integer, RoleName> role : roles.entrySet()) {
+            if (roleName.equals(role.getValue())) {
+                roleID = role.getKey();
+            }
+        }
+        return roleID;
     }
 
 
