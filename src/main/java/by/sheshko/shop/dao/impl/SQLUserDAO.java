@@ -93,8 +93,6 @@ public class SQLUserDAO implements UserDAO {
 
     private Connection connectToDataBase() throws DAOException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
-
-
         /*try {
              connectionPool = ConnectionPool.getInstance();
             connectionPool.initPoolData();

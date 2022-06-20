@@ -26,15 +26,11 @@ public final class ConnectionPool {
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
 
     public static ConnectionPool getInstance() {
-        System.out.println("Instance");
                 return instance;
     }
 
     private ConnectionPool() {
-        System.out.println("In constructor");
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
-        dbResourceManager.testMethod();
-        System.out.println("Manager");
         this.driverName = dbResourceManager.getValue(DBParameter.DB_DRIVER);
         this.url = dbResourceManager.getValue(DBParameter.DB_URL);
         this.userName = dbResourceManager.getValue(DBParameter.DB_USERNAME);
