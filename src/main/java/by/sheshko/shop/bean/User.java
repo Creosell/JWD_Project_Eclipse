@@ -1,19 +1,16 @@
 package by.sheshko.shop.bean;
 
 import by.sheshko.shop.entity.role.Role;
-import by.sheshko.shop.entity.role.RoleName;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 147947946884646719L;
     private int userID;
     private String login;
-    private String password;
-    private String username;
+    private String name;
+    private String surname;
     private String email;
     private String phonenumber;
     private Date registrationTime;
@@ -23,9 +20,25 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String login, String password) {
+    public User(String login) {
         this.login = login;
-        this.password = password;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public int getUserID() {
@@ -34,14 +47,6 @@ public class User implements Serializable {
 
     public void setUserID(int userID) {
         this.userID = userID;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
@@ -81,7 +86,7 @@ public class User implements Serializable {
     }
 
     public void setRole(Integer roleID) {
-        this.role = new Role().getRoleName(roleID);;
+        this.role = new Role().getRoleName(roleID);
     }
 
     public String getLogin() {
@@ -92,17 +97,12 @@ public class User implements Serializable {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "userID=" + userID +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", username='" + username + '\'' +
+                ", username='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +
                 ", registrationTime=" + registrationTime +
@@ -110,8 +110,5 @@ public class User implements Serializable {
                 ", role='" + role + '\'' +
                 '}';
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
+

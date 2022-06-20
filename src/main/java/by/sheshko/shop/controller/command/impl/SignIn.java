@@ -19,12 +19,12 @@ public class SignIn implements Command {
             String[] requestParameters = request.split(" ");
             login = requestParameters[0];
             password = requestParameters[1];
-            user = new User(login, password);
+
 
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
 
-            clientService.singIn(user);
+            clientService.singIn(login, password);
             response = "Добро пожаловать, " + login;
         } catch (ServiceException e) {
             System.out.println("Error while log on site for login:" + login + "\n" + e.getMessage());

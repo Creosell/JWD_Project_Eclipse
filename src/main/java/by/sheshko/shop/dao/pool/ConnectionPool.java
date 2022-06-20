@@ -17,13 +17,24 @@ public final class ConnectionPool {
 
     private BlockingQueue<Connection> connectionsQueue;
     private BlockingQueue<Connection> givenAwayQueue;
-
     private final String driverName;
     private final String url;
     private final String userName;
     private final String password;
     private int poolSize;
+    private static volatile ConnectionPool instance = new ConnectionPool();
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
+
+    public static ConnectionPool getInstance() {
+        if (instance == null) {
+            synchronized (ConnectionPool.class) {
+                if (instance == null) {
+                    instance = new ConnectionPool();
+                }
+            }
+        }
+        return instance;
+    }
 
     private ConnectionPool() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
@@ -58,7 +69,7 @@ public final class ConnectionPool {
         }
     }
 
-    private class PooledConnection implements Connection {
+    private class PooledConnection implements Connection, AutoCloseable {
         private final Connection connection;
 
         public PooledConnection(Connection connection) throws SQLException {
@@ -148,7 +159,7 @@ public final class ConnectionPool {
             Connection connection;
             while ((connection = queue.poll()) != null) {
                 if (!connection.getAutoCommit()) {
-                    connection.commit();
+                    connection.rollback();
                 }
                 ((PooledConnection) connection).reallyClose();
             }

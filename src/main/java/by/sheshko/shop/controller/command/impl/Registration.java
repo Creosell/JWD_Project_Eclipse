@@ -21,7 +21,6 @@ public class Registration implements Command {
             String[] requestParameters = request.split(" ");
             login = requestParameters[0];
             password = requestParameters[1];
-            user = new User(login, password);
 
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Login or password is empty"+e+"\n");
@@ -33,8 +32,8 @@ public class Registration implements Command {
         ClientService clientService = serviceFactory.getClientServiceImpl();
 
         try {
-            clientService.registration(user);
-            response = "New user with login " + user.getLogin() + " was successfully created!";
+            clientService.registration(login, password);
+            response = "New user with login " + login + " was successfully created!";
         } catch (ServiceException e) {
             System.out.println("Error while registering new user\n" + e.getMessage());
             response = "Error while registering new user";

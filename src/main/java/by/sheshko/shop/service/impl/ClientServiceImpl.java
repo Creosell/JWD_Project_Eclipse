@@ -10,12 +10,12 @@ import by.sheshko.shop.service.exception.ServiceException;
 
 public class ClientServiceImpl implements ClientService {
     @Override
-    public void singIn(User user) throws ServiceException {
-        if (!user.getLogin().equals("") && !user.getPassword().equals("")) {
+    public void singIn(String login, String password) throws ServiceException {
+        if (!login.equals("") && !password.equals("")) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
-                userDAO.signIn(user);
+                userDAO.signIn(login, password);
             } catch (DAOException e) {
                 throw new ServiceException(e.getMessage());
             }
@@ -29,13 +29,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void registration(User user) throws ServiceException {
+    public void registration(String login, String password) throws ServiceException {
 
-        if (!user.getLogin().equals("") && !user.getPassword().equals("")) {
+        if (!login.equals("") && !password.equals("")) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
-                userDAO.registration(user);
+                userDAO.registration(login, password);
             } catch (DAOException e) {
                 throw new ServiceException(e.getMessage());
             }

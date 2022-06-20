@@ -3,6 +3,11 @@ package by.sheshko.shop.dao.impl;
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.exception.DAOException;
+import by.sheshko.shop.dao.pool.ConnectionPool;
+import by.sheshko.shop.dao.pool.exception.ConnectionPoolException;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,19 +20,21 @@ import java.util.Properties;
 
 public class SQLUserDAO implements UserDAO {
     private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
-    private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password, roles_id) VALUES(?, ?, ?);";
+    private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password) VALUES(?, ?);";
     private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
+    Logger logger = LogManager.getLogger(SQLUserDAO.class);
+
 
     @Override
-    public void signIn(User user) throws DAOException {
+    public void signIn(String login, String password) throws DAOException {
 
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement = null;
             ResultSet resultSet = null;
 
             preparedStatement = connection.prepareStatement(LOGIN);
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
@@ -39,15 +46,13 @@ public class SQLUserDAO implements UserDAO {
     }
 
     @Override
-    public void registration(User user) throws DAOException {
+    public void registration(String login, String password) throws DAOException {
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement = null;
-            int userRoleID = 2;
 
             preparedStatement = connection.prepareStatement(REGISTER_NEW_USER);
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setInt(3, userRoleID);
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
             preparedStatement.execute();
 
         } catch (SQLException e) {
@@ -61,7 +66,7 @@ public class SQLUserDAO implements UserDAO {
 
     @Override
     public User getUserInfo(String login) throws DAOException {
-        User user = new User();
+        User user;
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement;
             ResultSet resultSet;
@@ -71,17 +76,15 @@ public class SQLUserDAO implements UserDAO {
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                user.setUserID(resultSet.getInt(1));
-                user.setLogin(resultSet.getString(2));
-                user.setPassword(resultSet.getString(3));
-                user.setUsername(resultSet.getString(4));
-                user.setEmail(resultSet.getString(5));
-                user.setPhonenumber(resultSet.getString(6));
-                user.setRegistrationTime(resultSet.getTimestamp(7));
-                user.setStatus(resultSet.getString(8));
-                user.setRole(resultSet.getInt(9));
+            if (!resultSet.next()) {
+                return null;
             }
+            user = new User();
+
+            user.setUserID(resultSet.getInt(1));
+            user.setLogin(resultSet.getString(2));
+            user.setRole(resultSet.getInt(4));
+
         } catch (SQLException e) {
             throw new DAOException("Error while getting info about user", e);
         }
@@ -89,6 +92,16 @@ public class SQLUserDAO implements UserDAO {
     }
 
     private Connection connectToDataBase() throws DAOException {
+
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance();
+            connectionPool.initPoolData();
+
+        } catch (ConnectionPoolException e) {
+            logger.log(Level.ERROR, "Error initializing connection pool", e);
+        }
+
+
         Connection connection;
         Properties properties = new Properties();
 

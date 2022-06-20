@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 public class DBResourceManager {
     private final static DBResourceManager instance = new DBResourceManager();
 
-    private ResourceBundle resourceBundle = ResourceBundle.getBundle(
+    private final ResourceBundle resourceBundle = ResourceBundle.getBundle(
             Objects.requireNonNull(this.getClass().getResource("/db.properties")).getPath());
 
     public static DBResourceManager getInstance() {
