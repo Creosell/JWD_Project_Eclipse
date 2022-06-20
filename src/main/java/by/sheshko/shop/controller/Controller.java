@@ -4,6 +4,11 @@ import by.sheshko.shop.bean.UserSessionInfo;
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.command.CommandName;
 import by.sheshko.shop.controller.exception.ControllerException;
+import by.sheshko.shop.dao.pool.ConnectionPool;
+import by.sheshko.shop.dao.pool.exception.ConnectionPoolException;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +20,26 @@ import java.io.PrintWriter;
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
     private final CommandProvider provider = new CommandProvider();
+    private static final Logger logger = LogManager.getLogger(Controller.class);
+    ConnectionPool connectionPool;
+
+   /* @Override
+    public void init() throws ServletException {
+        try{
+            connectionPool = ConnectionPool.getInstance();
+            connectionPool.initPoolData();
+        } catch (ConnectionPoolException e) {
+            logger.log(Level.FATAL, "Error initializing connection pool",e);
+            throw new RuntimeException(e);
+        }
+        super.init();
+    }
+
+    @Override
+    public void destroy() {
+connectionPool.dispose();
+        super.destroy();
+    }*/
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -92,20 +92,27 @@ public class SQLUserDAO implements UserDAO {
     }
 
     private Connection connectToDataBase() throws DAOException {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
 
-        try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance();
+
+        /*try {
+             connectionPool = ConnectionPool.getInstance();
             connectionPool.initPoolData();
-
         } catch (ConnectionPoolException e) {
             logger.log(Level.ERROR, "Error initializing connection pool", e);
+        }*/
+        Connection connection = null;
+        try{
+            connection = connectionPool.takeConnection();
+        } catch (ConnectionPoolException e) {
+           logger.log(Level.ERROR, "Error getting connection from pool",e);
+            throw new DAOException("Error getting connection to database");
         }
 
 
-        Connection connection;
-        Properties properties = new Properties();
+        //Properties properties = new Properties();
 
-        try {
+        /*try {
             File file = new File(Objects.requireNonNull(this.getClass().getResource("/db.properties")).toURI());
             FileInputStream in = new FileInputStream(
                     (file));
@@ -131,7 +138,7 @@ public class SQLUserDAO implements UserDAO {
             throw new DAOException("Can't find configuration file for database", e);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         return connection;
     }
