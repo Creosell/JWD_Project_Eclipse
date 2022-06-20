@@ -68,6 +68,58 @@ public final class ConnectionPool {
             throw new ConnectionPoolException("Error while adding connection to pool. Pool is overflowed.", e);
         }
     }
+    public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Error while closing connection object", e);
+        }
+        try {
+            resultSet.close();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Error while closing resultSet object", e);
+        }
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Error while closing statement object", e);
+        }
+    }
+
+    public void closeConnectionQueue(BlockingQueue<Connection> queue) throws SQLException {
+        Connection connection;
+        while ((connection = queue.poll()) != null) {
+            if (!connection.getAutoCommit()) {
+                connection.rollback();
+            }
+            ((PooledConnection) connection).reallyClose();
+        }
+
+    }
+
+    public void clearConnectionQueue() {
+        try {
+            closeConnectionQueue(connectionsQueue);
+            closeConnectionQueue(givenAwayQueue);
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Error closing connection queue", e);
+        }
+    }
+
+    public void dispose() {
+        clearConnectionQueue();
+    }
+
+    public Connection takeConnection() throws ConnectionPoolException {
+        Connection connection = null;
+        try {
+            connection = connectionsQueue.take();
+            givenAwayQueue.add(connection);
+        } catch (InterruptedException e) {
+            throw new ConnectionPoolException("Error while getting connection from queue", e);
+        }
+        return connection;
+    }
 
     private class PooledConnection implements Connection, AutoCloseable {
         private final Connection connection;
@@ -135,59 +187,6 @@ public final class ConnectionPool {
             if (!connectionsQueue.offer(this)) {
                 throw new SQLException("Error while trying to add connection to pool");
             }
-        }
-
-        public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Error while closing connection object", e);
-            }
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Error while closing resultSet object", e);
-            }
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Error while closing statement object", e);
-            }
-        }
-
-        public void closeConnectionQueue(BlockingQueue<Connection> queue) throws SQLException {
-            Connection connection;
-            while ((connection = queue.poll()) != null) {
-                if (!connection.getAutoCommit()) {
-                    connection.rollback();
-                }
-                ((PooledConnection) connection).reallyClose();
-            }
-
-        }
-
-        public void clearConnectionQueue() {
-            try {
-                closeConnectionQueue(connectionsQueue);
-                closeConnectionQueue(givenAwayQueue);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Error closing connection queue", e);
-            }
-        }
-
-        public void dispose() {
-            clearConnectionQueue();
-        }
-
-        public Connection takeConnection() throws ConnectionPoolException {
-            Connection connection = null;
-            try {
-                connection = connectionsQueue.take();
-                givenAwayQueue.add(connection);
-            } catch (InterruptedException e) {
-                throw new ConnectionPoolException("Error while getting connection from queue", e);
-            }
-            return connection;
         }
 
         @Override
