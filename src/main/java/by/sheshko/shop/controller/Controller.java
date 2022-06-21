@@ -21,9 +21,25 @@ public class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
     private final CommandProvider provider = new CommandProvider();
     private static final Logger logger = LogManager.getLogger(Controller.class);
-    ConnectionPool connectionPool;
 
-   /* @Override
+    @Override
+    public void destroy() {
+        ConnectionPool.getInstance().dispose();
+        super.destroy();
+    }
+
+    @Override
+    public void init() throws ServletException {
+        try {
+            ConnectionPool.getInstance().initPoolData();
+        } catch (ConnectionPoolException e) {
+            logger.log(Level.FATAL, "Error initializing connection pool", e);
+            throw new RuntimeException("Error taking connection to database", e);
+        }
+        super.init();
+    }
+
+    /* @Override
     public void init() throws ServletException {
         try{
             connectionPool = ConnectionPool.getInstance();
