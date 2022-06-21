@@ -6,7 +6,7 @@
     <title>Smart Things - интернет-магазин в Беларуси</title>
 </head>
 <body>
-
+<jsp:useBean id="userInfo" class="by.sheshko.shop.bean.UserSessionInfo"/>
 <h1>Приветствуем в нашем интернет-магазине Smart Things!</h1>
 
 <br>
