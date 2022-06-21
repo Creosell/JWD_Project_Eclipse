@@ -1,7 +1,5 @@
 package by.sheshko.shop.bean;
 
-import by.sheshko.shop.entity.role.Role;
-
 import java.io.Serializable;
 import java.util.Date;
 

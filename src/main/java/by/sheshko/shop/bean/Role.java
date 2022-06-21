@@ -1,4 +1,4 @@
-package by.sheshko.shop.entity.role;
+package by.sheshko.shop.bean;
 
 import java.io.Serializable;
 import java.util.HashMap;
