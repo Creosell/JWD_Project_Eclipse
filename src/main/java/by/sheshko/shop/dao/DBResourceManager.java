@@ -1,15 +1,12 @@
 package by.sheshko.shop.dao;
 
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DBResourceManager {
     private static final DBResourceManager instance = new DBResourceManager();
 
-    public void testMethod(){
-        System.out.println( String.valueOf(this.getClass().getResource("/db.properties")));
-    }
-    private final ResourceBundle resourceBundle = ResourceBundle.getBundle(
-            String.valueOf(this.getClass().getResource("/db")));
+    private final ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
 
     public static DBResourceManager getInstance() {
         return instance;
