@@ -1,7 +1,6 @@
 package by.sheshko.shop.dao.pool;
 
 import by.sheshko.shop.dao.DBResourceManager;
-import by.sheshko.shop.dao.pool.exception.ConnectionPoolException;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -42,8 +41,8 @@ public final class ConnectionPool {
         }
     }
 
-    public void initPoolData() throws ConnectionPoolException {
-        try {
+    public void initPoolData() throws ClassNotFoundException, SQLException {
+
             Class.forName(driverName);
             connectionsQueue = new ArrayBlockingQueue<>(poolSize, true);
             givenAwayQueue = new ArrayBlockingQueue<>(poolSize, true);
@@ -52,13 +51,7 @@ public final class ConnectionPool {
                 Connection connection = DriverManager.getConnection(url, userName, password);
                 PooledConnection pooledConnection = new PooledConnection(connection);
                 connectionsQueue.add(pooledConnection);
-            }
-        } catch (ClassNotFoundException e) {
-            throw new ConnectionPoolException("Error while trying to find driver class", e);
-        } catch (SQLException e) {
-            throw new ConnectionPoolException("Error while trying to create a connection", e);
-        } catch (IllegalStateException e) {
-            throw new ConnectionPoolException("Error while adding connection to pool. Pool is overflowed.", e);
+
         }
     }
     public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
@@ -103,14 +96,10 @@ public final class ConnectionPool {
         clearConnectionQueue();
     }
 
-    public Connection takeConnection() throws ConnectionPoolException {
+    public Connection takeConnection() throws InterruptedException {
         Connection connection = null;
-        try {
             connection = connectionsQueue.take();
             givenAwayQueue.add(connection);
-        } catch (InterruptedException e) {
-            throw new ConnectionPoolException("Error while getting connection from queue", e);
-        }
         return connection;
     }
 

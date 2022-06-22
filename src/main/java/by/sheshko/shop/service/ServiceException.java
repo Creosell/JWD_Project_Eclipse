@@ -1,4 +1,4 @@
-package by.sheshko.shop.service.exception;
+package by.sheshko.shop.service;
 
 public class ServiceException extends Exception {
     public ServiceException() {

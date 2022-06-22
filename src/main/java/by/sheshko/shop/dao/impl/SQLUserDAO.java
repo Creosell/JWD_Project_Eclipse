@@ -2,21 +2,13 @@ package by.sheshko.shop.dao.impl;
 
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.dao.UserDAO;
-import by.sheshko.shop.dao.exception.DAOException;
+import by.sheshko.shop.dao.DAOException;
 import by.sheshko.shop.dao.pool.ConnectionPool;
-import by.sheshko.shop.dao.pool.exception.ConnectionPoolException;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.sql.*;
-import java.util.Objects;
-import java.util.Properties;
 
 public class SQLUserDAO implements UserDAO {
     private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
@@ -96,9 +88,11 @@ public class SQLUserDAO implements UserDAO {
         Connection connection = null;
         try{
             connection = connectionPool.takeConnection();
-        } catch (ConnectionPoolException e) {
+        } /*catch (){
            logger.log(Level.ERROR, "Error getting connection from pool",e);
-            throw new DAOException("Error getting connection to database");
+            throw new DAOException("Error getting connection to database");*/
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         return connection;
         /*} catch (ClassNotFoundException e) {

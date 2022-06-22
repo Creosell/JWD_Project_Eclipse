@@ -3,10 +3,10 @@ package by.sheshko.shop.service.impl;
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.bean.UserSessionInfo;
 import by.sheshko.shop.dao.UserDAO;
-import by.sheshko.shop.dao.exception.DAOException;
+import by.sheshko.shop.dao.DAOException;
 import by.sheshko.shop.dao.factory.DAOFactory;
 import by.sheshko.shop.service.ClientService;
-import by.sheshko.shop.service.exception.ServiceException;
+import by.sheshko.shop.service.ServiceException;
 
 public class ClientServiceImpl implements ClientService {
     @Override

@@ -1,6 +1,8 @@
-package by.sheshko.shop.dao.exception;
+package by.sheshko.shop.dao;
 
-public class DAOException extends Exception {
+public class DAOException extends Exception{
+    private static final long serialVersionUID = 4598052794997576535L;
+
     public DAOException() {
     }
 

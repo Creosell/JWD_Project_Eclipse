@@ -3,9 +3,7 @@ package by.sheshko.shop.controller;
 import by.sheshko.shop.bean.UserSessionInfo;
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.command.CommandName;
-import by.sheshko.shop.controller.exception.ControllerException;
 import by.sheshko.shop.dao.pool.ConnectionPool;
-import by.sheshko.shop.dao.pool.exception.ConnectionPoolException;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
@@ -30,32 +29,18 @@ public class Controller extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
+
         try {
             ConnectionPool.getInstance().initPoolData();
-        } catch (ConnectionPoolException e) {
-            logger.log(Level.FATAL, "Error initializing connection pool", e);
-            throw new RuntimeException("Error taking connection to database", e);
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.FATAL,"Error while trying to find driver class for connection pool",e);
+            throw new ServletException ("Error initializing connection pool", e);
+        } catch (SQLException e) {
+            logger.log(Level.FATAL,"Error while connection pool working with database",e);
+            throw new ServletException("Error initializing connection pool", e);
         }
         super.init();
     }
-
-    /* @Override
-    public void init() throws ServletException {
-        try{
-            connectionPool = ConnectionPool.getInstance();
-            connectionPool.initPoolData();
-        } catch (ConnectionPoolException e) {
-            logger.log(Level.FATAL, "Error initializing connection pool",e);
-            throw new RuntimeException(e);
-        }
-        super.init();
-    }
-
-    @Override
-    public void destroy() {
-connectionPool.dispose();
-        super.destroy();
-    }*/
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

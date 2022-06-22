@@ -2,7 +2,6 @@ package by.sheshko.shop.service;
 
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.bean.UserSessionInfo;
-import by.sheshko.shop.service.exception.ServiceException;
 
 public interface ClientService {
     void singIn(String login, String password) throws ServiceException;
