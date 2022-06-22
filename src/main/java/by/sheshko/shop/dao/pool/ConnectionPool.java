@@ -37,7 +37,7 @@ public final class ConnectionPool {
         try {
             this.poolSize = Integer.parseInt(dbResourceManager.getValue(DBParameter.DB_POOLSIZE));
         } catch (NumberFormatException e) {
-            this.poolSize = 5;
+            this.poolSize = 10;
         }
     }
 
