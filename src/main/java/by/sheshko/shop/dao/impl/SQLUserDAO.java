@@ -33,6 +33,7 @@ public class SQLUserDAO implements UserDAO {
                 throw new DAOException("Wrong login or password");
             }
         } catch (SQLException e) {
+            logger.log(Level.ERROR, "Error working with statements while sign in", e);
             throw new DAOException("Error while working with database", e);
         }
     }
@@ -51,9 +52,11 @@ public class SQLUserDAO implements UserDAO {
             if (e.toString().contains("Duplicate")) {
                 throw new DAOException("User with same name is already registered", e);
             } else {
+                logger.log(Level.ERROR, "Error working with statements while registering new user",e);
                 throw new DAOException("Error while registering user", e);
             }
         }
+
     }
 
     @Override
@@ -78,6 +81,7 @@ public class SQLUserDAO implements UserDAO {
             user.setRole(resultSet.getInt(4));
 
         } catch (SQLException e) {
+            logger.log(Level.ERROR, "Error working with statements while getting user info",e);
             throw new DAOException("Error while getting info about user", e);
         }
         return user;
@@ -88,25 +92,11 @@ public class SQLUserDAO implements UserDAO {
         Connection connection = null;
         try{
             connection = connectionPool.takeConnection();
-        } /*catch (){
-           logger.log(Level.ERROR, "Error getting connection from pool",e);
-            throw new DAOException("Error getting connection to database");*/
+        }
         catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            logger.log(Level.ERROR,"Error while getting connection from connection pool queue",e);
+            throw new DAOException("Error taking connection to database", e);
         }
         return connection;
-        /*} catch (ClassNotFoundException e) {
-            throw new DAOException("Driver for database didn't find", e);
-        } catch (SQLException e) {
-            throw new DAOException("Error while trying authorizing to database", e);
-        } catch (FileNotFoundException e) {
-            throw new DAOException("Can't create stream for reading configuration file for database", e);
-        } catch (IOException e) {
-            throw new DAOException("Error while reading from database configuration file", e);
-        } catch (NullPointerException e) {
-            throw new DAOException("Can't find configuration file for database", e);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }*/
     }
 }
