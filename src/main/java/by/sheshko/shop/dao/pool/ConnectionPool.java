@@ -14,19 +14,15 @@ import java.util.concurrent.Executor;
 
 public final class ConnectionPool {
 
-    private BlockingQueue<Connection> connectionsQueue;
-    private BlockingQueue<Connection> givenAwayQueue;
+    private static final ConnectionPool instance = new ConnectionPool();
+    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
     private final String driverName;
     private final String url;
     private final String userName;
     private final String password;
+    private BlockingQueue<Connection> connectionsQueue;
+    private BlockingQueue<Connection> givenAwayQueue;
     private int poolSize;
-    private static final ConnectionPool instance = new ConnectionPool();
-    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
-
-    public static ConnectionPool getInstance() {
-                return instance;
-    }
 
     private ConnectionPool() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
@@ -41,19 +37,24 @@ public final class ConnectionPool {
         }
     }
 
+    public static ConnectionPool getInstance() {
+        return instance;
+    }
+
     public void initPoolData() throws ClassNotFoundException, SQLException {
 
-            Class.forName(driverName);
-            connectionsQueue = new ArrayBlockingQueue<>(poolSize, true);
-            givenAwayQueue = new ArrayBlockingQueue<>(poolSize, true);
+        Class.forName(driverName);
+        connectionsQueue = new ArrayBlockingQueue<>(poolSize, true);
+        givenAwayQueue = new ArrayBlockingQueue<>(poolSize, true);
 
-            for (int i = 0; i < poolSize; i++) {
-                Connection connection = DriverManager.getConnection(url, userName, password);
-                PooledConnection pooledConnection = new PooledConnection(connection);
-                connectionsQueue.add(pooledConnection);
+        for (int i = 0; i < poolSize; i++) {
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            PooledConnection pooledConnection = new PooledConnection(connection);
+            connectionsQueue.add(pooledConnection);
 
         }
     }
+
     public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
         try {
             resultSet.close();
@@ -98,8 +99,8 @@ public final class ConnectionPool {
 
     public Connection takeConnection() throws InterruptedException {
         Connection connection = null;
-            connection = connectionsQueue.take();
-            givenAwayQueue.add(connection);
+        connection = connectionsQueue.take();
+        givenAwayQueue.add(connection);
         return connection;
     }
 
@@ -136,13 +137,13 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setAutoCommit(boolean autoCommit) throws SQLException {
-            connection.setAutoCommit(autoCommit);
+        public boolean getAutoCommit() throws SQLException {
+            return connection.getAutoCommit();
         }
 
         @Override
-        public boolean getAutoCommit() throws SQLException {
-            return connection.getAutoCommit();
+        public void setAutoCommit(boolean autoCommit) throws SQLException {
+            connection.setAutoCommit(autoCommit);
         }
 
         @Override
@@ -182,18 +183,13 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setReadOnly(boolean readOnly) throws SQLException {
-            connection.setReadOnly(readOnly);
-        }
-
-        @Override
         public boolean isReadOnly() throws SQLException {
             return connection.isReadOnly();
         }
 
         @Override
-        public void setCatalog(String catalog) throws SQLException {
-            connection.setCatalog(catalog);
+        public void setReadOnly(boolean readOnly) throws SQLException {
+            connection.setReadOnly(readOnly);
         }
 
         @Override
@@ -202,13 +198,18 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setTransactionIsolation(int level) throws SQLException {
-            connection.setTransactionIsolation(level);
+        public void setCatalog(String catalog) throws SQLException {
+            connection.setCatalog(catalog);
         }
 
         @Override
         public int getTransactionIsolation() throws SQLException {
             return connection.getTransactionIsolation();
+        }
+
+        @Override
+        public void setTransactionIsolation(int level) throws SQLException {
+            connection.setTransactionIsolation(level);
         }
 
         @Override
@@ -247,13 +248,13 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setHoldability(int holdability) throws SQLException {
-            connection.setHoldability(holdability);
+        public int getHoldability() throws SQLException {
+            return connection.getHoldability();
         }
 
         @Override
-        public int getHoldability() throws SQLException {
-            return connection.getHoldability();
+        public void setHoldability(int holdability) throws SQLException {
+            connection.setHoldability(holdability);
         }
 
         @Override
@@ -337,11 +338,6 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setClientInfo(Properties properties) throws SQLClientInfoException {
-            connection.setClientInfo(properties);
-        }
-
-        @Override
         public String getClientInfo(String name) throws SQLException {
             return connection.getClientInfo(name);
         }
@@ -349,6 +345,11 @@ public final class ConnectionPool {
         @Override
         public Properties getClientInfo() throws SQLException {
             return connection.getClientInfo();
+        }
+
+        @Override
+        public void setClientInfo(Properties properties) throws SQLClientInfoException {
+            connection.setClientInfo(properties);
         }
 
         @Override
@@ -362,13 +363,13 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setSchema(String schema) throws SQLException {
-            connection.setSchema(schema);
+        public String getSchema() throws SQLException {
+            return connection.getSchema();
         }
 
         @Override
-        public String getSchema() throws SQLException {
-            return connection.getSchema();
+        public void setSchema(String schema) throws SQLException {
+            connection.setSchema(schema);
         }
 
         @Override

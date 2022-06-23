@@ -6,7 +6,6 @@ import java.util.Date;
 public class User implements Serializable {
     private static final long serialVersionUID = 147947946884646719L;
     private int userID;
-    private String login;
     private String name;
     private String surname;
     private String email;
@@ -18,10 +17,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String login) {
-        this.login = login;
-
+    public User(int userID) {
+        this.userID = userID;
     }
+
 
     public String getName() {
         return name;
@@ -87,19 +86,11 @@ public class User implements Serializable {
         this.role = new Role().getRoleName(roleID);
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     @Override
     public String toString() {
         return "User{" +
                 "userID=" + userID +
-                ", login='" + login + '\'' +
                 ", username='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +

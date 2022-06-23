@@ -12,14 +12,30 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
-    private final CommandProvider provider = new CommandProvider();
     private static final Logger logger = LogManager.getLogger(Controller.class);
+    private final CommandProvider provider = new CommandProvider();
+
+    @Override
+    public void init() throws ServletException {
+
+        try {
+            ConnectionPool.getInstance().initPoolData();
+        } catch (ClassNotFoundException e) {
+            logger.log(Level.FATAL, "Error while trying to find driver class for connection pool", e);
+            throw new ServletException("Error initializing connection pool", e);
+        } catch (SQLException e) {
+            logger.log(Level.FATAL, "Error while connection pool working with database", e);
+            throw new ServletException("Error initializing connection pool", e);
+        }
+        super.init();
+    }
 
     @Override
     public void destroy() {
@@ -28,23 +44,8 @@ public class Controller extends HttpServlet {
     }
 
     @Override
-    public void init() throws ServletException {
-
-        try {
-            ConnectionPool.getInstance().initPoolData();
-        } catch (ClassNotFoundException e) {
-            logger.log(Level.FATAL,"Error while trying to find driver class for connection pool",e);
-            throw new ServletException ("Error initializing connection pool", e);
-        } catch (SQLException e) {
-            logger.log(Level.FATAL,"Error while connection pool working with database",e);
-            throw new ServletException("Error initializing connection pool", e);
-        }
-        super.init();
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request, response);
     }
 
     @Override
@@ -52,20 +53,16 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
-      /*  HttpSession session =
-        String login =
-        String ;*/
         CommandName commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
         Command command = provider.getCommand(String.valueOf(commandName));
 
+        HttpSession session = request.getSession();
         UserSessionInfo userSessionInfo = new UserSessionInfo();
-        userSessionInfo.setSession(request.getSession());
-        userSessionInfo.setLogin(request.getParameter("login"));
-        userSessionInfo.setPassword(request.getParameter("password"));
+        session.setAttribute(userSessionInfo.getClass().getName(), userSessionInfo);
 
 
         if (userSessionInfo.getName() == null) {
-            userSessionInfo.setLogin("Anonymous");
+            userSessionInfo.setName("Anonymous");
         }
 
         out.println("Name: " + userSessionInfo.getName() + "<br>");
@@ -74,19 +71,21 @@ public class Controller extends HttpServlet {
             case SIGN_IN:
             case REGISTRATION:
                 try {
-                    out.println(command.execute(userSessionInfo.getLogin() + " " + userSessionInfo.getPassword()));
+                    out.println(command.execute(
+                            request.getParameter("login") +
+                                    " " + request.getParameter("password")));
                 } catch (ControllerException e) {
                     out.println(e.getMessage());
                 }
                 break;
             case SIGN_OUT:
-                userSessionInfo.signOut();
+                session.removeAttribute(userSessionInfo.getClass().getName());
+                System.out.println(userSessionInfo.getClass().getName());
             default:
                 try {
-                    out.println(command.execute("Wrong request"));
+                    provider.getCommand(String.valueOf(CommandName.WRONG_REQUEST)).execute("");
                 } catch (ControllerException e) {
-                    out.println(response);
-                    System.out.println(e + "\n");
+                    logger.log(Level.ERROR, "Request error", e);
                 }
         }
     }

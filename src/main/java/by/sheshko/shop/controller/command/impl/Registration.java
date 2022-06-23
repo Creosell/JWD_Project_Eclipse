@@ -1,8 +1,8 @@
 package by.sheshko.shop.controller.command.impl;
 
 import by.sheshko.shop.bean.User;
-import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.ControllerException;
+import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
@@ -21,7 +21,7 @@ public class Registration implements Command {
             password = requestParameters[1];
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Login or password is empty"+e+"\n");
+            System.out.println("Login or password is empty" + e + "\n");
             throw new ControllerException("Login or password is empty", e);
         }
 

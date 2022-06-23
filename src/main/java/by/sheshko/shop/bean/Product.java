@@ -1,7 +1,6 @@
 package by.sheshko.shop.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Product implements Serializable {
     private static final long serialVersionUID = 574829538859146812L;

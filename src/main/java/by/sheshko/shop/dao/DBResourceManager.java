@@ -1,6 +1,5 @@
 package by.sheshko.shop.dao;
 
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DBResourceManager {
@@ -11,7 +10,8 @@ public class DBResourceManager {
     public static DBResourceManager getInstance() {
         return instance;
     }
-    public String getValue(String key){
+
+    public String getValue(String key) {
         return resourceBundle.getString(key);
     }
 }

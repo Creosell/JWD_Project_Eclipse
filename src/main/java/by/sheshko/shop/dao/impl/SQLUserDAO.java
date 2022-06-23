@@ -1,14 +1,17 @@
 package by.sheshko.shop.dao.impl;
 
 import by.sheshko.shop.bean.User;
-import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.DAOException;
+import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.pool.ConnectionPool;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class SQLUserDAO implements UserDAO {
     private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
@@ -52,7 +55,7 @@ public class SQLUserDAO implements UserDAO {
             if (e.toString().contains("Duplicate")) {
                 throw new DAOException("User with same name is already registered", e);
             } else {
-                logger.log(Level.ERROR, "Error working with statements while registering new user",e);
+                logger.log(Level.ERROR, "Error working with statements while registering new user", e);
                 throw new DAOException("Error while registering user", e);
             }
         }
@@ -66,7 +69,7 @@ public class SQLUserDAO implements UserDAO {
             PreparedStatement preparedStatement;
             ResultSet resultSet;
 
-
+//TODO Сделать корректную выгрузку с базы
             preparedStatement = connection.prepareStatement(GET_USER_INFO);
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
@@ -77,11 +80,10 @@ public class SQLUserDAO implements UserDAO {
             user = new User();
 
             user.setUserID(resultSet.getInt(1));
-            user.setLogin(resultSet.getString(2));
             user.setRole(resultSet.getInt(4));
 
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Error working with statements while getting user info",e);
+            logger.log(Level.ERROR, "Error working with statements while getting user info", e);
             throw new DAOException("Error while getting info about user", e);
         }
         return user;
@@ -90,11 +92,10 @@ public class SQLUserDAO implements UserDAO {
     private Connection connectToDataBase() throws DAOException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         Connection connection = null;
-        try{
+        try {
             connection = connectionPool.takeConnection();
-        }
-        catch (InterruptedException e) {
-            logger.log(Level.ERROR,"Error while getting connection from connection pool queue",e);
+        } catch (InterruptedException e) {
+            logger.log(Level.ERROR, "Error while getting connection from connection pool queue", e);
             throw new DAOException("Error taking connection to database", e);
         }
         return connection;
