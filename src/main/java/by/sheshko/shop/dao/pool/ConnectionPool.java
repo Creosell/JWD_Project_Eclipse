@@ -56,11 +56,6 @@ public final class ConnectionPool {
     }
     public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
         try {
-            connection.close();
-        } catch (SQLException e) {
-            logger.log(Level.ERROR, "Error while closing connection object", e);
-        }
-        try {
             resultSet.close();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Error while closing resultSet object", e);
@@ -69,6 +64,11 @@ public final class ConnectionPool {
             statement.close();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Error while closing statement object", e);
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Error while closing connection object", e);
         }
     }
 

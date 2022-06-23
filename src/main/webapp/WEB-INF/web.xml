@@ -13,13 +13,22 @@
         <servlet-name>registrationServlet</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>errorServlet</servlet-name>
+        <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>errorServlet</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
 
     <servlet>
-        <servlet-name>Controller</servlet-name>
+        <servlet-name>controller</servlet-name>
         <servlet-class>by.sheshko.shop.controller.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Controller</servlet-name>
+        <servlet-name>controller</servlet-name>
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
