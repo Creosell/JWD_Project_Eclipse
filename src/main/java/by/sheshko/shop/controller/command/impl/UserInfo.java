@@ -5,11 +5,11 @@ import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserInfo implements Command {
-    private final Logger log = LogManager.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public String execute(String request) throws ControllerException {

@@ -7,8 +7,12 @@ import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.factory.DAOFactory;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientServiceImpl implements ClientService {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public void singIn(String login, String password) throws ServiceException {
         if (!login.equals("") && !password.equals("")) {
@@ -17,7 +21,7 @@ public class ClientServiceImpl implements ClientService {
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
                 userDAO.signIn(login, password);
             } catch (DAOException e) {
-                throw new ServiceException(e.getMessage());
+                throw new ServiceException(e.getMessage());//TODO Logger
             }
         }
 

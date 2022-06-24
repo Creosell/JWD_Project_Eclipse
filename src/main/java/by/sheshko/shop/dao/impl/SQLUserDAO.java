@@ -4,9 +4,8 @@ import by.sheshko.shop.bean.User;
 import by.sheshko.shop.dao.DAOException;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.pool.ConnectionPool;
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +16,7 @@ public class SQLUserDAO implements UserDAO {
     private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
     private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password) VALUES(?, ?);";
     private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
-    private final Logger log = LogManager.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
     @Override
@@ -36,7 +35,7 @@ public class SQLUserDAO implements UserDAO {
                 throw new DAOException("Wrong login or password");
             }
         } catch (SQLException e) {
-            log.log(Level.ERROR, "Error working with statements while sign in", e);
+            log.error("Error working with statements while sign in", e);
             throw new DAOException("Error while working with database", e);
         }
     }
@@ -55,7 +54,7 @@ public class SQLUserDAO implements UserDAO {
             if (e.toString().contains("Duplicate")) {
                 throw new DAOException("User with same name is already registered", e);
             } else {
-                log.log(Level.ERROR, "Error working with statements while registering new user", e);
+                log.error("Error working with statements while registering new user", e);
                 throw new DAOException("Error while registering user", e);
             }
         }
@@ -83,7 +82,7 @@ public class SQLUserDAO implements UserDAO {
             user.setRole(resultSet.getInt(4));
 
         } catch (SQLException e) {
-            log.log(Level.ERROR, "Error working with statements while getting user info", e);
+            log.error("Error working with statements while getting user info", e);
             throw new DAOException("Error while getting info about user", e);
         }
         return user;
@@ -95,7 +94,7 @@ public class SQLUserDAO implements UserDAO {
         try {
             connection = connectionPool.takeConnection();
         } catch (InterruptedException e) {
-            log.log(Level.ERROR, "Error while getting connection from connection pool queue", e);
+            log.error("Error while getting connection from connection pool queue", e);
             throw new DAOException("Error taking connection to database", e);
         }
         return connection;
