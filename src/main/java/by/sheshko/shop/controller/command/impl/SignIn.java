@@ -6,8 +6,13 @@ import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class SignIn implements Command {
+    private final Logger log = LogManager.getLogger(this.getClass());
+
     @Override
     public String execute(String request) throws ControllerException {
         String login = null;
@@ -20,20 +25,17 @@ public class SignIn implements Command {
             login = requestParameters[0];
             password = requestParameters[1];
 
-
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
 
             clientService.singIn(login, password);
-            response = "Добро пожаловать, " + login;
+            response = "Welcome, " + login;
         } catch (ServiceException e) {
-            System.out.println("Error while log on site for login:" + login + "\n" + e.getMessage());
-            response = "Пожалуйста, проверьте ваш логин или пароль";
+            log.log(Level.ERROR, "Error while log on site for login:" + login, e);
             throw new ControllerException("Incorrect login or password", e);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ControllerException("Login or password is empty", e);
         }
-
         return response;
     }
 }

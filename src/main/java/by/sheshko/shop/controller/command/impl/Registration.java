@@ -6,8 +6,13 @@ import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class Registration implements Command {
+    private final Logger log = LogManager.getLogger(this.getClass());
+
     @Override
     public String execute(String request) throws ControllerException {
         String login = null;
@@ -21,7 +26,6 @@ public class Registration implements Command {
             password = requestParameters[1];
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Login or password is empty" + e + "\n");
             throw new ControllerException("Login or password is empty", e);
         }
 
@@ -33,11 +37,9 @@ public class Registration implements Command {
             clientService.registration(login, password);
             response = "New user with login " + login + " was successfully created!";
         } catch (ServiceException e) {
-            System.out.println("Error while registering new user\n" + e.getMessage());
-            response = "Error while registering new user";
+            log.log(Level.ERROR, "Error while registering new user", e);
             throw new ControllerException(e.getMessage());
         }
-
         return response;
     }
 }

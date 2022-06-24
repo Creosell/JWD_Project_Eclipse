@@ -15,7 +15,7 @@ import java.util.concurrent.Executor;
 public final class ConnectionPool {
 
     private static final ConnectionPool instance = new ConnectionPool();
-    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
+    private final Logger log = LogManager.getLogger(this.getClass());
     private final String driverName;
     private final String url;
     private final String userName;
@@ -59,17 +59,17 @@ public final class ConnectionPool {
         try {
             resultSet.close();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Error while closing resultSet object", e);
+            log.log(Level.ERROR, "Error while closing resultSet object", e);
         }
         try {
             statement.close();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Error while closing statement object", e);
+            log.log(Level.ERROR, "Error while closing statement object", e);
         }
         try {
             connection.close();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Error while closing connection object", e);
+            log.log(Level.ERROR, "Error while closing connection object", e);
         }
     }
 
@@ -89,7 +89,7 @@ public final class ConnectionPool {
             closeConnectionQueue(connectionsQueue);
             closeConnectionQueue(givenAwayQueue);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Error closing connection queue", e);
+            log.log(Level.ERROR, "Error closing connection queue", e);
         }
     }
 

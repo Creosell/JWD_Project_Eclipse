@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
-    private static final Logger logger = LogManager.getLogger(Controller.class);
+    private final Logger log = LogManager.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
 
     @Override
@@ -28,10 +28,10 @@ public class Controller extends HttpServlet {
         try {
             ConnectionPool.getInstance().initPoolData();
         } catch (ClassNotFoundException e) {
-            logger.log(Level.FATAL, "Error while trying to find driver class for connection pool", e);
+            log.log(Level.FATAL, "Error while trying to find driver class for connection pool", e);
             throw new ServletException("Error initializing connection pool", e);
         } catch (SQLException e) {
-            logger.log(Level.FATAL, "Error while connection pool working with database", e);
+            log.log(Level.FATAL, "Error while connection pool working with database", e);
             throw new ServletException("Error initializing connection pool", e);
         }
         super.init();
@@ -85,7 +85,7 @@ public class Controller extends HttpServlet {
                 try {
                     provider.getCommand(String.valueOf(CommandName.WRONG_REQUEST)).execute("");
                 } catch (ControllerException e) {
-                    logger.log(Level.ERROR, "Request error", e);
+                    log.log(Level.ERROR, "Request error", e);
                 }
         }
     }

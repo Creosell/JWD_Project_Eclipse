@@ -21,6 +21,6 @@
         <p><input type="submit" value="Зарегистрироваться"></p>
     </fieldset>
 </form>
-<a href="main">Главная страница</a>
+<a href="<c:url value="/index.jsp"/>">Главная страница</a>
 </body>
 </html>
