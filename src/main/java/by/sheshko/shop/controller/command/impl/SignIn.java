@@ -30,7 +30,7 @@ public class SignIn implements Command {
             clientService.singIn(login, password);
             response = "Welcome, " + login;
         } catch (ServiceException e) {
-            log.error("Error while log on site for login:" + login, e);
+            log.info("Error while log on site for login {}",login, e);
             throw new ControllerException("Incorrect login or password", e);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ControllerException("Login or password is empty", e);

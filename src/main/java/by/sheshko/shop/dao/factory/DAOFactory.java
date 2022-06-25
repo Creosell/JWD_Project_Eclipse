@@ -11,10 +11,15 @@ public class DAOFactory {
     }
 
     public static DAOFactory getInstance() {
-        return instance;
+        synchronized (DAOFactory.class) {
+            return instance;
+        }
+
     }
 
     public UserDAO getUserDAOImpl() {
-        return userDAOImpl;
+        synchronized (DAOFactory.class) {
+            return userDAOImpl;
+        }
     }
 }

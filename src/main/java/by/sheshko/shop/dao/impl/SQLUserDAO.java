@@ -32,6 +32,7 @@ public class SQLUserDAO implements UserDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
+                log.info("Attempt to log in with incorrect data. Login :{}", login);
                 throw new DAOException("Wrong login or password");
             }
         } catch (SQLException e) {
@@ -52,7 +53,8 @@ public class SQLUserDAO implements UserDAO {
 
         } catch (SQLException e) {
             if (e.toString().contains("Duplicate")) {
-                throw new DAOException("User with same name is already registered", e);
+                log.info("Attempt to register with already existing login : {}", login);
+                throw new DAOException("User with same login is already registered", e);
             } else {
                 log.error("Error working with statements while registering new user", e);
                 throw new DAOException("Error while registering user", e);

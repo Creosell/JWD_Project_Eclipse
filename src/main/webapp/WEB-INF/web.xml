@@ -6,29 +6,29 @@
 
 
     <servlet>
-        <servlet-name>registrationPage</servlet-name>
+        <servlet-name>RegistrationPage</servlet-name>
         <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>registrationPage</servlet-name>
+        <servlet-name>RegistrationPage</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>errorPage</servlet-name>
+        <servlet-name>ErrorPage</servlet-name>
         <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>errorPage</servlet-name>
+        <servlet-name>ErrorPage</servlet-name>
         <url-pattern>/error</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>controller</servlet-name>
+        <servlet-name>Controller</servlet-name>
         <servlet-class>by.sheshko.shop.controller.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>controller</servlet-name>
+        <servlet-name>Controller</servlet-name>
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
