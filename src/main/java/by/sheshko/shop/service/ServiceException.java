@@ -1,6 +1,8 @@
 package by.sheshko.shop.service;
 
 public class ServiceException extends Exception {
+    private static final long serialVersionUID = 4375740058776526848L;
+
     public ServiceException() {
     }
 

@@ -24,8 +24,8 @@ final class CommandProvider {
     }
 
     Command getCommand(final String name) {
-        CommandName commandName = null;
-        Command command = null;
+        CommandName commandName;
+        Command command;
 
         try {
             commandName = CommandName.valueOf(name.toUpperCase());

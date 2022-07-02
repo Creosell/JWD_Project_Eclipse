@@ -14,10 +14,10 @@ public final class Registration implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public String execute(String request) throws ControllerException {
-        String login = null;
-        String password = null;
-        String response = null;
+    public String execute(final String request) throws ControllerException {
+        String login;
+        String password;
+        String response;
         User user;
 
         try {

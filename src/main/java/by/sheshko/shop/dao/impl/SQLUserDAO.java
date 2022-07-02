@@ -14,17 +14,21 @@ import java.sql.SQLException;
 
 
 public final class SQLUserDAO implements UserDAO {
-    private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
-    private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password) VALUES(?, ?);";
-    private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
+    private static final String LOGIN =
+            "SELECT * FROM users WHERE login = ? AND password = ?;";
+    private static final String REGISTER_NEW_USER =
+            "INSERT INTO users(login, password) VALUES(?, ?);";
+    private static final String GET_USER_INFO =
+            "SELECT * FROM users WHERE login = ?";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
     @Override
-    public void signIn(final String login, final String password) throws DAOException {
+    public void signIn(final String login,
+                       final String password) throws DAOException {
         try (Connection connection = connectToDataBase()) {
-            PreparedStatement preparedStatement = null;
-            ResultSet resultSet = null;
+            PreparedStatement preparedStatement;
+            ResultSet resultSet;
 
             preparedStatement = connection.prepareStatement(LOGIN);
             preparedStatement.setString(1, login);
@@ -32,7 +36,8 @@ public final class SQLUserDAO implements UserDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
-                log.info("Attempt to log in with incorrect data. Login :{}", login);
+                log.info("Attempt to log in with incorrect data. Login :{}",
+                        login);
                 throw new DAOException("Wrong login or password");
             }
 
@@ -45,9 +50,10 @@ public final class SQLUserDAO implements UserDAO {
     }
 
     @Override
-    public void registration(final String login, final String password) throws DAOException {
+    public void registration(final String login,
+                             final String password) throws DAOException {
         try (Connection connection = connectToDataBase()) {
-            PreparedStatement preparedStatement = null;
+            PreparedStatement preparedStatement;
 
             preparedStatement = connection.prepareStatement(REGISTER_NEW_USER);
             preparedStatement.setString(1, login);
@@ -57,7 +63,8 @@ public final class SQLUserDAO implements UserDAO {
             preparedStatement.close();
         } catch (SQLException e) {
             if (e.toString().contains("Duplicate")) {
-                log.info("Attempt to register with already existing login : {}", login);
+                log.info("Attempt to register with already existing login : {}",
+                        login);
                 throw new DAOException("User with same login is already registered", e);
             } else {
                 log.error("Error working with statements while registering new user", e);
@@ -84,8 +91,8 @@ public final class SQLUserDAO implements UserDAO {
             }
             user = new User();
 
-            user.setUserID(resultSet.getInt(1));
-            user.setRole(resultSet.getInt(4));
+            user.setUserID(resultSet.getInt("id_user"));
+            user.setRole(resultSet.getInt("roles_id"));
 
             resultSet.close();
             preparedStatement.close();
@@ -98,7 +105,7 @@ public final class SQLUserDAO implements UserDAO {
 
     private Connection connectToDataBase() throws DAOException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
-        Connection connection = null;
+        Connection connection;
         try {
             connection = connectionPool.takeConnection();
         } catch (InterruptedException e) {

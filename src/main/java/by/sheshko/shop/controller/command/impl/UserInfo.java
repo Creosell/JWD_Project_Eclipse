@@ -13,7 +13,7 @@ public final class UserInfo implements Command {
 
     @Override
     public String execute(final String request) throws ControllerException {
-        String response = null;
+        String response;
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getClientServiceImpl();
 

@@ -22,6 +22,7 @@ public final class ConnectionPool {
     private BlockingQueue<Connection> connectionsQueue;
     private BlockingQueue<Connection> givenAwayQueue;
     private int poolSize;
+    private static final int DEFAULT_POOLSIZE = 10;
 
     private ConnectionPool() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
@@ -30,9 +31,10 @@ public final class ConnectionPool {
         this.userName = dbResourceManager.getValue(DBParameter.DB_USERNAME);
         this.password = dbResourceManager.getValue(DBParameter.DB_PASSWORD);
         try {
-            this.poolSize = Integer.parseInt(dbResourceManager.getValue(DBParameter.DB_POOLSIZE));
+            this.poolSize = Integer.parseInt(
+                    dbResourceManager.getValue(DBParameter.DB_POOLSIZE));
         } catch (NumberFormatException e) {
-            this.poolSize = 10;
+            this.poolSize = DEFAULT_POOLSIZE;
         }
     }
 
@@ -56,7 +58,9 @@ public final class ConnectionPool {
         }
     }
 
-    public void closeConnection(final Connection connection, final Statement statement, final ResultSet resultSet) {
+    public void closeConnection(final Connection connection,
+                                final Statement statement,
+                                final ResultSet resultSet) {
         try {
             resultSet.close();
         } catch (SQLException e) {
@@ -99,7 +103,7 @@ public final class ConnectionPool {
     }
 
     public Connection takeConnection() throws InterruptedException {
-        Connection connection = null;
+        Connection connection;
         connection = connectionsQueue.take();
         givenAwayQueue.add(connection);
         return connection;
@@ -108,7 +112,7 @@ public final class ConnectionPool {
     private class PooledConnection implements Connection, AutoCloseable {
         private final Connection connection;
 
-        public PooledConnection(final Connection connection) throws SQLException {
+        PooledConnection(final Connection connection) throws SQLException {
             this.connection = connection;
             this.connection.setAutoCommit(true);
         }
@@ -409,13 +413,13 @@ public final class ConnectionPool {
         }
 
         @Override
-        public <T> T unwrap(final Class<T> iface) throws SQLException {
-            return connection.unwrap(iface);
+        public <T> T unwrap(final Class<T> face) throws SQLException {
+            return connection.unwrap(face);
         }
 
         @Override
-        public boolean isWrapperFor(final Class<?> iface) throws SQLException {
-            return connection.isWrapperFor(iface);
+        public boolean isWrapperFor(final Class<?> face) throws SQLException {
+            return connection.isWrapperFor(face);
         }
     }
 }

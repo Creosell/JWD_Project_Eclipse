@@ -15,8 +15,8 @@ public final class SignIn implements Command {
     @Override
     public String execute(final String request) throws ControllerException {
         String login = null;
-        String password = null;
-        String response = null;
+        String password;
+        String response;
         User user;
 
         try {
