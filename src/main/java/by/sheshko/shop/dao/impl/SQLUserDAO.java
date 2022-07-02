@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SQLUserDAO implements UserDAO {
+public final class SQLUserDAO implements UserDAO {
     private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
     private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password) VALUES(?, ?);";
     private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
@@ -35,10 +35,14 @@ public class SQLUserDAO implements UserDAO {
                 log.info("Attempt to log in with incorrect data. Login :{}", login);
                 throw new DAOException("Wrong login or password");
             }
+
+            resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             log.error("Error working with statements while sign in", e);
             throw new DAOException("Error while working with database", e);
         }
+
     }
 
     @Override
@@ -51,6 +55,7 @@ public class SQLUserDAO implements UserDAO {
             preparedStatement.setString(2, password);
             preparedStatement.execute();
 
+            preparedStatement.close();
         } catch (SQLException e) {
             if (e.toString().contains("Duplicate")) {
                 log.info("Attempt to register with already existing login : {}", login);
@@ -83,6 +88,8 @@ public class SQLUserDAO implements UserDAO {
             user.setUserID(resultSet.getInt(1));
             user.setRole(resultSet.getInt(4));
 
+            resultSet.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             log.error("Error working with statements while getting user info", e);
             throw new DAOException("Error while getting info about user", e);

@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class Registration implements Command {
+public final class Registration implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override

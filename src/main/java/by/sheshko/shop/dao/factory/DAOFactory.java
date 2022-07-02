@@ -3,7 +3,7 @@ package by.sheshko.shop.dao.factory;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.impl.SQLUserDAO;
 
-public class DAOFactory {
+public final class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
     private final UserDAO userDAOImpl = new SQLUserDAO();
 

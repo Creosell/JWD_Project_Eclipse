@@ -1,6 +1,6 @@
 package by.sheshko.shop.dao.pool;
 
-public class DBParameter {
+public final class DBParameter {
 
     public static final String DB_DRIVER = "jdbc.driver";
     public static final String DB_URL = "jdbc.url";

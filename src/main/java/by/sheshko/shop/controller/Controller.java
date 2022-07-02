@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-public class Controller extends HttpServlet {
+public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();

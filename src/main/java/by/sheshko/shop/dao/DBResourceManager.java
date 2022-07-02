@@ -2,13 +2,15 @@ package by.sheshko.shop.dao;
 
 import java.util.ResourceBundle;
 
-public class DBResourceManager {
+public final class DBResourceManager {
     private static final DBResourceManager instance = new DBResourceManager();
 
     private final ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
 
     public static DBResourceManager getInstance() {
-        return instance;
+        synchronized (DBResourceManager.class) {
+            return instance;
+        }
     }
 
     public String getValue(String key) {

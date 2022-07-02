@@ -1,6 +1,7 @@
 package by.sheshko.shop.dao.pool;
 
 import by.sheshko.shop.dao.DBResourceManager;
+import by.sheshko.shop.dao.factory.DAOFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +38,9 @@ public final class ConnectionPool {
     }
 
     public static ConnectionPool getInstance() {
-        return instance;
+        synchronized (ConnectionPool.class) {
+            return instance;
+        }
     }
 
     public void initPoolData() throws ClassNotFoundException, SQLException {

@@ -10,7 +10,7 @@ import by.sheshko.shop.service.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClientServiceImpl implements ClientService {
+public final class ClientServiceImpl implements ClientService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override

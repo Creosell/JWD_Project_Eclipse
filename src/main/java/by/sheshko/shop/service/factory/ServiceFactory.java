@@ -3,7 +3,7 @@ package by.sheshko.shop.service.factory;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.impl.ClientServiceImpl;
 
-public class ServiceFactory {
+public final class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
     private final ClientService clientServiceImpl = new ClientServiceImpl();
 
@@ -11,7 +11,9 @@ public class ServiceFactory {
     }
 
     public static ServiceFactory getInstance() {
-        return instance;
+        synchronized (ServiceFactory.class){
+            return instance;
+        }
     }
 
     public ClientService getClientServiceImpl() {

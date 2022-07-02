@@ -8,7 +8,7 @@ import by.sheshko.shop.service.factory.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserInfo implements Command {
+public final  class UserInfo implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
