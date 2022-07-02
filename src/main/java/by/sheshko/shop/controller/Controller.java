@@ -43,12 +43,12 @@ public final class Controller extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
@@ -71,8 +71,8 @@ public final class Controller extends HttpServlet {
             case REGISTRATION:
                 try {
                     out.println(command.execute(
-                            request.getParameter("login") +
-                                    " " + request.getParameter("password")));
+                            request.getParameter("login")
+                                    + " " + request.getParameter("password")));
                 } catch (ControllerException e) {
                     out.println(e.getMessage());
                 }

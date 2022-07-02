@@ -17,7 +17,7 @@ public class Product implements Serializable {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
 
@@ -25,7 +25,7 @@ public class Product implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -33,7 +33,7 @@ public class Product implements Serializable {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(final double price) {
         this.price = price;
     }
 
@@ -41,7 +41,7 @@ public class Product implements Serializable {
         return availableQuantity;
     }
 
-    public void setAvailableQuantity(int availableQuantity) {
+    public void setAvailableQuantity(final int availableQuantity) {
         this.availableQuantity = availableQuantity;
     }
 
@@ -49,7 +49,7 @@ public class Product implements Serializable {
         return quantityInOrders;
     }
 
-    public void setQuantityInOrders(int quantityInOrders) {
+    public void setQuantityInOrders(final int quantityInOrders) {
         this.quantityInOrders = quantityInOrders;
     }
 

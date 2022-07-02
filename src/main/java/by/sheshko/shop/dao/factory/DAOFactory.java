@@ -4,7 +4,7 @@ import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.impl.SQLUserDAO;
 
 public final class DAOFactory {
-    private static final DAOFactory instance = new DAOFactory();
+    private static final DAOFactory INSTANCE = new DAOFactory();
     private final UserDAO userDAOImpl = new SQLUserDAO();
 
     private DAOFactory() {
@@ -12,7 +12,7 @@ public final class DAOFactory {
 
     public static DAOFactory getInstance() {
         synchronized (DAOFactory.class) {
-            return instance;
+            return INSTANCE;
         }
 
     }

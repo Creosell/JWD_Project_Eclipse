@@ -14,7 +14,7 @@ public final class ClientServiceImpl implements ClientService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public void singIn(String login, String password) throws ServiceException {
+    public void singIn(final String login, final String password) throws ServiceException {
         if (!login.equals("") && !password.equals("")) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
@@ -28,12 +28,12 @@ public final class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void signOut(UserSessionInfo userSessionInfo) {
+    public void signOut(final UserSessionInfo userSessionInfo) {
         userSessionInfo.signOut();
     }
 
     @Override
-    public void registration(String login, String password) throws ServiceException {
+    public void registration(final String login, final String password) throws ServiceException {
 
         if (!login.equals("") && !password.equals("")) {
             try {
@@ -47,7 +47,7 @@ public final class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public User getUserInfo(String login) throws ServiceException {
+    public User getUserInfo(final String login) throws ServiceException {
         if (!login.equals("")) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();

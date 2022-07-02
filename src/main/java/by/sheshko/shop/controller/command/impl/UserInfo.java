@@ -8,11 +8,11 @@ import by.sheshko.shop.service.factory.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final  class UserInfo implements Command {
+public final class UserInfo implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public String execute(String request) throws ControllerException {
+    public String execute(final String request) throws ControllerException {
         String response = null;
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getClientServiceImpl();

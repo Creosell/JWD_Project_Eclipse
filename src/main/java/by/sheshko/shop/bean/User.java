@@ -17,7 +17,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(int userID) {
+    public User(final int userID) {
         this.userID = userID;
     }
 
@@ -26,7 +26,7 @@ public class User implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -34,7 +34,7 @@ public class User implements Serializable {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public void setSurname(final String surname) {
         this.surname = surname;
     }
 
@@ -42,7 +42,7 @@ public class User implements Serializable {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(final int userID) {
         this.userID = userID;
     }
 
@@ -50,7 +50,7 @@ public class User implements Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
@@ -58,7 +58,7 @@ public class User implements Serializable {
         return phonenumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
+    public void setPhonenumber(final String phonenumber) {
         this.phonenumber = phonenumber;
     }
 
@@ -66,7 +66,7 @@ public class User implements Serializable {
         return registrationTime;
     }
 
-    public void setRegistrationTime(Date registrationTime) {
+    public void setRegistrationTime(final Date registrationTime) {
         this.registrationTime = registrationTime;
     }
 
@@ -74,7 +74,7 @@ public class User implements Serializable {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(final String status) {
         this.status = status;
     }
 
@@ -82,7 +82,7 @@ public class User implements Serializable {
         return role;
     }
 
-    public void setRole(Integer roleID) {
+    public void setRole(final Integer roleID) {
         this.role = new Role().getRoleName(roleID);
     }
 

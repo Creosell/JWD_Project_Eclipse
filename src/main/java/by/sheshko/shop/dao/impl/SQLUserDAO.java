@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public final class SQLUserDAO implements UserDAO {
     private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
     private static final String REGISTER_NEW_USER = "INSERT INTO users(login, password) VALUES(?, ?);";
@@ -20,8 +21,7 @@ public final class SQLUserDAO implements UserDAO {
 
 
     @Override
-    public void signIn(String login, String password) throws DAOException {
-
+    public void signIn(final String login, final String password) throws DAOException {
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement = null;
             ResultSet resultSet = null;
@@ -42,11 +42,10 @@ public final class SQLUserDAO implements UserDAO {
             log.error("Error working with statements while sign in", e);
             throw new DAOException("Error while working with database", e);
         }
-
     }
 
     @Override
-    public void registration(String login, String password) throws DAOException {
+    public void registration(final String login, final String password) throws DAOException {
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement = null;
 
@@ -69,13 +68,13 @@ public final class SQLUserDAO implements UserDAO {
     }
 
     @Override
-    public User getUserInfo(String login) throws DAOException {
+    public User getUserInfo(final String login) throws DAOException {
         User user;
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement;
             ResultSet resultSet;
 
-//TODO Сделать корректную выгрузку с базы
+            //TODO Сделать корректную выгрузку с базы
             preparedStatement = connection.prepareStatement(GET_USER_INFO);
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();

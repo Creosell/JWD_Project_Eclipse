@@ -13,7 +13,7 @@ public final class SignIn implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public String execute(String request) throws ControllerException {
+    public String execute(final String request) throws ControllerException {
         String login = null;
         String password = null;
         String response = null;
@@ -30,7 +30,7 @@ public final class SignIn implements Command {
             clientService.singIn(login, password);
             response = "Welcome, " + login;
         } catch (ServiceException e) {
-            log.info("Error while log on site for login {}",login, e);
+            log.info("Error while log on site for login {}", login, e);
             throw new ControllerException("Incorrect login or password", e);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ControllerException("Login or password is empty", e);

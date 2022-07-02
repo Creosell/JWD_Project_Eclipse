@@ -23,7 +23,7 @@ final class CommandProvider {
         repository.put(CommandName.USER_INFO, new UserInfo());
     }
 
-    Command getCommand(String name) {
+    Command getCommand(final String name) {
         CommandName commandName = null;
         Command command = null;
 

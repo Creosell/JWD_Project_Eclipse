@@ -17,7 +17,7 @@ public class UserSessionInfo implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -25,7 +25,7 @@ public class UserSessionInfo implements Serializable {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(final int userId) {
         this.userId = userId;
     }
 
@@ -33,7 +33,7 @@ public class UserSessionInfo implements Serializable {
         return session;
     }
 
-    public void setSession(HttpSession session) {
+    public void setSession(final HttpSession session) {
         this.session = session;
     }
 

@@ -6,15 +6,15 @@ public class ControllerException extends Exception {
     public ControllerException() {
     }
 
-    public ControllerException(String message) {
+    public ControllerException(final String message) {
         super(message);
     }
 
-    public ControllerException(String message, Throwable cause) {
+    public ControllerException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public ControllerException(Throwable cause) {
+    public ControllerException(final Throwable cause) {
         super(cause);
     }
 }

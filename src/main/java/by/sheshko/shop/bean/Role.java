@@ -18,7 +18,7 @@ public class Role implements Serializable {
         return roles;
     }
 
-    public String getRoleName(Integer roleID) {
+    public String getRoleName(final Integer roleID) {
         String roleName = null;
         for (Map.Entry<Integer, RoleName> role : roles.entrySet()) {
             if (roleID.equals(role.getKey())) {
@@ -28,7 +28,7 @@ public class Role implements Serializable {
         return roleName;
     }
 
-    public Integer setRoleIDByName(RoleName roleName) {
+    public Integer setRoleIDByName(final RoleName roleName) {
         Integer roleID = null;
         for (Map.Entry<Integer, RoleName> role : roles.entrySet()) {
             if (roleName.equals(role.getValue())) {

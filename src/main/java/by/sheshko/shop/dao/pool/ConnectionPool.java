@@ -1,7 +1,6 @@
 package by.sheshko.shop.dao.pool;
 
 import by.sheshko.shop.dao.DBResourceManager;
-import by.sheshko.shop.dao.factory.DAOFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +13,7 @@ import java.util.concurrent.Executor;
 
 public final class ConnectionPool {
 
-    private static final ConnectionPool instance = new ConnectionPool();
+    private static final ConnectionPool INSTANCE = new ConnectionPool();
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final String driverName;
     private final String url;
@@ -39,7 +38,7 @@ public final class ConnectionPool {
 
     public static ConnectionPool getInstance() {
         synchronized (ConnectionPool.class) {
-            return instance;
+            return INSTANCE;
         }
     }
 
@@ -57,7 +56,7 @@ public final class ConnectionPool {
         }
     }
 
-    public void closeConnection(Connection connection, Statement statement, ResultSet resultSet) {
+    public void closeConnection(final Connection connection, final Statement statement, final ResultSet resultSet) {
         try {
             resultSet.close();
         } catch (SQLException e) {
@@ -75,7 +74,7 @@ public final class ConnectionPool {
         }
     }
 
-    public void closeConnectionQueue(BlockingQueue<Connection> queue) throws SQLException {
+    public void closeConnectionQueue(final BlockingQueue<Connection> queue) throws SQLException {
         Connection connection;
         while ((connection = queue.poll()) != null) {
             if (!connection.getAutoCommit()) {
@@ -109,7 +108,7 @@ public final class ConnectionPool {
     private class PooledConnection implements Connection, AutoCloseable {
         private final Connection connection;
 
-        public PooledConnection(Connection connection) throws SQLException {
+        public PooledConnection(final Connection connection) throws SQLException {
             this.connection = connection;
             this.connection.setAutoCommit(true);
         }
@@ -124,17 +123,17 @@ public final class ConnectionPool {
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql) throws SQLException {
+        public PreparedStatement prepareStatement(final String sql) throws SQLException {
             return connection.prepareStatement(sql);
         }
 
         @Override
-        public CallableStatement prepareCall(String sql) throws SQLException {
+        public CallableStatement prepareCall(final String sql) throws SQLException {
             return connection.prepareCall(sql);
         }
 
         @Override
-        public String nativeSQL(String sql) throws SQLException {
+        public String nativeSQL(final String sql) throws SQLException {
             return connection.nativeSQL(sql);
         }
 
@@ -144,7 +143,7 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setAutoCommit(boolean autoCommit) throws SQLException {
+        public void setAutoCommit(final boolean autoCommit) throws SQLException {
             connection.setAutoCommit(autoCommit);
         }
 
@@ -190,7 +189,7 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setReadOnly(boolean readOnly) throws SQLException {
+        public void setReadOnly(final boolean readOnly) throws SQLException {
             connection.setReadOnly(readOnly);
         }
 
@@ -200,7 +199,7 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setCatalog(String catalog) throws SQLException {
+        public void setCatalog(final String catalog) throws SQLException {
             connection.setCatalog(catalog);
         }
 
@@ -210,7 +209,7 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setTransactionIsolation(int level) throws SQLException {
+        public void setTransactionIsolation(final int level) throws SQLException {
             connection.setTransactionIsolation(level);
         }
 
@@ -225,17 +224,22 @@ public final class ConnectionPool {
         }
 
         @Override
-        public Statement createStatement(int resultSetType, int resultSetConcurrency) throws SQLException {
+        public Statement createStatement(final int resultSetType,
+                                         final int resultSetConcurrency) throws SQLException {
             return connection.createStatement(resultSetType, resultSetConcurrency);
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
+        public PreparedStatement prepareStatement(final String sql,
+                                                  final int resultSetType,
+                                                  final int resultSetConcurrency) throws SQLException {
             return connection.prepareStatement(sql, resultSetType, resultSetConcurrency);
         }
 
         @Override
-        public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
+        public CallableStatement prepareCall(final String sql,
+                                             final int resultSetType,
+                                             final int resultSetConcurrency) throws SQLException {
             return connection.prepareCall(sql, resultSetType, resultSetConcurrency);
         }
 
@@ -245,7 +249,7 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
+        public void setTypeMap(final Map<String, Class<?>> map) throws SQLException {
             connection.setTypeMap(map);
         }
 
@@ -255,7 +259,7 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setHoldability(int holdability) throws SQLException {
+        public void setHoldability(final int holdability) throws SQLException {
             connection.setHoldability(holdability);
         }
 
@@ -265,47 +269,58 @@ public final class ConnectionPool {
         }
 
         @Override
-        public Savepoint setSavepoint(String name) throws SQLException {
+        public Savepoint setSavepoint(final String name) throws SQLException {
             return connection.setSavepoint();
         }
 
         @Override
-        public void rollback(Savepoint savepoint) throws SQLException {
+        public void rollback(final Savepoint savepoint) throws SQLException {
             connection.rollback(savepoint);
         }
 
         @Override
-        public void releaseSavepoint(Savepoint savepoint) throws SQLException {
+        public void releaseSavepoint(final Savepoint savepoint) throws SQLException {
             connection.releaseSavepoint(savepoint);
         }
 
         @Override
-        public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+        public Statement createStatement(final int resultSetType,
+                                         final int resultSetConcurrency,
+                                         final int resultSetHoldability) throws SQLException {
             return connection.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability);
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+        public PreparedStatement prepareStatement(final String sql,
+                                                  final int resultSetType,
+                                                  final int resultSetConcurrency,
+                                                  final int resultSetHoldability) throws SQLException {
             return connection.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
         }
 
         @Override
-        public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+        public CallableStatement prepareCall(final String sql,
+                                             final int resultSetType,
+                                             final int resultSetConcurrency,
+                                             final int resultSetHoldability) throws SQLException {
             return connection.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) throws SQLException {
+        public PreparedStatement prepareStatement(final String sql,
+                                                  final int autoGeneratedKeys) throws SQLException {
             return connection.prepareStatement(sql, autoGeneratedKeys);
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql, int[] columnIndexes) throws SQLException {
+        public PreparedStatement prepareStatement(final String sql,
+                                                  final int[] columnIndexes) throws SQLException {
             return connection.prepareStatement(sql, columnIndexes);
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql, String[] columnNames) throws SQLException {
+        public PreparedStatement prepareStatement(final String sql,
+                                                  final String[] columnNames) throws SQLException {
             return connection.prepareStatement(sql, columnNames);
         }
 
@@ -330,17 +345,18 @@ public final class ConnectionPool {
         }
 
         @Override
-        public boolean isValid(int timeout) throws SQLException {
+        public boolean isValid(final int timeout) throws SQLException {
             return connection.isValid(timeout);
         }
 
         @Override
-        public void setClientInfo(String name, String value) throws SQLClientInfoException {
+        public void setClientInfo(final String name,
+                                  final String value) throws SQLClientInfoException {
             connection.setClientInfo(name, value);
         }
 
         @Override
-        public String getClientInfo(String name) throws SQLException {
+        public String getClientInfo(final String name) throws SQLException {
             return connection.getClientInfo(name);
         }
 
@@ -350,17 +366,19 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setClientInfo(Properties properties) throws SQLClientInfoException {
+        public void setClientInfo(final Properties properties) throws SQLClientInfoException {
             connection.setClientInfo(properties);
         }
 
         @Override
-        public Array createArrayOf(String typeName, Object[] elements) throws SQLException {
+        public Array createArrayOf(final String typeName,
+                                   final Object[] elements) throws SQLException {
             return connection.createArrayOf(typeName, elements);
         }
 
         @Override
-        public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
+        public Struct createStruct(final String typeName,
+                                   final Object[] attributes) throws SQLException {
             return connection.createStruct(typeName, attributes);
         }
 
@@ -370,17 +388,18 @@ public final class ConnectionPool {
         }
 
         @Override
-        public void setSchema(String schema) throws SQLException {
+        public void setSchema(final String schema) throws SQLException {
             connection.setSchema(schema);
         }
 
         @Override
-        public void abort(Executor executor) throws SQLException {
+        public void abort(final Executor executor) throws SQLException {
             connection.abort(executor);
         }
 
         @Override
-        public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+        public void setNetworkTimeout(final Executor executor,
+                                      final int milliseconds) throws SQLException {
             connection.setNetworkTimeout(executor, milliseconds);
         }
 
@@ -390,12 +409,12 @@ public final class ConnectionPool {
         }
 
         @Override
-        public <T> T unwrap(Class<T> iface) throws SQLException {
+        public <T> T unwrap(final Class<T> iface) throws SQLException {
             return connection.unwrap(iface);
         }
 
         @Override
-        public boolean isWrapperFor(Class<?> iface) throws SQLException {
+        public boolean isWrapperFor(final Class<?> iface) throws SQLException {
             return connection.isWrapperFor(iface);
         }
     }
