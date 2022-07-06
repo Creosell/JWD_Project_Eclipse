@@ -8,7 +8,8 @@
 <body>
 <jsp:include page="WEB-INF/jsp/header.jsp"/>
 <jsp:useBean id="userInfo" class="by.sheshko.shop.bean.UserSessionInfo"/>
-<h1>Приветствуем в нашем интернет-магазине Smart Things!</h1>
+
+
 
 <br>
 <div id="loginForm">
