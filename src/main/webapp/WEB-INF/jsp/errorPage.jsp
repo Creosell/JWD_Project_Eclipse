@@ -1,17 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Viking
-  Date: 23.06.2022
-  Time: 7:35
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="localization" var="loc"/>
+<fmt:message bundle="${loc}" key="error" var="error"/>
+<fmt:message bundle="${loc}" key="request_error" var="req_error"/>
+<fmt:message bundle="${loc}" key="homepage" var="homepage"/>
+
 <head>
-    <title>Ошибка</title>
+    <title>${error}</title>
 </head>
 <body>
-<h1>Ошибка запроса. Повторите попытку позже.</h1>
-<a href="main">Вернуться на главную страницу</a>
+<h1>${req_error}</h1>
+<a href="${pageContext.request.contextPath}/index.jsp">${homepage}</a>
 </body>
 </html>

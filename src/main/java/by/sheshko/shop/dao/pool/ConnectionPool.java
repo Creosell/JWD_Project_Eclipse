@@ -14,6 +14,7 @@ import java.util.concurrent.Executor;
 public final class ConnectionPool {
 
     private static final ConnectionPool INSTANCE = new ConnectionPool();
+    private static final int DEFAULT_POOLSIZE = 10;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final String driverName;
     private final String url;
@@ -22,7 +23,6 @@ public final class ConnectionPool {
     private BlockingQueue<Connection> connectionsQueue;
     private BlockingQueue<Connection> givenAwayQueue;
     private int poolSize;
-    private static final int DEFAULT_POOLSIZE = 10;
 
     private ConnectionPool() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();

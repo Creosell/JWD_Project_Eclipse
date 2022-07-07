@@ -1,20 +1,19 @@
 package by.sheshko.shop.controller;
 
-import by.sheshko.shop.bean.UserSessionInfo;
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.command.CommandName;
 import by.sheshko.shop.dao.pool.ConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
@@ -23,7 +22,6 @@ public final class Controller extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-
         try {
             ConnectionPool.getInstance().initPoolData();
         } catch (ClassNotFoundException e) {
@@ -44,14 +42,43 @@ public final class Controller extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        processRequest(request, response);
     }
 
     @Override
     protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        PrintWriter out = response.getWriter();
+        processRequest(request, response);
+
+
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
+        String page = null;
+        final ResourceBundle pages = ResourceBundle.getBundle("pages");
+
+
+        try {
+            CommandName commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
+            Command command = provider.getCommand(String.valueOf(commandName));
+
+            page = command.execute(request, response);
+        } catch (Exception e) {
+            log.error("Exception while processing request", e);
+            dispatch(request, response, pages.getString("page.error"));
+        }
+        dispatch(request, response, pages.getString("page." + page));
+    }
+
+    private void dispatch(HttpServletRequest request, HttpServletResponse response, String page) throws javax.servlet.ServletException, java.io.IOException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        dispatcher.forward(request, response);
+    }
+}
+
+
+ /*     PrintWriter out = response.getWriter();
         CommandName commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
         Command command = provider.getCommand(String.valueOf(commandName));
 
@@ -59,14 +86,11 @@ public final class Controller extends HttpServlet {
         UserSessionInfo userSessionInfo = new UserSessionInfo();
         session.setAttribute(userSessionInfo.getClass().getName(), userSessionInfo);
 
-
         if (userSessionInfo.getName() == null) {
             userSessionInfo.setName("Anonymous");
         }
-
-        out.println("Name: " + userSessionInfo.getName() + "<br>");
-
-        switch (commandName) {
+*/
+        /*switch (commandName) {
             case SIGN_IN:
             case REGISTRATION:
                 try {
@@ -86,6 +110,4 @@ public final class Controller extends HttpServlet {
                 } catch (ControllerException e) {
                     log.error("Request error", e);
                 }
-        }
-    }
-}
+        }*/
