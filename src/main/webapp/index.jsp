@@ -28,7 +28,8 @@
 </div>
 <div id="registrationButton">
     <form action="controller" method="post">
-        <input type="hidden" name="command" value="registration">
+        <input type="hidden" name="command" value="forward_command">
+        <input type="hidden" name="go-to" value="registration">
         <input type="submit" value="${registration}">
     </form>
 </div>

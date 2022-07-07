@@ -55,20 +55,19 @@ public final class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
+        CommandName commandName;
+        Command command;
         String page = null;
-        final ResourceBundle pages = ResourceBundle.getBundle("pages");
-
 
         try {
-            CommandName commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
-            Command command = provider.getCommand(String.valueOf(commandName));
-
-            command.execute(request, response);
-        } catch (Exception e) {
+            commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
+            command = provider.getCommand(String.valueOf(commandName));
+            page = command.execute(request, response);
+        } catch (Exception e) { //TODO Нормальный эксепшн
             log.error("Exception while processing request", e);
-            dispatch(request, response, pages.getString("page.error"));
+            dispatch(request, response, page);
         }
-        dispatch(request, response, pages.getString("page." + page));
+        dispatch(request, response, page);
     }
 
     private void dispatch(HttpServletRequest request, HttpServletResponse response, String page) throws javax.servlet.ServletException, java.io.IOException {

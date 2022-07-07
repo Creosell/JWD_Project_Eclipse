@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public final class WrongRequest implements Command {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
+return null;
     }
 
     /*@Override

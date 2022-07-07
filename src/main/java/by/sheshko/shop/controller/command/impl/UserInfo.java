@@ -15,7 +15,8 @@ public final class UserInfo implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
+    return null;
     }
 
     /*@Override

@@ -8,6 +8,5 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface Command {
-    final Logger log = LoggerFactory.getLogger(this.getClass());
-    void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException;
+    String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException;
 }

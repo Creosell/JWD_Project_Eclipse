@@ -1,26 +1,33 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Pavel
-  Date: 10.06.2022
-  Time: 22:21
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
+<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setBundle basename="localization" var="loc"/>
+<fmt:message bundle="${loc}" key="homepage" var="homepage"/>
+<fmt:message bundle="${loc}" key="registration" var="registration"/>
+<fmt:message bundle="${loc}" key="login" var="login"/>
+<fmt:message bundle="${loc}" key="password" var="pass"/>
+<fmt:message bundle="${loc}" key="sign_up" var="sign_up"/>
+
 <head>
-    <title>Регистрация на сайте</title>
+    <title>${registration}</title>
 </head>
 <body>
 <form action="controller" method="post">
     <fieldset>
         <input type="hidden" name="command" value="registration">
-        <legend>Регистрация</legend>
-        <p><label for="login">Логин </label><input name="login" type="text" id="login"></p>
-        <p><label for="password">Пароль </label><input name="password" type="password" id="password"></p>
-        <p><input type="submit" value="Зарегистрироваться"></p>
+        <legend>${registration}</legend>
+        <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
+        <p><label for="password">${pass} </label><input name="password" type="password" id="password"></p>
+        <p><input type="submit" value="${sign_up}"></p>
     </fieldset>
 </form>
-<a href="<c:url value="/index.jsp"/>">Главная страница</a>
+<form action="controller" method="post">
+    <input type="hidden" name="command" value="forward_command">
+    <input type="hidden" name="go-to" value="homepage">
+    <input type="submit" value="${homepage}">
+</form>
 </body>
 </html>
