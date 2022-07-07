@@ -18,7 +18,7 @@ public final class Registration implements Command {
 
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
         String login;
         String password;
         User user;
@@ -40,7 +40,6 @@ public final class Registration implements Command {
             log.error("Error while registering new user", e);
             throw new ControllerException(e.getMessage());
         }
-        return "registration";
     }
 
     /*@Override

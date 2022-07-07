@@ -63,7 +63,7 @@ public final class Controller extends HttpServlet {
             CommandName commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
             Command command = provider.getCommand(String.valueOf(commandName));
 
-            page = command.execute(request, response);
+            command.execute(request, response);
         } catch (Exception e) {
             log.error("Exception while processing request", e);
             dispatch(request, response, pages.getString("page.error"));

@@ -28,6 +28,7 @@
 </div>
 <div id="registrationButton">
     <form action="controller" method="post">
+        <input type="hidden" name="command" value="registration">
         <input type="submit" value="${registration}">
     </form>
 </div>

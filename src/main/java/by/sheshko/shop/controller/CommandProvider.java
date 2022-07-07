@@ -2,10 +2,7 @@ package by.sheshko.shop.controller;
 
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.command.CommandName;
-import by.sheshko.shop.controller.command.impl.Registration;
-import by.sheshko.shop.controller.command.impl.SignIn;
-import by.sheshko.shop.controller.command.impl.UserInfo;
-import by.sheshko.shop.controller.command.impl.WrongRequest;
+import by.sheshko.shop.controller.command.impl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +18,7 @@ final class CommandProvider {
         repository.put(CommandName.REGISTRATION, new Registration());
         repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
         repository.put(CommandName.USER_INFO, new UserInfo());
+        repository.put(CommandName.FORWARD_COMMAND, new ForwardCommand());
     }
 
     Command getCommand(final String name) {
