@@ -47,11 +47,7 @@ public final class Controller extends HttpServlet {
 
     @Override
     protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
         processRequest(request, response);
-
-
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
