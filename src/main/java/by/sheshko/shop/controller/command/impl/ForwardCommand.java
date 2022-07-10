@@ -16,19 +16,14 @@ public final class ForwardCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
         String page = null;
         final ResourceBundle pages = ResourceBundle.getBundle("pages");
+
         try {
-            page = pages.getString("page." + request.getParameter("go-to"));
-        } catch (Exception e) { //todo норм эксепшн
-            log.error("Error finding a page",e);
+            page = pages.getString("page." + request.getParameter("target"));
+        } catch (NullPointerException e) { //todo норм эксепшн
+            log.error("Error finding a page", e);
             page = pages.getString("page.error");
         }
-
         return page;
     }
-
-       /* String target;
-        target = String.format("/WEB-INF/jsp/%s.jsp", request);
-        RequestDispatcher dispatcher = context.getRequestDispatcher(target);
-        dispatcher.forward(request, response);;*/
 }
 

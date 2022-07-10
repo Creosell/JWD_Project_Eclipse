@@ -11,12 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
+    private static final String ERROR_PAGE = "/WEB-INF/jsp/errorPage.jsp";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
 
@@ -26,10 +27,11 @@ public final class Controller extends HttpServlet {
             ConnectionPool.getInstance().initPoolData();
         } catch (ClassNotFoundException e) {
             log.error("Error while trying to find driver class for connection pool", e);
-            throw new ServletException("Error initializing connection pool", e);
+            throw new ServletException("Error finding connection pool class");
         } catch (SQLException e) {
             log.error("Error while connection pool working with database", e);
-            throw new ServletException("Error initializing connection pool", e);
+            throw new ServletException("Error initializing connection pool");
+
         }
         super.init();
     }
@@ -53,22 +55,30 @@ public final class Controller extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
         CommandName commandName;
         Command command;
-        String page = null;
+        String page;
+
+
+        HttpSession session = request.getSession(true);
+        log.info((String) session.getAttribute("language"));//todo delete log
 
         try {
             commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
             command = provider.getCommand(String.valueOf(commandName));
             page = command.execute(request, response);
-        } catch (Exception e) { //TODO Нормальный эксепшн
-            log.error("Exception while processing request", e);
             dispatch(request, response, page);
+        } catch (ControllerException e) {
+            log.error("Exception while processing request", e);
         }
-        dispatch(request, response, page);
     }
 
     private void dispatch(HttpServletRequest request, HttpServletResponse response, String page) throws javax.servlet.ServletException, java.io.IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-        dispatcher.forward(request, response);
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (NullPointerException e) {
+            dispatch(request, response, ERROR_PAGE);
+        }
     }
 }
 

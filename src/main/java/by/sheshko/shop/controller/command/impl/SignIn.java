@@ -1,11 +1,7 @@
 package by.sheshko.shop.controller.command.impl;
 
-import by.sheshko.shop.bean.User;
 import by.sheshko.shop.controller.ControllerException;
 import by.sheshko.shop.controller.command.Command;
-import by.sheshko.shop.service.ClientService;
-import by.sheshko.shop.service.ServiceException;
-import by.sheshko.shop.service.factory.ServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +13,7 @@ public final class SignIn implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-return  null;
+        return null;
     }
 
     /*@Override

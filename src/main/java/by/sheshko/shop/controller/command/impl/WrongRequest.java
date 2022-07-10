@@ -9,12 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 public final class WrongRequest implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-return null;
+        return null;
     }
-
-    /*@Override
-    public String execute(final String request) {
-
-        return request;
-    }*/
 }

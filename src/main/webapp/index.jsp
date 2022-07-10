@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-<fmt:setLocale value="${sessionScope.local}"/>
+<fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="title_homepage" var="title"/>
 <fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
@@ -29,7 +29,7 @@
 <div id="registrationButton">
     <form action="controller" method="post">
         <input type="hidden" name="command" value="forward_command">
-        <input type="hidden" name="go-to" value="registration">
+        <input type="hidden" name="target" value="registration">
         <input type="submit" value="${registration}">
     </form>
 </div>

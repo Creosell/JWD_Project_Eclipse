@@ -3,21 +3,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-
-
-<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setLocale value="${sessionScope.local}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
-<fmt:message bundle="${loc}" key="registration" var="registration"/>
-<fmt:message bundle="${loc}" key="login" var="login"/>
-<fmt:message bundle="${loc}" key="password" var="pass"/>
-<fmt:message bundle="${loc}" key="sign_up" var="sign_up"/>
+<fmt:message bundle="${loc}" key="log_in" var="log_in"/>
 
 <head>
     <title>${registration}</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
 <form action="controller" method="post">
     <fieldset>
         <input type="hidden" name="command" value="registration">
