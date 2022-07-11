@@ -53,13 +53,12 @@ public final class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
+        HttpSession session = request.getSession(true);
         CommandName commandName;
         Command command;
         String page;
 
-
-        HttpSession session = request.getSession(true);
-        log.info((String) session.getAttribute("language"));//todo delete log
+        //log.info((String) session.getAttribute("language"));//todo delete log
 
         try {
             commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());

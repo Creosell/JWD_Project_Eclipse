@@ -15,16 +15,17 @@
     </c:otherwise>
 </c:choose>
 
-<html>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>
 <fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
 <fmt:message bundle="${loc}" key="welcome_message" var="welcome_message"/>
+
+<html>
 <head>
     <title>Header title</title></head>
 <body>
-<div class="flex-box">
+<div>
     <form action="controller" method="post">
         <input type="hidden" name="language" value="ru">
         <input type="hidden" name="command" value="change_local"/>
@@ -36,6 +37,11 @@
         <input type="submit" value="${en_button}">
     </form>
 </div>
+<%--<div>
+   <a href="controller?command=change_local&language=en">${en_button}</a>
+    <br>
+    <a href="controller?command=change_local&language=ru">${ru_button}</a>
+</div>--%>
 <h1>${welcome_message}</h1>
 </body>
 </html>

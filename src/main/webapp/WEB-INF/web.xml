@@ -5,25 +5,7 @@
          version="4.0">
 
 
-    <servlet>
-        <servlet-name>RegistrationPage</servlet-name>
-        <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RegistrationPage</servlet-name>
-        <url-pattern>/registration</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>ErrorPage</servlet-name>
-        <jsp-file>/WEB-INF/jsp/registrationPage.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>ErrorPage</servlet-name>
-        <url-pattern>/error</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
+        <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>by.sheshko.shop.controller.Controller</servlet-class>
     </servlet>
