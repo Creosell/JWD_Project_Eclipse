@@ -21,10 +21,22 @@
 <fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
 <fmt:message bundle="${loc}" key="welcome_message" var="welcome_message"/>
 
+<c:set scope="session" var="message" value="${sessionScope.message}"/>
+
 <html>
 <head>
     <title>Header title</title></head>
 <body>
+<c:out value="${message}"/>
+<script type="text/javascript">
+    let msg = "Hi";
+    alert(msg);
+</script>
+<c:if test="${message!=null}">
+    <c:out value="Entered IF"/>
+
+    <c:set scope="session" var="message" value="null"/>
+</c:if>
 <div>
     <form action="controller" method="post">
         <input type="hidden" name="language" value="ru">
@@ -44,4 +56,6 @@
 </div>--%>
 <h1>${welcome_message}</h1>
 </body>
+
+
 </html>
