@@ -6,14 +6,17 @@
     <c:set scope="session" var="language" value="en"/>
 </c:if>
 
-<c:choose>
+<c:if test="${language != null}">
+    <fmt:setLocale value="${sessionScope.language}"/>
+</c:if>
+<%--<c:choose>
     <c:when test="${language != null}">
         <fmt:setLocale value="${sessionScope.language}"/>
     </c:when>
     <c:otherwise>
         <fmt:setLocale value="en"/>
     </c:otherwise>
-</c:choose>
+</c:choose>--%>
 
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
@@ -22,21 +25,20 @@
 <fmt:message bundle="${loc}" key="welcome_message" var="welcome_message"/>
 
 <c:set scope="session" var="message" value="${sessionScope.message}"/>
+<c:out value="${message}"/>
 
+<c:if test="${message!=null}">
+    <script type="text/javascript">
+        let msg = "${message}";
+        alert(msg);
+    </script>
+</c:if>
+<c:set scope="session" var="message" value="${null}"/>
 <html>
 <head>
     <title>Header title</title></head>
 <body>
-<c:out value="${message}"/>
-<script type="text/javascript">
-    let msg = "Hi";
-    alert(msg);
-</script>
-<c:if test="${message!=null}">
-    <c:out value="Entered IF"/>
 
-    <c:set scope="session" var="message" value="null"/>
-</c:if>
 <div>
     <form action="controller" method="post">
         <input type="hidden" name="language" value="ru">

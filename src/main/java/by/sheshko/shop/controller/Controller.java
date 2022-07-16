@@ -58,8 +58,6 @@ public final class Controller extends HttpServlet {
         Command command;
         String page;
 
-        //log.info((String) session.getAttribute("language"));//todo delete log
-
         try {
             commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
             command = provider.getCommand(String.valueOf(commandName));
@@ -80,38 +78,3 @@ public final class Controller extends HttpServlet {
         }
     }
 }
-
-
- /*     PrintWriter out = response.getWriter();
-        CommandName commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
-        Command command = provider.getCommand(String.valueOf(commandName));
-
-        HttpSession session = request.getSession();
-        UserSessionInfo userSessionInfo = new UserSessionInfo();
-        session.setAttribute(userSessionInfo.getClass().getName(), userSessionInfo);
-
-        if (userSessionInfo.getName() == null) {
-            userSessionInfo.setName("Anonymous");
-        }
-*/
-        /*switch (commandName) {
-            case SIGN_IN:
-            case REGISTRATION:
-                try {
-                    out.println(command.execute(
-                            request.getParameter("login")
-                                    + " " + request.getParameter("password")));
-                } catch (ControllerException e) {
-                    out.println(e.getMessage());
-                }
-                break;
-            case SIGN_OUT:
-                session.removeAttribute(userSessionInfo.getClass().getName());
-                System.out.println(userSessionInfo.getClass().getName());
-            default:
-                try {
-                    provider.getCommand(String.valueOf(CommandName.WRONG_REQUEST)).execute("");
-                } catch (ControllerException e) {
-                    log.error("Request error", e);
-                }
-        }*/
