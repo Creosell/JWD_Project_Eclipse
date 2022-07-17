@@ -68,7 +68,7 @@ public final class Controller extends HttpServlet {
         } catch (ControllerException e) {
             log.error("Exception while processing request", e);
             dispatch(request, response, ResourceParameter.ERROR_PAGE);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             log.error("Null command name", e);
             dispatch(request, response, ResourceParameter.ERROR_PAGE);
         }

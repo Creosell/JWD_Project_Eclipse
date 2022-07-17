@@ -75,6 +75,18 @@
         </div>
     </nav>
 </header>
+
+<!-- Bootstrap core JavaScript -->
+<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Additional Scripts -->
+<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/owl.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/slick.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/accordions.js"></script>
 <%--<div>
     <form action="controller" method="post">
         <input type="hidden" name="language" value="ru">
