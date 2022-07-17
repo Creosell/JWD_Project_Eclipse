@@ -3,6 +3,7 @@ package by.sheshko.shop.controller.command.impl;
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.controller.ControllerException;
 import by.sheshko.shop.controller.command.Command;
+import by.sheshko.shop.controller.command.util.ResourceParameter;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
@@ -21,13 +22,13 @@ public final class Registration implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
         String login;
         String password;
-        User user;
+        User user;//todo ненужный параметр?
 
         login = request.getParameter("login");
         password = request.getParameter("password");
 
         if (login.equals("") || password.equals("")) {
-            throw new ControllerException("Login or password is empty");
+            throw new ControllerException("Login or password is empty");//todo validation
         }
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
@@ -40,36 +41,6 @@ public final class Registration implements Command {
             log.error("Error while registering new user", e);
             throw new ControllerException(e.getMessage());
         }
-        return null;
+        return ResourceParameter.HOME_PAGE;
     }
-
-    /*@Override
-    public String execute(final String request) throws ControllerException {
-        String login;
-        String password;
-        String response;
-        User user;
-
-        try {
-            String[] requestParameters = request.split(" ");
-            login = requestParameters[0];
-            password = requestParameters[1];
-
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ControllerException("Login or password is empty", e);
-        }
-
-
-        ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        ClientService clientService = serviceFactory.getClientServiceImpl();
-
-        try {
-            clientService.registration(login, password);
-            response = "New user with login " + login + " was successfully created!";
-        } catch (ServiceException e) {
-            log.error("Error while registering new user", e);
-            throw new ControllerException(e.getMessage());
-        }
-        return response;
-    }*/
 }

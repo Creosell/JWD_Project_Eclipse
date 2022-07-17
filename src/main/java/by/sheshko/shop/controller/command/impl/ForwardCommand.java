@@ -2,6 +2,7 @@ package by.sheshko.shop.controller.command.impl;
 
 import by.sheshko.shop.controller.ControllerException;
 import by.sheshko.shop.controller.command.Command;
+import by.sheshko.shop.controller.command.util.ResourceParameter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,14 +15,14 @@ public final class ForwardCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-        String page = null;
+        String page;
         final ResourceBundle pages = ResourceBundle.getBundle("pages");
 
         try {
             page = pages.getString("page." + request.getParameter("target"));
-        } catch (NullPointerException e) { //todo норм эксепшн
+        } catch (NullPointerException e) { //todo норм эксепшн, чекнуть логику страницы ошибки
             log.error("Error finding a page", e);
-            page = pages.getString("page.error");
+            page = ResourceParameter.ERROR_PAGE;
         }
         return page;
     }

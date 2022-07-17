@@ -27,8 +27,8 @@
         <legend>${log_in}</legend>
         <input type="text" name="login" value="" placeholder="${enter_login}">
         <input type="password" name="password" value="" placeholder="${enter_pass}">
-       <%-- <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
-        <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>--%>
+        <%-- <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
+         <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>--%>
         <p><input type="submit" value="${log_in}"></p>
     </fieldset>
 </form>

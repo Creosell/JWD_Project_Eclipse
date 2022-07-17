@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public final class ChangeLocal implements Command {
+    private static final String LANGUAGE = "language";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String language = request.getParameter("language");
-        request.getSession().setAttribute("language", language);//TODO lang const
-        log.info("Language is changed. Value is: {}", language);
+        String sessionLanguage = request.getParameter(LANGUAGE);
+        request.getSession().setAttribute(LANGUAGE, sessionLanguage);
+        log.info("Language is changed. Value is: {}", sessionLanguage);//todo delete log
         return "/index.jsp";
     }
 }

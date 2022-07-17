@@ -112,3 +112,5 @@
 /target/my-web-project-1.0-SNAPSHOT/WEB-INF/web.xml
 /target/my-web-project-1.0-SNAPSHOT/index.jsp
 /my-web-project.iml
+/target/
+/.idea/

@@ -2,6 +2,7 @@ package by.sheshko.shop.controller;
 
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.command.CommandName;
+import by.sheshko.shop.controller.command.util.ResourceParameter;
 import by.sheshko.shop.dao.pool.ConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +16,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
 public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
-    private static final String ERROR_PAGE = "/WEB-INF/jsp/errorPage.jsp";
+    //private static final String ERROR_PAGE = "/WEB-INF/jsp/errorPage.jsp"; //todo utils param
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
 
@@ -65,6 +67,10 @@ public final class Controller extends HttpServlet {
             dispatch(request, response, page);
         } catch (ControllerException e) {
             log.error("Exception while processing request", e);
+            dispatch(request, response, ResourceParameter.ERROR_PAGE);
+        }catch (NullPointerException e){
+            log.error("Null command name", e);
+            dispatch(request, response, ResourceParameter.ERROR_PAGE);
         }
     }
 
@@ -74,7 +80,7 @@ public final class Controller extends HttpServlet {
         try {
             dispatcher.forward(request, response);
         } catch (NullPointerException e) {
-            dispatch(request, response, ERROR_PAGE);
+            dispatch(request, response, ResourceParameter.ERROR_PAGE);
         }
     }
 }
