@@ -114,3 +114,8 @@
 /my-web-project.iml
 /target/
 /.idea/
+/target/
+/target/
+/target/my-web-project-1.0-SNAPSHOT/WEB-INF/
+/target/my-web-project-1.0-SNAPSHOT/
+/src/main/webapp/assets/images_old/
