@@ -17,6 +17,8 @@
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
 <fmt:message bundle="${loc}" key="about_us" var="aboutUs"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
+<fmt:message bundle="${loc}" key="contact_us" var="contactUs"/>
+<fmt:message bundle="${loc}" key="our_products" var="ourProducts"/>
 
 <%--<c:set scope="session" var="message" value="${sessionScope.message}"/>
 <c:out value="${message}"/>
@@ -64,13 +66,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Our Products</a>
+                        <a class="nav-link" href="controller?command=forward_command&target=products">${ourProducts}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="controller?command=forward_command&target=about">${aboutUs}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="controller?command=forward_command&target=contact">${contactUs}</a>
                     </li>
                 </ul>
             </div>

@@ -8,6 +8,9 @@ public class ResourceParameter {
     public static final String REGISTRATION_PAGE = pages.getString("page.registration");
     public static final String HOME_PAGE = pages.getString("page.homepage");
     public static final String LOG_IN_PAGE = pages.getString("page.logIn");
+    public static final String PRODUCT_PAGE = pages.getString("page.products");
+    public static final String CONTACT_PAGE = pages.getString("page.contact");
+
     static final ResourceBundle localization = ResourceBundle.getBundle("localization");
     public static final String WELCOME_MESSAGE = localization.getString("welcome_message");
 }
