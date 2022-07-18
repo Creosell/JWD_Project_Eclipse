@@ -522,6 +522,7 @@ header .navbar {
 /* Footer */
 
 footer {
+
     text-align: center;
 }
 
@@ -529,11 +530,29 @@ footer .inner-content {
     border-top: 1px solid #eee;
     margin-top: 60px;
     padding: 60px 0px;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+footer .inner-content .bottom {
+
+}
+
+footer .inner-content .switch-language {
+    display: -webkit-box;
+}
+
+footer .inner-content .switch-language a {
+    padding: 6px;
+    color: #f33f3f;
 }
 
 footer .inner-content p {
+
     text-transform: uppercase;
 }
+
 
 footer .inner-content p a {
     color: #f33f3f;
