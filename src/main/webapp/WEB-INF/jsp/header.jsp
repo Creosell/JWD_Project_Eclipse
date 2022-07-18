@@ -14,7 +14,9 @@
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>
 <fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
-<fmt:message bundle="${loc}" key="welcome_message" var="welcome_message"/>
+<%--<fmt:message bundle="${loc}" key="" var=""/>--%>
+<fmt:message bundle="${loc}" key="about_us" var="aboutUs"/>
+<fmt:message bundle="${loc}" key="homepage" var="homepage"/>
 
 <%--<c:set scope="session" var="message" value="${sessionScope.message}"/>
 <c:out value="${message}"/>
@@ -57,7 +59,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="controller?command=forward_command&target=homepage">Home
+                        <a class="nav-link" href="controller?command=forward_command&target=homepage">${homepage}
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -65,7 +67,7 @@
                         <a class="nav-link" href="products.html">Our Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
+                        <a class="nav-link" href="controller?command=forward_command&target=about">${aboutUs}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>

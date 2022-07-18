@@ -19,7 +19,7 @@
     <title>${title}</title>
 </head>
 <body>
-<jsp:include page="WEB-INF/jsp/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 
 <div class="banner header-text">
     <div class="owl-banner owl-carousel">
@@ -223,7 +223,7 @@
     </div>
 </div>
 
-<jsp:include page="WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 
 
 <%--
