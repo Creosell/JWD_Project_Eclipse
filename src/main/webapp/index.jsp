@@ -13,6 +13,9 @@
 <fmt:message bundle="${loc}" key="log_in" var="log_in"/>
 <fmt:message bundle="${loc}" key="registration" var="registration"/>
 <fmt:message bundle="${loc}" key="sign_out" var="sign_out"/>
+<fmt:message bundle="${loc}" key="best_offer" var="bestOffer"/>
+<fmt:message bundle="${loc}" key="overclocking" var="overclocking"/>
+<fmt:message bundle="${loc}" key="ultimate_gaming" var="ultimateGaming"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,20 +28,20 @@
     <div class="owl-banner owl-carousel">
         <div class="banner-item-01">
             <div class="text-content">
-                <h4>Best Offer</h4>
-                <h2>New Arrivals On Sale</h2>
+                <h4>${bestOffer}</h4>
+                <h2>AMD Ryzen™ Threadripper™ 3990X</h2>
             </div>
         </div>
         <div class="banner-item-02">
             <div class="text-content">
-                <h4>Flash Deals</h4>
-                <h2>Get your best products</h2>
+                <h4>${overclocking}</h4>
+                <h2>ROG CROSSHAIR VIII Extreme</h2>
             </div>
         </div>
         <div class="banner-item-03">
             <div class="text-content">
-                <h4>Last Minute</h4>
-                <h2>Grab last minute deals</h2>
+                <h4>${ultimateGaming}</h4>
+                <h2>ASUS EKWB GeForce RTX 3090</h2>
             </div>
         </div>
     </div>
@@ -51,7 +54,7 @@
             <div class="col-md-12">
                 <div class="section-heading">
                     <h2>Latest Products</h2>
-                    <a href="products.html">view all products <i class="fa fa-angle-right"></i></a>
+                    <a href="controller?command=forward_command&target=products">view all products <i class="fa fa-angle-right"></i></a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -189,7 +192,7 @@
                         <li><a href="#">Corporis, omnis doloremque</a></li>
                         <li><a href="#">Non cum id reprehenderit</a></li>
                     </ul>
-                    <a href="about.html" class="filled-button">Read More</a>
+                    <a href="controller?command=forward_command&target=about" class="filled-button">Read More</a>
                 </div>
             </div>
             <div class="col-md-6">

@@ -60,18 +60,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item active" id="nav-item-homepage">
                         <a class="nav-link" href="controller?command=forward_command&target=homepage">${homepage}
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="nav-item-products">
                         <a class="nav-link" href="controller?command=forward_command&target=products">${ourProducts}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="nav-item-about">
                         <a class="nav-link" href="controller?command=forward_command&target=about">${aboutUs}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="nav-item-contact">
                         <a class="nav-link" href="controller?command=forward_command&target=contact">${contactUs}</a>
                     </li>
                 </ul>
@@ -79,6 +79,29 @@
         </div>
     </nav>
 </header>
+
+<script type="application/javascript">
+    for (let navElement of document.getElementsByClassName("nav-item")) {
+        if (navElement.classList.contains("active")){
+            navElement.classList.remove("active");
+
+            if (document.URL.indexOf("homepage")>-1){
+                document.getElementById("nav-item-homepage").classList.add("active");
+            }
+            if (document.URL.indexOf("products")>-1){
+                document.getElementById("nav-item-products").classList.add("active");
+            }
+            if (document.URL.indexOf("about")>-1){
+                document.getElementById("nav-item-about").classList.add("active");
+            }
+            if (document.URL.indexOf("contact")>-1){
+                document.getElementById("nav-item-contact").classList.add("active");
+            }
+            //let targetUrl = document.URL.indexOf("homepage");
+        }
+    }
+
+</script>
 
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
