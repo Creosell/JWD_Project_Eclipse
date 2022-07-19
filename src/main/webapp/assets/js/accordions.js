@@ -1070,7 +1070,7 @@
             round = Math.round,
             rhorizontal = /left|center|right/,
             rvertical = /top|center|bottom/,
-            roffset = /[\+\-]\d+(\.[\d]+)?%?/,
+            roffset = /[+\-]\d+(\.\d+)?%?/,
             rposition = /^\w+/,
             rpercent = /%$/,
             _position = $.fn.position;
@@ -2742,7 +2742,7 @@
         },
 
         _filterMenuItems: function (character) {
-            var escapedCharacter = character.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&"),
+            var escapedCharacter = character.replace(/[\-\[\]{}()*+?.,\\^$|#\s]/g, "\\$&"),
                 regex = new RegExp("^" + escapedCharacter, "i");
 
             return this.activeMenu
@@ -3326,7 +3326,7 @@
 
     $.extend($.ui.autocomplete, {
         escapeRegex: function (value) {
-            return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+            return value.replace(/[\-\[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
         },
         filter: function (array, term) {
             var matcher = new RegExp($.ui.autocomplete.escapeRegex(term), "i");
@@ -4089,7 +4089,7 @@
                 this.uuid += 1;
                 id = "dp" + this.uuid;
                 this._dialogInput = $("<input type='text' id='" + id +
-                    "' style='position: absolute; top: -100px; width: 0px;'/>");
+                    "' style='position: absolute; top: -100px; width: 0;'/>");
                 this._dialogInput.keydown(this._doKeyDown);
                 $("body").append(this._dialogInput);
                 inst = this._dialogInst = this._newInst(this._dialogInput, false);
@@ -5276,7 +5276,7 @@
                         year = date.getFullYear(),
                         month = date.getMonth(),
                         day = date.getDate(),
-                        pattern = /([+\-]?[0-9]+)\s*(d|D|w|W|m|M|y|Y)?/g,
+                        pattern = /([+\-]?[0-9]+)\s*([dDwWmMyY])?/g,
                         matches = pattern.exec(offset);
 
                     while (matches) {
@@ -6235,7 +6235,7 @@
         },
 
         _setPositionRelative: function () {
-            if (!(/^(?:r|a|f)/).test(this.element.css("position"))) {
+            if (!(/^[raf]/).test(this.element.css("position"))) {
                 this.element[0].style.position = "relative";
             }
         },
@@ -9464,7 +9464,7 @@
                     ];
                 }
             }, {
-                re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
+                re: /rgba?\(\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
                 parse: function (execResult) {
                     return [
                         execResult[1] * 2.55,
@@ -9494,7 +9494,7 @@
                     ];
                 }
             }, {
-                re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
+                re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
                 space: "hsla",
                 parse: function (execResult) {
                     return [
@@ -15681,7 +15681,7 @@
         },
 
         _sanitizeSelector: function (hash) {
-            return hash ? hash.replace(/[!"$%&'()*+,.\/:;<=>?@\[\]\^`{|}~]/g, "\\$&") : "";
+            return hash ? hash.replace(/[!"$%&'()*+,.\/:;<=>?@\[\]^`{|}~]/g, "\\$&") : "";
         },
 
         refresh: function () {

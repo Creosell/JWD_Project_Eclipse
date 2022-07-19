@@ -124,7 +124,7 @@
 
     function o(t) {
         var e = getComputedStyle(t);
-        return e || a("Style returned " + e + ". Are you running this code in a hidden iframe on Firefox? See http://bit.ly/getsizebug1"), e
+        return e || a("Style returned " + e + ". Are you running this code in a hidden iframe on Firefox? See https://bit.ly/getsizebug1"), e
     }
 
     function n() {
@@ -961,7 +961,7 @@
     var f = function () {
         function t(t) {
             if ("string" != typeof t) return t;
-            var i = h(t).split(" "), o = i[0], n = o.match(/^\[(.+)\]$/), s = n && n[1], r = e(s, o),
+            var i = h(t).split(" "), o = i[0], n = o.match(/^\[(.+)]$/), s = n && n[1], r = e(s, o),
                 a = d.sortDataParsers[i[1]];
             return t = a ? function (t) {
                 return t && a(r(t))

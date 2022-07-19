@@ -3024,7 +3024,7 @@
      */
     function toValue(str, measurement, popperOffsets, referenceOffsets) {
         // separate value from unit
-        var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
+        var split = str.match(/([-+]?\d*\.?\d*)(.*)/);
         var value = +split[1];
         var unit = split[2];
 
@@ -3084,7 +3084,7 @@
 
         // Split the offset string to obtain a list of values and operands
         // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
-        var fragments = offset.split(/(\+|\-)/).map(function (frag) {
+        var fragments = offset.split(/([+\-])/).map(function (frag) {
             return frag.trim();
         });
 

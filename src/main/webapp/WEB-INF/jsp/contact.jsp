@@ -43,7 +43,7 @@
                 -->
                 <div id="map">
                     <iframe allowfullscreen
-                            frameborder="0" height="330px"
+                            height="330px"
                             src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed"
                             style="border:0" width="100%"></iframe>
                 </div>

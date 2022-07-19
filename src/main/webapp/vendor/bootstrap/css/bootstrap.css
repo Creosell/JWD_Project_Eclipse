@@ -93,7 +93,6 @@ abbr[title],
 abbr[data-original-title] {
     text-decoration: underline;
     -webkit-text-decoration: underline dotted;
-    text-decoration: underline dotted;
     cursor: help;
     border-bottom: 0;
 }
@@ -241,7 +240,6 @@ button {
 }
 
 button:focus {
-    outline: 1px dotted;
     outline: 5px auto -webkit-focus-ring-color;
 }
 
@@ -1904,7 +1902,7 @@ pre code {
     background-color: rgba(255, 255, 255, 0.075);
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 576px) {
     .table-responsive-sm {
         display: block;
         width: 100%;
@@ -1918,7 +1916,7 @@ pre code {
     }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
     .table-responsive-md {
         display: block;
         width: 100%;
@@ -1932,7 +1930,7 @@ pre code {
     }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 992px) {
     .table-responsive-lg {
         display: block;
         width: 100%;
@@ -1946,7 +1944,7 @@ pre code {
     }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1200px) {
     .table-responsive-xl {
         display: block;
         width: 100%;
@@ -2194,13 +2192,13 @@ textarea.form-control {
     border-radius: 0.25rem;
 }
 
-.was-validated .form-control:valid, .form-control.is-valid, .was-validated
+.was-validated .form-control:valid, .form-control.is-valid, .was-validated,
 .custom-select:valid,
 .custom-select.is-valid {
     border-color: #28a745;
 }
 
-.was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated
+.was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated,
 .custom-select:valid:focus,
 .custom-select.is-valid:focus {
     border-color: #28a745;
@@ -2209,9 +2207,9 @@ textarea.form-control {
 
 .was-validated .form-control:valid ~ .valid-feedback,
 .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback,
-.form-control.is-valid ~ .valid-tooltip, .was-validated
+.form-control.is-valid ~ .valid-tooltip, .was-validated,
 .custom-select:valid ~ .valid-feedback,
-.was-validated
+.was-validated,
 .custom-select:valid ~ .valid-tooltip,
 .custom-select.is-valid ~ .valid-feedback,
 .custom-select.is-valid ~ .valid-tooltip {
@@ -2297,13 +2295,13 @@ textarea.form-control {
     border-radius: 0.25rem;
 }
 
-.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated
+.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated,
 .custom-select:invalid,
 .custom-select.is-invalid {
     border-color: #dc3545;
 }
 
-.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated
+.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated,
 .custom-select:invalid:focus,
 .custom-select.is-invalid:focus {
     border-color: #dc3545;
@@ -2312,9 +2310,9 @@ textarea.form-control {
 
 .was-validated .form-control:invalid ~ .invalid-feedback,
 .was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
-.form-control.is-invalid ~ .invalid-tooltip, .was-validated
+.form-control.is-invalid ~ .invalid-tooltip, .was-validated,
 .custom-select:invalid ~ .invalid-feedback,
-.was-validated
+.was-validated,
 .custom-select:invalid ~ .invalid-tooltip,
 .custom-select.is-invalid ~ .invalid-feedback,
 .custom-select.is-invalid ~ .invalid-tooltip {
@@ -4232,7 +4230,7 @@ input[type="button"].btn-block {
     background-size: 100% 100%;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 576px) {
     .navbar-expand-sm > .container,
     .navbar-expand-sm > .container-fluid {
         padding-right: 0;
@@ -4280,7 +4278,7 @@ input[type="button"].btn-block {
     }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
     .navbar-expand-md > .container,
     .navbar-expand-md > .container-fluid {
         padding-right: 0;
@@ -4328,7 +4326,7 @@ input[type="button"].btn-block {
     }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 992px) {
     .navbar-expand-lg > .container,
     .navbar-expand-lg > .container-fluid {
         padding-right: 0;
@@ -4376,7 +4374,7 @@ input[type="button"].btn-block {
     }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1200px) {
     .navbar-expand-xl > .container,
     .navbar-expand-xl > .container-fluid {
         padding-right: 0;
@@ -4705,8 +4703,8 @@ input[type="button"].btn-block {
     .card-deck .card {
         display: -ms-flexbox;
         display: flex;
-        -ms-flex: 1 0 0%;
-        flex: 1 0 0%;
+        -ms-flex: 1 0 0;
+        flex: 1 0 0;
         -ms-flex-direction: column;
         flex-direction: column;
         margin-right: 15px;
@@ -4733,8 +4731,8 @@ input[type="button"].btn-block {
     }
 
     .card-group > .card {
-        -ms-flex: 1 0 0%;
-        flex: 1 0 0%;
+        -ms-flex: 1 0 0;
+        flex: 1 0 0;
         margin-bottom: 0;
     }
 
@@ -5579,7 +5577,6 @@ button.close {
 
 .modal.fade .modal-dialog {
     transition: -webkit-transform 0.3s ease-out;
-    transition: transform 0.3s ease-out;
     transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
     -webkit-transform: translate(0, -25%);
     transform: translate(0, -25%);
@@ -5734,7 +5731,6 @@ button.close {
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
-    text-align: left;
     text-align: start;
     text-decoration: none;
     text-shadow: none;
@@ -5847,7 +5843,6 @@ button.close {
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
-    text-align: left;
     text-align: start;
     text-decoration: none;
     text-shadow: none;
@@ -6049,7 +6044,6 @@ button.close {
 .carousel-item-prev {
     display: block;
     transition: -webkit-transform 0.6s ease;
-    transition: transform 0.6s ease;
     transition: transform 0.6s ease, -webkit-transform 0.6s ease;
 }
 
