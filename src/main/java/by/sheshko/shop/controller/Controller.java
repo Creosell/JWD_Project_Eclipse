@@ -19,7 +19,6 @@ import java.sql.SQLException;
 
 public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
-    //private static final String ERROR_PAGE = "/WEB-INF/jsp/errorPage.jsp"; //todo utils param
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
 

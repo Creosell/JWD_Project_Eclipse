@@ -14,5 +14,18 @@
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <display-name>EncodingFilter</display-name>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>by.sheshko.shop.controller.filter.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>charEncoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/controller</url-pattern>
+    </filter-mapping>
 
 </web-app>
