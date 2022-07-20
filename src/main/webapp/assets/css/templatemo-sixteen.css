@@ -738,6 +738,23 @@ footer .inner-content p a {
     margin-left: 30px;
 }
 
+/* Login Page */
+
+.login-heading {
+    padding: 210px 0 130px 0;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-heading .login-fields {
+    display: flex;
+}
+
+.login-heading .login-fields input {
+    padding: 10px 10px 10px 10px;
+}
 
 /* Send Message */
 

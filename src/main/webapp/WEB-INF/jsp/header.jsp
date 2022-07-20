@@ -19,7 +19,7 @@
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
 <fmt:message bundle="${loc}" key="contact_us" var="contactUs"/>
 <fmt:message bundle="${loc}" key="our_products" var="ourProducts"/>
-
+<fmt:message bundle="${loc}" key="log_in" var="logIn"/>
 <%--<c:set scope="session" var="message" value="${sessionScope.message}"/>
 <c:out value="${message}"/>
 
@@ -74,6 +74,9 @@
                     <li class="nav-item" id="nav-item-contact">
                         <a class="nav-link" href="controller?command=forward_command&target=contact">${contactUs}</a>
                     </li>
+                    <li class="nav-item" id="nav-item-sign-up">
+                        <a class="nav-link" href="controller?command=forward_command&target=logIn">${logIn}</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -96,6 +99,9 @@
             }
             if (document.URL.indexOf("contact")>-1){
                 document.getElementById("nav-item-contact").classList.add("active");
+            }
+            if (document.URL.indexOf("logIn")>-1){
+                document.getElementById("nav-item-sign-up").classList.add("active");
             }
             //let targetUrl = document.URL.indexOf("homepage");
         }

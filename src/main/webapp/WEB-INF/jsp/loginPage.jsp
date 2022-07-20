@@ -15,23 +15,28 @@
 <fmt:message bundle="${loc}" key="password" var="password"/>
 <fmt:message bundle="${loc}" key="enter_your_login" var="enter_login"/>
 <fmt:message bundle="${loc}" key="enter_your_password" var="enter_pass"/>
+<fmt:message bundle="${loc}" key="title_log_in" var="title"/>
 
 <head>
-    <title>${log_in}</title>
+    <title>${title}</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<form action="controller" method="post">
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<div class="login-heading">
     <fieldset>
         <input type="hidden" name="command" value="sign_in">
         <legend>${log_in}</legend>
-        <input type="text" name="login" value="" placeholder="${enter_login}">
-        <input type="password" name="password" value="" placeholder="${enter_pass}">
-        <%-- <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
-         <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>--%>
-        <p><input type="submit" value="${log_in}"></p>
+        <div class="login-fields">
+            <input type="text" name="login" value="" placeholder="${enter_login}">
+            <input type="password" name="password" value="" placeholder="${enter_pass}">
+            <%-- <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
+             <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>--%>
+            <p><input type="submit" value="${log_in}"></p>
+        </div>
     </fieldset>
-</form>
-<a href="controller?command=forward_command&target=homepage">${homepage}</a>
+</div> <form action="controller" method="post">
+
+
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>
