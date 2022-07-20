@@ -30,10 +30,6 @@
         <p><input type="submit" value="${sign_up}"></p>
     </fieldset>
 </form>
-<form action="controller" method="post">
-    <input type="hidden" name="command" value="forward_command">
-    <input type="hidden" name="target" value="homepage">
-    <input type="submit" value="${homepage}">
-</form>
+
 </body>
 </html>

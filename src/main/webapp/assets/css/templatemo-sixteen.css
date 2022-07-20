@@ -482,8 +482,8 @@ header .navbar {
 /* Footer */
 
 footer {
-
     text-align: center;
+z-index: 1;
 }
 
 footer .inner-content {
@@ -493,10 +493,6 @@ footer .inner-content {
 
     display: flex;
     justify-content: space-around;
-}
-
-footer .inner-content .bottom {
-
 }
 
 footer .inner-content .switch-language {
@@ -741,18 +737,22 @@ footer .inner-content p a {
 /* Login Page */
 
 .login-heading {
-    padding: 210px 0 130px 0;
+    display: block;
     text-align: center;
+    padding: 20% 0 10% 0;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.login-heading .login-fields {
+.login-heading fieldset {
     display: flex;
+    flex-direction: column;
+
 }
 
-.login-heading .login-fields input {
+.login-heading fieldset .login-fields {
+    display: block;
     padding: 10px 10px 10px 10px;
 }
 

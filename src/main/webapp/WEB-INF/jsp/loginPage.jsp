@@ -22,21 +22,51 @@
 </head>
 <body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
-<div class="login-heading">
+<%--<div class="login-heading">
     <fieldset>
-        <input type="hidden" name="command" value="sign_in">
         <legend>${log_in}</legend>
+        <input type="hidden" name="command" value="sign_in">
+
         <div class="login-fields">
-            <input type="text" name="login" value="" placeholder="${enter_login}">
-            <input type="password" name="password" value="" placeholder="${enter_pass}">
+            <p>
+                <label>
+                    ${login}: <input type="text" name="login" value="" placeholder="${enter_login}">
+                </label>
+            </p>
+            <p><label>
+                ${password}: <input type="password" name="password" value="" placeholder="${enter_pass}">
+            </label>
+            </p>
+            &lt;%&ndash; <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
+             <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>&ndash;%&gt;
+            <p><input type="submit" value="${log_in}"></p>
+        </div>
+    </fieldset>
+</div>--%>
+
+<div class="login-heading">
+
+    <h2>${log_in}</h2>
+    <form>
+
+        <input type="hidden" name="command" value="sign_in">
+        <div class="login-fields">
+            <p>
+                <label>
+                    ${login}: <input type="text" name="login" value="" placeholder="${enter_login}">
+                </label>
+            </p>
+            <p><label>
+                ${password}: <input type="password" name="password" value="" placeholder="${enter_pass}">
+            </label>
+            </p>
             <%-- <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
              <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>--%>
             <p><input type="submit" value="${log_in}"></p>
         </div>
-    </fieldset>
-</div> <form action="controller" method="post">
 
-
+    </form>
+</div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

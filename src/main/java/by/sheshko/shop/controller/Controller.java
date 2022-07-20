@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Map;
 
 
 public final class Controller extends HttpServlet {
@@ -59,6 +61,25 @@ public final class Controller extends HttpServlet {
         Command command;
         String page;
 
+
+
+        //if (request.getRequestURI().contains("/")){
+        Map<String, String[]> map = request.getParameterMap();
+
+        for (Map.Entry<String, String[]> stringEntry : map.entrySet()) {
+            log.info(stringEntry.getKey());
+            for (String s : stringEntry.getValue()) {
+                log.info(s);
+            }
+        }
+
+            /*String tempPage = uriArray[1];
+            request.setAttribute("command", "forward_command");
+            request.setAttribute("target", tempPage);*/
+       // }
+
+
+
         try {
             commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
             command = provider.getCommand(String.valueOf(commandName));
@@ -79,6 +100,7 @@ public final class Controller extends HttpServlet {
         try {
             dispatcher.forward(request, response);
         } catch (NullPointerException e) {
+            log.error("Null page", e);
             dispatch(request, response, ResourceParameter.ERROR_PAGE);
         }
     }
