@@ -739,23 +739,39 @@ footer .inner-content p a {
 /* Login Page */
 
 .login-heading {
-    display: block;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 200px 0 100px 0;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.login-heading fieldset {
+.login-heading .login-fields {
     display: flex;
-    flex-direction: column;
-
+    align-items: center;
 }
 
-.login-heading fieldset .login-fields {
-    display: block;
+.login-heading .login-page-buttons {
+    size: 200px;
+    display: flex;
+    flex-direction: row;
     padding: 10px 10px 10px 10px;
+}
+
+.login-heading .login-fields .login-labels {
+    align-items: flex-start;
+    padding: 0 10px 0 0;
+}
+
+.login-heading .login-fields .login-fields-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-heading .login-fields p label input {
+    align-self: center;
 }
 
 /* Send Message */

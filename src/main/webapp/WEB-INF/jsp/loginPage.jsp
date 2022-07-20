@@ -10,10 +10,11 @@
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
+<fmt:message bundle="${loc}" key="authorization" var="authorization"/>
 <fmt:message bundle="${loc}" key="log_in" var="log_in"/>
 <fmt:message bundle="${loc}" key="login" var="login"/>
 <fmt:message bundle="${loc}" key="password" var="password"/>
-<fmt:message bundle="${loc}" key="enter_your_login" var="enter_login"/>
+<fmt:message bundle="${loc}" key="registration" var="registration"/>
 <fmt:message bundle="${loc}" key="enter_your_password" var="enter_pass"/>
 <fmt:message bundle="${loc}" key="title_log_in" var="title"/>
 
@@ -22,50 +23,29 @@
 </head>
 <body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
-<%--<div class="login-heading">
-    <fieldset>
-        <legend>${log_in}</legend>
-        <input type="hidden" name="command" value="sign_in">
-
-        <div class="login-fields">
-            <p>
-                <label>
-                    ${login}: <input type="text" name="login" value="" placeholder="${enter_login}">
-                </label>
-            </p>
-            <p><label>
-                ${password}: <input type="password" name="password" value="" placeholder="${enter_pass}">
-            </label>
-            </p>
-            &lt;%&ndash; <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
-             <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>&ndash;%&gt;
-            <p><input type="submit" value="${log_in}"></p>
-        </div>
-    </fieldset>
-</div>--%>
-
 <div class="login-heading">
-
-    <h2>${log_in}</h2>
-    <form>
-
-        <input type="hidden" name="command" value="sign_in">
-        <div class="login-fields">
-            <p>
-                <label>
-                    ${login}: <input type="text" name="login" value="" placeholder="${enter_login}">
-                </label>
-            </p>
-            <p><label>
-                ${password}: <input type="password" name="password" value="" placeholder="${enter_pass}">
-            </label>
-            </p>
-            <%-- <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
-             <p><label for="password">${password} </label><input name="password" type="password" id="password"></p>--%>
-            <p><input type="submit" value="${log_in}"></p>
+    <h2>${authorization}</h2>
+    <div class="login-fields">
+        <div class="login-labels">
+            <p>${login}:</p>
+            <p>${password}:</p>
         </div>
+        <div class="login-fields-input">
+            <input type="text" name="login" value="">
+            <input type="password" name="password" value="">
+        </div>
+    </div>
 
-    </form>
+    <div class="login-page-buttons">
+        <form>
+            <input type="hidden" name="command" value="sign_in">
+            <input type="submit" value="${log_in}">
+        </form>
+        <form>
+            <input type="hidden" name="command" value="registration">
+            <input type="submit" value="${registration}">
+        </form>
+    </div>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>

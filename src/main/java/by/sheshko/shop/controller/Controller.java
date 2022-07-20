@@ -62,21 +62,21 @@ public final class Controller extends HttpServlet {
         String page;
 
 
+/*
+        if (request.getRequestURI().contains("/")) {
+            Map<String, String[]> map = request.getParameterMap();
 
-        //if (request.getRequestURI().contains("/")){
-        Map<String, String[]> map = request.getParameterMap();
-
-        for (Map.Entry<String, String[]> stringEntry : map.entrySet()) {
-            log.info(stringEntry.getKey());
-            for (String s : stringEntry.getValue()) {
-                log.info(s);
+            for (Map.Entry<String, String[]> stringEntry : map.entrySet()) {
+                log.info(stringEntry.getKey());
+                for (String s : stringEntry.getValue()) {
+                    log.info(s);
+                }
             }
-        }
 
-            /*String tempPage = uriArray[1];
+            String tempPage = uriArray[1];
             request.setAttribute("command", "forward_command");
-            request.setAttribute("target", tempPage);*/
-       // }
+            request.setAttribute("target", tempPage);
+        }*/
 
 
 
