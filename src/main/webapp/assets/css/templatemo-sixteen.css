@@ -483,7 +483,9 @@ header .navbar {
 
 footer {
     text-align: center;
-z-index: 1;
+    position: inherit;
+    bottom: 0;
+    left: 0;
 }
 
 footer .inner-content {
@@ -739,7 +741,7 @@ footer .inner-content p a {
 .login-heading {
     display: block;
     text-align: center;
-    padding: 20% 0 10% 0;
+    padding: 200px 0 100px 0;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

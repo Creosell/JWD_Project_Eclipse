@@ -195,7 +195,6 @@
         </div>
     </div>
 </div>
-
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

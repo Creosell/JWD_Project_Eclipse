@@ -295,18 +295,5 @@
     </div>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
-
-
-<%--<!-- Bootstrap core JavaScript -->
-<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-<!-- Additional Scripts -->
-<script src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/owl.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/slick.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/accordions.js"></script>--%>
 </body>
 </html>
