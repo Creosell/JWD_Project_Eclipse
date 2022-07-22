@@ -37,11 +37,11 @@
     </div>
 
     <div class="login-page-buttons">
-        <form>
+        <form action="controller" method="post">
             <input type="hidden" name="command" value="sign_in">
             <input type="submit" value="${log_in}">
         </form>
-        <form>
+        <form action="controller" method="post">
             <input type="hidden" name="command" value="registration">
             <input type="submit" value="${registration}">
         </form>

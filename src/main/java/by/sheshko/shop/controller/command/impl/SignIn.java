@@ -28,10 +28,12 @@ public final class SignIn implements Command {
         User user;
 
         try {
-
             login = request.getParameter("login");
             password = request.getParameter("password");
 
+            if ("".equals(login) || "".equals(password)){
+                throw new ControllerException("Login or password is empty");
+            }
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
 
@@ -44,8 +46,5 @@ public final class SignIn implements Command {
         } catch (ServiceException e) {
             log.info("Error while log on site for login {}", login, e);
             throw new ControllerException("Incorrect login or password", e);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ControllerException("Login or password is empty", e);
-        }
     }
-}
+}}

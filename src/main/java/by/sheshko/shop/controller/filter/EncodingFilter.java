@@ -20,7 +20,7 @@ public class EncodingFilter implements Filter {
         servletRequest.setCharacterEncoding(encoding);
         servletResponse.setContentType(encoding);
 
-        log.info("Character was set: {}", encoding);
+        //log.info("Character was set: {}", encoding);//todo delete comment
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
