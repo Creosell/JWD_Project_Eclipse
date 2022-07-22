@@ -7,8 +7,8 @@ import javax.servlet.*;
 import java.io.IOException;
 
 public class EncodingFilter implements Filter {
-    private String encoding;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private String encoding;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

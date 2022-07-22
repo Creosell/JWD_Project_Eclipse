@@ -54,7 +54,8 @@
             <div class="col-md-12">
                 <div class="section-heading">
                     <h2>Latest Products</h2>
-                    <a href="controller?command=forward_command&target=products">view all products <i class="fa fa-angle-right"></i></a>
+                    <a href="controller?command=forward_command&target=products">view all products <i
+                            class="fa fa-angle-right"></i></a>
                 </div>
             </div>
             <div class="col-md-4">

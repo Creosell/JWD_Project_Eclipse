@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Map;
 
 
 public final class Controller extends HttpServlet {
@@ -77,7 +75,6 @@ public final class Controller extends HttpServlet {
             request.setAttribute("command", "forward_command");
             request.setAttribute("target", tempPage);
         }*/
-
 
 
         try {

@@ -12,5 +12,6 @@ public class ResourceParameter {
     public static final String CONTACT_PAGE = pages.getString("page.contact");
 
     static final ResourceBundle localization = ResourceBundle.getBundle("localization");
+
     public static final String WELCOME_MESSAGE = localization.getString("welcome_message");
 }

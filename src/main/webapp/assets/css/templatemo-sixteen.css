@@ -483,9 +483,9 @@ header .navbar {
 
 footer {
     text-align: center;
-    position: inherit;
+    position: absolute;
+    width: 100%;
     bottom: 0;
-    left: 0;
 }
 
 footer .inner-content {
@@ -751,7 +751,7 @@ footer .inner-content p a {
 .login-heading .login-fields {
     display: flex;
     align-items: center;
-    margin: 20px 0 0 0 ;
+    margin: 20px 0 0 0;
 
 }
 
@@ -761,7 +761,8 @@ footer .inner-content p a {
     flex-direction: row;
     padding: 10px 0 0 0;
 }
-.login-heading .login-page-buttons form{
+
+.login-heading .login-page-buttons form {
 
     padding: 0 10px 0 10px;
 }
