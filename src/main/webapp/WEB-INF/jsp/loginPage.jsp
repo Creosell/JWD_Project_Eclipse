@@ -26,26 +26,32 @@
 <div class="login-heading">
     <h2>${authorization}</h2>
     <div class="login-fields">
-        <div class="login-labels">
+       <%-- <div class="login-labels">
             <p>${login}:</p>
             <p>${password}:</p>
-        </div>
+        </div>--%>
         <div class="login-fields-input">
-            <input type="text" name="login" value="">
-            <input type="password" name="password" value="">
+            <form action="controller" method="post">
+                <input type="hidden" name="command" value="sign_in">
+                <label for="login">${login}</label><input id="login" type="text" name="login" value="">
+                <label for="pass">${password}</label><input id="pass" type="password" name="password" value="">
+                <input class="login-input-button" type="submit" value="${log_in}">
+            </form>
+            <form action="controller" method="post">
+                <input class="login-input-button" type="hidden" name="command" value="forward_command">
+                <input type="hidden" name="target" value="registration">
+                <input type="submit" value="${registration}">
+            </form>
         </div>
     </div>
 
-    <div class="login-page-buttons">
+  <%--  <div class="login-page-buttons">
         <form action="controller" method="post">
-            <input type="hidden" name="command" value="sign_in">
-            <input type="submit" value="${log_in}">
-        </form>
-        <form action="controller" method="post">
-            <input type="hidden" name="command" value="registration">
+            <input type="hidden" name="command" value="forward_command">
+            <input type="hidden" name="target" value="registration">
             <input type="submit" value="${registration}">
         </form>
-    </div>
+    </div>--%>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>

@@ -235,7 +235,6 @@
     <form name="loginForm" action="controller" method="post">
         <input type="hidden" name="command" value="forward_command">
         <input type="hidden" name="target" value="log_in">
-
         <input type="submit" value="${log_in}">
     </form>
 </div>

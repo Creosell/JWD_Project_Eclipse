@@ -30,6 +30,6 @@
         <p><input type="submit" value="${sign_up}"></p>
     </fieldset>
 </form>
-
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

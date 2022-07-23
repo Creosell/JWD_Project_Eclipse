@@ -26,9 +26,9 @@ public final class SignIn implements Command {
             login = request.getParameter("login");
             password = request.getParameter("password");
 
-            if (login == null || password == null) {
-                throw new ControllerException("Login or password is empty");
-            }
+           /* if (login == null || password == null) {
+                throw new ControllerException("Login or password is empty");//todo убрать если не нужно
+            }*/
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
 

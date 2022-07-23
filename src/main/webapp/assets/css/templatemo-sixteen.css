@@ -303,6 +303,41 @@ header .navbar {
     letter-spacing: 5px;
 }
 
+.owl-banner .owl-dots .owl-dot {
+    border-radius: 3px;
+}
+
+.owl-banner .owl-dots {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+}
+
+.owl-banner .owl-dots .owl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 10px;
+    background-color: #fff;
+    opacity: 0.5;
+}
+
+.owl-banner .owl-dots .owl-dot:focus {
+    outline: none
+}
+
+.owl-banner .owl-dots .owl-dot.active {
+    background-color: #fff;
+    opacity: 1;
+}
 
 /* Latest Produtcs */
 
@@ -483,7 +518,7 @@ header .navbar {
 
 footer {
     text-align: center;
-    position: absolute;
+    position: inherit;
     width: 100%;
     bottom: 0;
 }
@@ -751,8 +786,6 @@ footer .inner-content p a {
 .login-heading .login-fields {
     display: flex;
     align-items: center;
-    margin: 20px 0 0 0;
-
 }
 
 .login-heading .login-page-buttons {
@@ -763,13 +796,7 @@ footer .inner-content p a {
 }
 
 .login-heading .login-page-buttons form {
-
     padding: 0 10px 0 10px;
-}
-
-.login-heading .login-fields .login-labels {
-    align-items: flex-start;
-    padding: 0 10px 0 0;
 }
 
 .login-heading .login-fields .login-fields-input {
@@ -777,8 +804,19 @@ footer .inner-content p a {
     flex-direction: column;
 }
 
-.login-heading .login-fields p label input {
-    align-self: center;
+.login-heading .login-fields .login-fields-input .login-input-button {
+    margin: 15px 0 10px 0;
+}
+
+.login-heading .login-fields .login-fields-input form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.login-heading .login-fields .login-fields-input form label {
+    padding: 10px 0 0 0;
 }
 
 /* Send Message */
