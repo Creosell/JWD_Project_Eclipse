@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 public class UserInfoValidator {
     private static final String USERNAME_PATTERN =
-            "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$";//todo проверить длину символов
+            "^[a-zA-Z0-9]{5,16}$";
     private static final String PASSWORD_PATTERN =
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";//todo проверить длину символов
+            "^\\w{8,20}$";//todo проверить длину символов
 
 
     public static boolean validateUsername(final String username) {
