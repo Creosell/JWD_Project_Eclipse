@@ -19,10 +19,10 @@
     <title>${registration}</title>
 </head>
 <body>
-<jsp:include page="../header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <div class="registration-heading">
     <h2>${newUser} login ${success}</h2>
 </div>
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

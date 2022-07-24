@@ -783,10 +783,10 @@ footer .inner-content p a {
     background-size: cover;
 }
 
-.login-heading .login-fields {
+/*.login-heading .login-fields {
     display: flex;
     align-items: center;
-}
+}*/
 
 .login-heading .login-page-buttons {
     size: 200px;
@@ -799,23 +799,23 @@ footer .inner-content p a {
     padding: 0 10px 0 10px;
 }
 
-.login-heading .login-fields .login-fields-input {
+.login-heading .login-fields-input {
     display: flex;
     flex-direction: column;
 }
 
-.login-heading .login-fields .login-fields-input .login-input-button {
+.login-heading .login-fields-input .login-input-button {
     margin: 15px 0 10px 0;
 }
 
-.login-heading .login-fields .login-fields-input form {
+.login-heading .login-fields-input form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: stretch;
 }
 
-.login-heading .login-fields .login-fields-input form label {
+.login-heading .login-fields-input form label {
     padding: 10px 0 0 0;
 }
 
@@ -829,6 +829,17 @@ footer .inner-content p a {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.registration-heading form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.registration-heading form label {
+    padding: 10px 0 0 0;
 }
 
 /* Send Message */

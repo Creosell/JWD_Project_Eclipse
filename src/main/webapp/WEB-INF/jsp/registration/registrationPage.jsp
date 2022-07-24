@@ -20,16 +20,19 @@
     <title>${registration}</title>
 </head>
 <body>
-<jsp:include page="../header.jsp"/>
-<form action="controller" method="post">
-    <fieldset>
-        <input type="hidden" name="command" value="registration">
-        <legend>${registration}</legend>
-        <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
-        <p><label for="password">${pass} </label><input name="password" type="password" id="password"></p>
-        <p><input type="submit" value="${sign_up}"></p>
-    </fieldset>
-</form>
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<div class="registration-heading">
+    <form action="controller" method="post">
+        <fieldset>
+            <input type="hidden" name="command" value="registration">
+            <legend>${registration}</legend>
+            <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
+            <p><label for="password">${pass} </label><input name="password" type="password" id="password"></p>
+            <p><input type="submit" value="${sign_up}"></p>
+        </fieldset>
+    </form>
+</div>
+
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

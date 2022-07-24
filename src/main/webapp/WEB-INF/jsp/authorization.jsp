@@ -25,7 +25,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <div class="login-heading">
     <h2>${authorization}</h2>
-    <div class="login-fields">
+
         <div class="login-fields-input">
             <form action="controller" method="post">
                 <input type="hidden" name="command" value="sign_in">
@@ -39,7 +39,6 @@
                 <input type="submit" value="${registration}">
             </form>
         </div>
-    </div>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>
