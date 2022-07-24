@@ -23,24 +23,20 @@ public final class SignIn implements Command {
         User user;
 
         try {
-            login = request.getParameter("login");
-            password = request.getParameter("password");
+            login = request.getParameter(ResourceParameter.LOGIN);
+            password = request.getParameter(ResourceParameter.PASSWORD);
 
-           /* if (login == null || password == null) {
-                throw new ControllerException("Login or password is empty");//todo убрать если не нужно
-            }*/
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
-
             clientService.singIn(login, password);
-            String welcomeMsg = ResourceParameter.WELCOME_MESSAGE + login;
 
-            request.getSession().setAttribute("message", welcomeMsg);//TODO lang const
-            log.info("Message is sent: {}", welcomeMsg);
+            String welcomeMsg = ResourceParameter.WELCOME_MESSAGE +", " +login;
+            request.getSession().setAttribute("message", welcomeMsg);
+            log.info("Message from login is sent: {}", welcomeMsg);
             return ResourceParameter.HOME_PAGE;
         } catch (ServiceException e) {
             log.info("Error while log on site for login {}", login, e);
-            throw new ControllerException("Incorrect login or password", e);
+            throw new ControllerException("Incorrect login or password", e);//todo ненужное описание ошибки
         }
     }
 }

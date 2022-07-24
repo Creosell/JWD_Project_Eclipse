@@ -20,27 +20,24 @@ public final class Registration implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-        String login;
-        String password;
+        String login = null;
+        String password = null;
         User user;//todo ненужный параметр?
 
-        login = request.getParameter("login");
-        password = request.getParameter("password");
-
-        if (login.equals("") || password.equals("")) {
-            throw new ControllerException("Login or password is empty");//todo validation
-        }
-
-        ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        ClientService clientService = serviceFactory.getClientServiceImpl();
-
         try {
+            login = request.getParameter(ResourceParameter.LOGIN);
+            password = request.getParameter(ResourceParameter.LOGIN);
+
+            ServiceFactory serviceFactory = ServiceFactory.getInstance();
+            ClientService clientService = serviceFactory.getClientServiceImpl();
             clientService.registration(login, password);
-            request.setAttribute("message", "New user with login " + login + " was successfully created!");
+
+            request.setAttribute("message", login);
+            log.info("Message from registration is sent: {}", login);
         } catch (ServiceException e) {
-            log.error("Error while registering new user", e);
+            log.error("Error while registering new user. Login: {}. Password: {}",login, password, e);
             throw new ControllerException(e.getMessage());
         }
-        return ResourceParameter.HOME_PAGE;
+        return ResourceParameter.REGISTRATION_SUCCESS;
     }
 }

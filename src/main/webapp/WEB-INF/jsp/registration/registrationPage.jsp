@@ -20,7 +20,7 @@
     <title>${registration}</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <form action="controller" method="post">
     <fieldset>
         <input type="hidden" name="command" value="registration">
@@ -30,6 +30,6 @@
         <p><input type="submit" value="${sign_up}"></p>
     </fieldset>
 </form>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

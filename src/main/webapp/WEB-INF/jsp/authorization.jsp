@@ -26,10 +26,6 @@
 <div class="login-heading">
     <h2>${authorization}</h2>
     <div class="login-fields">
-       <%-- <div class="login-labels">
-            <p>${login}:</p>
-            <p>${password}:</p>
-        </div>--%>
         <div class="login-fields-input">
             <form action="controller" method="post">
                 <input type="hidden" name="command" value="sign_in">
@@ -44,14 +40,6 @@
             </form>
         </div>
     </div>
-
-  <%--  <div class="login-page-buttons">
-        <form action="controller" method="post">
-            <input type="hidden" name="command" value="forward_command">
-            <input type="hidden" name="target" value="registration">
-            <input type="submit" value="${registration}">
-        </form>
-    </div>--%>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>
