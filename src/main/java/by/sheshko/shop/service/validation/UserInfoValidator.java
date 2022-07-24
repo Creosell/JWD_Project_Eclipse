@@ -13,7 +13,7 @@ public class UserInfoValidator {
     private static final String USERNAME_PATTERN =
             "^[a-zA-Z0-9]{4,16}$";
     private static final String PASSWORD_PATTERN =
-            "^\\w{8,32}$";
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,30}$";
     private static final Logger log = LoggerFactory.getLogger(UserInfoValidator.class);
 
 
@@ -26,11 +26,6 @@ public class UserInfoValidator {
         pattern = Pattern.compile(USERNAME_PATTERN);
         matcher = pattern.matcher(username);
 
-        /*if (matcher.matches()) {
-            result = "Correct";
-        } else {
-            result = "Incorrect";
-        }*/
         return result = matcher.matches() ? "Correct" : "Incorrect";
     }
 

@@ -19,7 +19,6 @@ public final class ClientServiceImpl implements ClientService {
 
     @Override
     public void singIn(final String login, final String password) throws ServiceException {
-        log.info(validateUsername(login));//todo delete log
         if (validateUsername(login).equals("Correct") && validatePassword(password).equals("Correct")) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();

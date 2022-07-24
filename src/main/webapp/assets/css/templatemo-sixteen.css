@@ -783,11 +783,6 @@ footer .inner-content p a {
     background-size: cover;
 }
 
-/*.login-heading .login-fields {
-    display: flex;
-    align-items: center;
-}*/
-
 .login-heading .login-page-buttons {
     size: 200px;
     display: flex;
@@ -802,6 +797,10 @@ footer .inner-content p a {
 .login-heading .login-fields-input {
     display: flex;
     flex-direction: column;
+}
+
+.login-heading .login-fields-input form input:required{
+    border: #bd2130 2px solid;
 }
 
 .login-heading .login-fields-input .login-input-button {
