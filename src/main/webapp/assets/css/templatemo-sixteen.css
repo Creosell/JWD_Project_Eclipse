@@ -799,9 +799,10 @@ footer .inner-content p a {
     flex-direction: column;
 }
 
-.login-heading .login-fields-input form input:required{
+.login-heading .login-fields-input form input:required:in{
     border: #bd2130 2px solid;
 }
+
 
 .login-heading .login-fields-input .login-input-button {
     margin: 15px 0 10px 0;

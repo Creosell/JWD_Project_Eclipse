@@ -17,6 +17,11 @@
 <fmt:message bundle="${loc}" key="registration" var="registration"/>
 <fmt:message bundle="${loc}" key="enter_your_password" var="enter_pass"/>
 <fmt:message bundle="${loc}" key="title_log_in" var="title"/>
+<fmt:message bundle="${loc}" key="login_validation_message" var="loginMessage"/>
+<fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
+
+<c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
+<c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$"/>
 
 <head>
     <title>${title}</title>
@@ -29,9 +34,12 @@
             <form action="controller" method="post">
                 <input type="hidden" name="command" value="sign_in">
                 <label for="login">${login}</label>
-                <input required pattern="^[a-zA-Z0-9]{4,16}$" id="login" type="text" name="login" value="">
+                <input autofocus required pattern="${loginPattern}" id="login" type="text" name="login" value=""
+                       oninvalid="this.setCustomValidity('${loginMessage}')" oninput="this.setCustomValidity('')">
+
                 <label for="pass">${password}</label>
-                <input required id="pass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$" type="password" name="password" value="">
+                <input required id="pass" pattern="${passwordPattern}" type="password" name="password" value=""
+                       oninvalid="this.setCustomValidity('${passMessage}')" oninput="this.setCustomValidity('')">
                 <input class="login-input-button" type="submit" value="${log_in}">
             </form>
             <form action="controller" method="post">
