@@ -36,7 +36,6 @@
                 <label for="login">${login}</label>
                 <input autofocus required pattern="${loginPattern}" id="login" type="text" name="login" value=""
                        oninvalid="this.setCustomValidity('${loginMessage}')" oninput="this.setCustomValidity('')">
-
                 <label for="pass">${password}</label>
                 <input required id="pass" pattern="${passwordPattern}" type="password" name="password" value=""
                        oninvalid="this.setCustomValidity('${passMessage}')" oninput="this.setCustomValidity('')">

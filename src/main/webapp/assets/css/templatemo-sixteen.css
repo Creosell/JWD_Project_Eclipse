@@ -516,12 +516,12 @@ header .navbar {
 
 /* Footer */
 
-footer {
+/*footer {
     text-align: center;
     position: inherit;
     width: 100%;
     bottom: 0;
-}
+}*/
 
 footer .inner-content {
     border-top: 1px solid #eee;
@@ -799,7 +799,7 @@ footer .inner-content p a {
     flex-direction: column;
 }
 
-.login-heading .login-fields-input form input:required:in{
+.login-heading .login-fields-input form input:required:invalid:focus {
     border: #bd2130 2px solid;
 }
 
@@ -836,6 +836,19 @@ footer .inner-content p a {
     flex-direction: column;
     justify-content: space-around;
     align-items: stretch;
+    width: 350px;
+}
+
+.registration-heading form fieldset legend {
+    display: flex;
+    justify-content: center;
+}
+
+.registration-heading form fieldset p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
 
 .registration-heading form label {

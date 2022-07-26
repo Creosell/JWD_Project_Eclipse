@@ -19,7 +19,7 @@ public final class ClientServiceImpl implements ClientService {
 
     @Override
     public void singIn(final String login, final String password) throws ServiceException {
-        if (validateUsername(login).equals("Correct") && validatePassword(password).equals("Correct")) {
+        if (validateUsername(login) && validatePassword(password)) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
@@ -43,7 +43,7 @@ public final class ClientServiceImpl implements ClientService {
     @Override
     public void registration(final String login, final String password) throws ServiceException {
 
-        if (validateUsername(login).equals("Correct") && validatePassword(password).equals("Correct")) {
+        if (validateUsername(login) && validatePassword(password)) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
@@ -61,7 +61,7 @@ public final class ClientServiceImpl implements ClientService {
     @Override
     public User getUserInfo(final String login) throws ServiceException {
         User user = null;
-        if (validateUsername(login).equals("Correct")) {
+        if (validateUsername(login)) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();

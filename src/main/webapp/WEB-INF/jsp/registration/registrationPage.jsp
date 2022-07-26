@@ -12,7 +12,14 @@
 <fmt:message bundle="${loc}" key="registration" var="registration"/>
 <fmt:message bundle="${loc}" key="login" var="login"/>
 <fmt:message bundle="${loc}" key="password" var="pass"/>
-<fmt:message bundle="${loc}" key="sign_up" var="sign_up"/>
+<fmt:message bundle="${loc}" key="sign_up" var="signUp"/>
+<fmt:message bundle="${loc}" key="confirm_password" var="confirmPassword"/>
+<fmt:message bundle="${loc}" key="login_validation_message" var="loginMessage"/>
+<fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
+<fmt:message bundle="${loc}" key="confirm_password_message" var="passConfirmMessage"/>
+
+<c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
+<c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$"/>
 
 <!DOCTYPE html>
 <html>
@@ -26,9 +33,25 @@
         <fieldset>
             <input type="hidden" name="command" value="registration">
             <legend>${registration}</legend>
-            <p><label for="login">${login} </label><input name="login" type="text" id="login"></p>
-            <p><label for="password">${pass} </label><input name="password" type="password" id="password"></p>
-            <p><input type="submit" value="${sign_up}"></p>
+            <p>
+                <label for="login">${login} </label>
+                <input autofocus required pattern="${loginPattern}" id="login" type="text" name="login" value=""
+                       oninvalid="this.setCustomValidity('${loginMessage}')" oninput="this.setCustomValidity('')">
+            </p>
+            <p>
+                <label for="password">${pass} </label>
+                <input required id="password" pattern="${passwordPattern}" type="password" name="password" value=""
+                       oninvalid="this.setCustomValidity('${passMessage}')" oninput="this.setCustomValidity('')">
+            </p>
+            <p>
+                <label for="confirm-password">${confirmPassword} </label>
+                <input required id="confirm-password" pattern="${passwordPattern}" type="password" name="password"
+                       value="" oninvalid="this.setCustomValidity('${passConfirmMessage}')"
+                       oninput="this.setCustomValidity('')">
+            </p>
+            <p>
+                <input type="submit" value="${signUp}">
+            </p>
         </fieldset>
     </form>
 </div>

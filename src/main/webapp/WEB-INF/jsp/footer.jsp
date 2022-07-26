@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-<footer>
+<footer class="sticky-bottom">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

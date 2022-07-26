@@ -17,27 +17,29 @@ public class UserInfoValidator {
     private static final Logger log = LoggerFactory.getLogger(UserInfoValidator.class);
 
 
-    public static String validateUsername(final String username) {
-        log.info("User validation. Username: {}",username);
+    public static boolean validateUsername(final String username) {
+      /*  log.info("User validation. Username: {}",username);//todo delete comments in class
         if (username == null) {
             return result = "Empty username";
-        }
+        }*/
 
         pattern = Pattern.compile(USERNAME_PATTERN);
         matcher = pattern.matcher(username);
 
-        return result = matcher.matches() ? "Correct" : "Incorrect";
+        //return result = matcher.matches() ? "Correct" : "Incorrect";
+        return matcher.matches();
     }
 
-    public static String validatePassword(final String password) {
-        log.info("User validation. Password: {}", password);
+    public static boolean validatePassword(final String password) {
+        /*log.info("User validation. Password: {}", password);
         if (password == null) {
             return result = "Empty password";
-        }
+        }*/
 
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
 
-        return result = matcher.matches() ? "Correct" : "Incorrect";
+        //return result = matcher.matches() ? "Correct" : "Incorrect";
+        return matcher.matches();
     }
 }
