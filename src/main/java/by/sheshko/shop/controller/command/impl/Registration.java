@@ -38,6 +38,6 @@ public final class Registration implements Command {
             log.error("Error while registering new user. Login: {}. Password: {}",login, password, e);
             throw new ControllerException(e.getMessage());
         }
-        return ResourceParameter.REGISTRATION_SUCCESS;
+        return "ResourceParameter.REGISTRATION_SUCCESS";
     }
 }
