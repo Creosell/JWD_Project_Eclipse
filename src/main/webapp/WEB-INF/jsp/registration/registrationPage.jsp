@@ -17,6 +17,7 @@
 <fmt:message bundle="${loc}" key="login_validation_message" var="loginMessage"/>
 <fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
 <fmt:message bundle="${loc}" key="confirm_password_message" var="passConfirmMessage"/>
+<fmt:message bundle="${loc}" key="pass_is_not_match" var="passError"/>
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
 <c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$"/>
@@ -46,16 +47,33 @@
             <p>
                 <label for="confirm-password">${confirmPassword} </label>
                 <input required id="confirm-password" pattern="${passwordPattern}" type="password" name="password"
-                       value="" oninvalid="this.setCustomValidity('${passConfirmMessage}')"
-                       oninput="this.setCustomValidity('')">
+                       value="" <%--oninvalid="this.setCustomValidity('${passConfirmMessage}')"
+                       oninput="this.setCustomValidity('')"--%>>
             </p>
             <p>
-                <input type="submit" value="${signUp}">
+                <input id="login-submit" type="submit" value="${signUp}">
             </p>
         </fieldset>
     </form>
 </div>
 
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+
+
+<%--Passwords confirmation check--%>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let pass1 = document.querySelector('#password'),
+            pass2 = document.querySelector('#confirm-password')
+
+        pass1.addEventListener('input', function () {
+            this.value !== pass2.value ? pass2.setCustomValidity('${passError}') : pass2.setCustomValidity('')
+        })
+
+        pass2.addEventListener('input', function () {
+            this.value !== pass1.value ? this.setCustomValidity('${passError}') : this.setCustomValidity('')
+        })
+    })
+</script>
 </body>
 </html>

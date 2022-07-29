@@ -41,8 +41,8 @@
                        oninvalid="this.setCustomValidity('${passMessage}')" oninput="this.setCustomValidity('')">
                 <input class="login-input-button" type="submit" value="${log_in}">
             </form>
-            <form action="controller" method="post">
-                <input class="login-input-button" type="hidden" name="command" value="forward_command">
+            <form action="controller" method="get">
+                <input type="hidden" name="command" value="forward_command">
                 <input type="hidden" name="target" value="registration">
                 <input type="submit" value="${registration}">
             </form>

@@ -103,7 +103,6 @@
             if (document.URL.indexOf("logIn") > -1) {
                 document.getElementById("nav-item-sign-up").classList.add("active");
             }
-            //let targetUrl = document.URL.indexOf("homepage");
         }
     }
 
@@ -120,24 +119,6 @@
 <script src="${pageContext.request.contextPath}/assets/js/slick.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/accordions.js"></script>
-<%--<div>
-    <form action="controller" method="post">
-        <input type="hidden" name="language" value="ru">
-        <input type="hidden" name="command" value="change_local"/>
-        <input type="submit" value="${ru_button}">
-    </form>
-    <form action="controller" method="post">
-        <input type="hidden" name="command" value="change_local"/>
-        <input type="hidden" name="language" value="en">
-        <input type="submit" value="${en_button}">
-    </form>
-</div>
-&lt;%&ndash;<div>
-   <a href="controller?command=change_local&language=en">${en_button}</a>
-    <br>
-    <a href="controller?command=change_local&language=ru">${ru_button}</a>
-</div>&ndash;%&gt;
-<h1>${welcome_message}</h1>--%>
 </body>
 
 

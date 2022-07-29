@@ -33,7 +33,8 @@ public final class SignIn implements Command {
             String welcomeMsg = ResourceParameter.WELCOME_MESSAGE +", " +login;
             request.getSession().setAttribute("message", welcomeMsg);
             log.info("Message from login is sent: {}", welcomeMsg);
-            return ResourceParameter.HOME_PAGE;
+            return "homepage";
+            //return ResourceParameter.HOME_PAGE;
         } catch (ServiceException e) {
             log.info("Error while log on site for login {}", login, e);
             throw new ControllerException("Incorrect login or password", e);//todo ненужное описание ошибки

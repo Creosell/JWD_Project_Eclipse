@@ -21,6 +21,7 @@ public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
+    private String target;
 
     @Override
     public void init() throws ServletException {
@@ -60,28 +61,21 @@ public final class Controller extends HttpServlet {
         String page;
 
 
-/*
-        if (request.getRequestURI().contains("/")) {
-            Map<String, String[]> map = request.getParameterMap();
-
-            for (Map.Entry<String, String[]> stringEntry : map.entrySet()) {
-                log.info(stringEntry.getKey());
-                for (String s : stringEntry.getValue()) {
-                    log.info(s);
-                }
-            }
-
-            String tempPage = uriArray[1];
-            request.setAttribute("command", "forward_command");
-            request.setAttribute("target", tempPage);
-        }*/
-
-
         try {
             commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
             command = provider.getCommand(String.valueOf(commandName));
+            //log.info("Command name: {}, Target: {}", commandName, request.getParameter("target"));
             page = command.execute(request, response);
-            dispatch(request, response, page);
+
+            switch (request.getMethod()) {
+                case "GET":
+                    dispatch(request, response, page);
+                    break;
+                case "POST":
+                    //log.info("Page is {}. Total URL: {}", page,"controller?command=forward_command&target=" + page);
+                    response.sendRedirect("controller?command=forward_command&target=" + page);
+                    break;
+            }
         } catch (ControllerException e) {
             log.error("Exception while processing request", e);
             dispatch(request, response, ResourceParameter.ERROR_PAGE);
