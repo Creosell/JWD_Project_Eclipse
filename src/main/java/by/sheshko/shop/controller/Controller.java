@@ -68,13 +68,10 @@ public final class Controller extends HttpServlet {
             page = command.execute(request, response);
 
             switch (request.getMethod()) {
-                case "GET":
-                    dispatch(request, response, page);
-                    break;
-                case "POST":
+                case "GET" -> dispatch(request, response, page);
+                case "POST" ->
                     //log.info("Page is {}. Total URL: {}", page,"controller?command=forward_command&target=" + page);
-                    response.sendRedirect("controller?command=forward_command&target=" + page);
-                    break;
+                        response.sendRedirect("controller?command=forward_command&target=" + page);
             }
         } catch (ControllerException e) {
             log.error("Exception while processing request", e);

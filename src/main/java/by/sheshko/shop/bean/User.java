@@ -13,7 +13,7 @@ public class User implements Serializable {
     private Date registrationTime;
     private String status;
     private String role;
-
+//todo equals hash
     public User() {
     }
 

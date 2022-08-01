@@ -7,7 +7,7 @@ import java.util.Map;
 public class Role implements Serializable {
     private static final long serialVersionUID = -4919966976903480589L;
     private final Map<Integer, RoleName> roles = new HashMap<>();
-
+    //todo getters hash
     public Role() {
         roles.put(1, RoleName.ADMIN);
         roles.put(2, RoleName.USER);
