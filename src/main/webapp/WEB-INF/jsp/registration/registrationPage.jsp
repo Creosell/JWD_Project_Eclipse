@@ -18,6 +18,12 @@
 <fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
 <fmt:message bundle="${loc}" key="confirm_password_message" var="passConfirmMessage"/>
 <fmt:message bundle="${loc}" key="pass_is_not_match" var="passError"/>
+<fmt:message bundle="${loc}" key="name" var="name"/>
+<fmt:message bundle="${loc}" key="surname" var="surname"/>
+<fmt:message bundle="${loc}" key="email" var="email"/>
+<fmt:message bundle="${loc}" key="address" var="address"/>
+<fmt:message bundle="${loc}" key="phonenumber" var="phonenumber"/>
+
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
 <c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$"/>
@@ -49,6 +55,26 @@
                 <input required id="confirm-password" pattern="${passwordPattern}" type="password" name="password"
                        value="" <%--oninvalid="this.setCustomValidity('${passConfirmMessage}')"
                        oninput="this.setCustomValidity('')"--%>>
+            </p>
+            <p>
+                <label for="name">${name} </label>
+                <input id="name" type="text" name="name" value="">
+            </p>
+            <p>
+                <label for="surname">${surname} </label>
+                <input id="surname" type="text" name="surname" value="">
+            </p>
+            <p>
+                <label for="email">${email} </label>
+                <input id="email" type="email" name="email" value="">
+            </p>
+            <p>
+                <label for="address">${address} </label>
+                <input id="address" type="text" name="address" value="">
+            </p>
+            <p>
+                <label for="phonenumber">${phonenumber} </label>
+                <input id="phonenumber" type="tel" name="phonenumber" value="">
             </p>
             <p>
                 <input id="login-submit" type="submit" value="${signUp}">

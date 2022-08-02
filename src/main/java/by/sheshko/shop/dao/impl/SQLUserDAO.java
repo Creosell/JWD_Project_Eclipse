@@ -16,8 +16,13 @@ import java.sql.SQLException;
 public final class SQLUserDAO implements UserDAO {
     private static final String LOGIN =
             "SELECT * FROM users WHERE login = ? AND password = ?;";
-    private static final String REGISTER_NEW_USER =
-            "INSERT INTO users(login, password) VALUES(?, ?);";
+    private static final String ADD_NEW_USER =
+            "INSERT INTO users (login,password) VALUES(?,?);";
+    private static final String ADD_NEW_USER_INFO =
+            "INSERT INTO user_details(id, users_id_user, name)" +
+                    " VALUES(LAST_INSERT_ID(),LAST_INSERT_ID(),?);";
+
+    /*            "INSERT INTO users(login, password) VALUES(?, ?);";*/
     private static final String GET_USER_INFO =
             "SELECT * FROM users WHERE login = ?";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -43,6 +48,7 @@ public final class SQLUserDAO implements UserDAO {
 
             resultSet.close();
             preparedStatement.close();
+            //todo connection.closeConnection is not used
         } catch (SQLException e) {
             log.error("Error working with statements while sign in", e);
             throw new DAOException("Error while working with database", e);
@@ -55,9 +61,13 @@ public final class SQLUserDAO implements UserDAO {
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement;
 
-            preparedStatement = connection.prepareStatement(REGISTER_NEW_USER);
+            preparedStatement = connection.prepareStatement(ADD_NEW_USER);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
+            preparedStatement.execute();
+
+            preparedStatement = connection.prepareStatement(ADD_NEW_USER_INFO);
+            preparedStatement.setString(1, "defname");
             preparedStatement.execute();
 
             preparedStatement.close();
