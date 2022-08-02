@@ -10,6 +10,21 @@
     <fmt:setLocale value="${sessionScope.language}"/>
 </c:if>
 
+<c:set var="message" value="${sessionScope.message}" scope="session"/>
+
+<c:choose>
+    <c:when test="${message == null}">
+        <c:out value="Message is : null${message}"/>
+    </c:when>
+    <c:when test="${message == ''}">
+        <c:out value="Message is : empty${message}"/>
+    </c:when>
+    <c:otherwise>
+        <c:out value="Message is : ${message}"/>
+        <c:set var = "message" value="${null}"/>
+    </c:otherwise>
+</c:choose>
+
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>

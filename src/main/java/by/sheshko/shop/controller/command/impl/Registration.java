@@ -22,15 +22,28 @@ public final class Registration implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
         String login = null;
         String password = null;
+        String email = null;
+        String name = null;
+        String surname = null;
+        String address = null;
+        String phonenumber = null;
         User user;//todo ненужный параметр?
 
         try {
             login = request.getParameter(ResourceParameter.LOGIN);
-            password = request.getParameter(ResourceParameter.LOGIN);
+            password = request.getParameter(ResourceParameter.PASSWORD);
+            email = request.getParameter(ResourceParameter.EMAIL);
+            name = request.getParameter(ResourceParameter.NAME);
+            surname = request.getParameter(ResourceParameter.SURNAME);
+            address = request.getParameter(ResourceParameter.SURNAME);
+            phonenumber = request.getParameter(ResourceParameter.PHONENUMBER);
+
+            user = new User(name, surname, email, address, phonenumber);
+
 
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
-            clientService.registration(login, password);
+            clientService.registration(login, password, user);
 
             request.setAttribute("message", login);
             log.info("Message from registration is sent: {}", login);

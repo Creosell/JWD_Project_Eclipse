@@ -21,7 +21,10 @@
 <fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
-<c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$"/>
+<c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-]{8,30}$"/>
+
+
+
 
 <head>
     <title>${title}</title>
@@ -49,5 +52,8 @@
         </div>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+
+<script>
+</script>
 </body>
 </html>

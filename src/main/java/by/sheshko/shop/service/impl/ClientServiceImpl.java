@@ -41,13 +41,13 @@ public final class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void registration(final String login, final String password) throws ServiceException {
+    public void registration(final String login, final String password, final User user) throws ServiceException {
 
         if (validateUsername(login) && validatePassword(password)) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
-                userDAO.registration(login, password);
+                userDAO.registration(login, password, user);
             } catch (DAOException e) {
                 log.error("Error while registering new user. Login: {}, Password: {}", login, password, e);
                 throw new ServiceException(e.getMessage());

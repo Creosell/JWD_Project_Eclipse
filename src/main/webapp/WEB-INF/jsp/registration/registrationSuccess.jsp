@@ -21,7 +21,7 @@
 <body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <div class="registration-heading">
-    <h2>${newUser} login ${success}</h2>
+    <h2>${newUser} ${success}</h2>  <!--//todo логин пользователя-->
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 </body>

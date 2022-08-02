@@ -23,13 +23,14 @@
 <fmt:message bundle="${loc}" key="email" var="email"/>
 <fmt:message bundle="${loc}" key="address" var="address"/>
 <fmt:message bundle="${loc}" key="phonenumber" var="phonenumber"/>
+<fmt:message bundle="${loc}" key="required_fields" var="requiredFields"/>
 
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
-<c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$"/>
+<c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-]{8,30}$"/>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>${registration}</title>
 </head>
@@ -41,20 +42,25 @@
             <input type="hidden" name="command" value="registration">
             <legend>${registration}</legend>
             <p>
-                <label for="login">${login} </label>
+                <label for="login">${login}<span class="required">*</span> </label>
                 <input autofocus required pattern="${loginPattern}" id="login" type="text" name="login" value=""
-                       oninvalid="this.setCustomValidity('${loginMessage}')" oninput="this.setCustomValidity('')">
+                       oninvalid="this.setCustomValidity('${loginMessage}')"
+                       onchange="this.setCustomValidity('')" oninput="this.setCustomValidity('')">
             </p>
             <p>
-                <label for="password">${pass} </label>
+                <label for="password">${pass}<span class="required">*</span> </label>
                 <input required id="password" pattern="${passwordPattern}" type="password" name="password" value=""
-                       oninvalid="this.setCustomValidity('${passMessage}')" oninput="this.setCustomValidity('')">
+                       oninvalid="this.setCustomValidity('${passMessage}')"
+                       onchange="this.setCustomValidity('')" oninput="this.setCustomValidity('')">
             </p>
             <p>
-                <label for="confirm-password">${confirmPassword} </label>
-                <input required id="confirm-password" pattern="${passwordPattern}" type="password" name="password"
-                       value="" <%--oninvalid="this.setCustomValidity('${passConfirmMessage}')"
-                       oninput="this.setCustomValidity('')"--%>>
+                <label for="confirm-password">${confirmPassword}<span class="required">*</span> </label>
+                <input required id="confirm-password" pattern="${passwordPattern}" type="password"
+                       name="passwordConfirm" value="">
+            </p>
+            <p>
+                <label for="email">${email}<span class="required">*</span> </label>
+                <input required id="email" type="email" name="email" value="">
             </p>
             <p>
                 <label for="name">${name} </label>
@@ -64,10 +70,7 @@
                 <label for="surname">${surname} </label>
                 <input id="surname" type="text" name="surname" value="">
             </p>
-            <p>
-                <label for="email">${email} </label>
-                <input id="email" type="email" name="email" value="">
-            </p>
+
             <p>
                 <label for="address">${address} </label>
                 <input id="address" type="text" name="address" value="">
@@ -76,9 +79,10 @@
                 <label for="phonenumber">${phonenumber} </label>
                 <input id="phonenumber" type="tel" name="phonenumber" value="">
             </p>
-            <p>
-                <input id="login-submit" type="submit" value="${signUp}">
+            <p style="display: flex;justify-content: flex-start;">
+                <span class="required">*</span>&nbsp${requiredFields}
             </p>
+            <input id="login-submit" type="submit" value="${signUp}">
         </fieldset>
     </form>
 </div>
@@ -103,3 +107,4 @@
 </script>
 </body>
 </html>
+

@@ -9,18 +9,34 @@ public class User implements Serializable {
     private String name;
     private String surname;
     private String email;
+    private String address;
     private String phonenumber;
     private Date registrationTime;
     private String status;
     private String role;
-//todo equals hash
+    //todo equals hash
     public User() {
+    }
+
+    public User(String name, String surname, String email, String address, String phonenumber) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.address = address;
+        this.phonenumber = phonenumber;
     }
 
     public User(final int userID) {
         this.userID = userID;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getName() {
         return name;
@@ -80,6 +96,10 @@ public class User implements Serializable {
 
     public String getRole() {
         return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setRole(final Integer roleID) {

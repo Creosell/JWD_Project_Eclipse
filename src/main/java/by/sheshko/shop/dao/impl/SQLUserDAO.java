@@ -19,8 +19,8 @@ public final class SQLUserDAO implements UserDAO {
     private static final String ADD_NEW_USER =
             "INSERT INTO users (login,password) VALUES(?,?);";
     private static final String ADD_NEW_USER_INFO =
-            "INSERT INTO user_details(id, users_id_user, name)" +
-                    " VALUES(LAST_INSERT_ID(),LAST_INSERT_ID(),?);";
+            "INSERT INTO user_details(id, users_id_user, name, surname, email, address, phonenumber)" +
+                    " VALUES(LAST_INSERT_ID(), LAST_INSERT_ID(), ?, ?, ?, ?, ?);";
 
     /*            "INSERT INTO users(login, password) VALUES(?, ?);";*/
     private static final String GET_USER_INFO =
@@ -56,8 +56,7 @@ public final class SQLUserDAO implements UserDAO {
     }
 
     @Override
-    public void registration(final String login,
-                             final String password) throws DAOException {
+    public void registration(final String login,final String password, final User user) throws DAOException {
         try (Connection connection = connectToDataBase()) {
             PreparedStatement preparedStatement;
 
@@ -67,7 +66,18 @@ public final class SQLUserDAO implements UserDAO {
             preparedStatement.execute();
 
             preparedStatement = connection.prepareStatement(ADD_NEW_USER_INFO);
-            preparedStatement.setString(1, "defname");
+            if (user.getName()!=null){
+                preparedStatement.setString(1, user.getName());
+            }
+            else {
+                preparedStatement.setString(1, login);
+            }
+            preparedStatement.setString(2, user.getSurname());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setString(5, user.getPhonenumber());
+
+
             preparedStatement.execute();
 
             preparedStatement.close();

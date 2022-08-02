@@ -855,6 +855,16 @@ footer .inner-content p a {
     padding: 10px 0 0 0;
 }
 
+.registration-heading .required{
+    color: #bd2130;
+}
+#login-submit {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
 /* Send Message */
 
 .send-message {

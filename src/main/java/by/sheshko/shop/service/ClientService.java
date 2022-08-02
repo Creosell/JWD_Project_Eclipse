@@ -8,7 +8,7 @@ public interface ClientService {
 
     void signOut(UserSessionInfo userSessionInfo) throws ServiceException;
 
-    void registration(String login, String password) throws ServiceException;
+    void registration(String login, String password, User user) throws ServiceException;
 
     User getUserInfo(String login) throws ServiceException;
 }
