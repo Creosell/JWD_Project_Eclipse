@@ -82,11 +82,16 @@ public final class SQLUserDAO implements UserDAO {
 
             preparedStatement.close();
         } catch (SQLException e) {
-            if (e.toString().contains("Duplicate")) {
+            if (e.toString().contains("Duplicate") && e.toString().contains("login")) {
                 log.info("Attempt to register with already existing login : {}",
                         login);
                 throw new DAOException("User with same login is already registered", e);
-            } else {
+            }
+            if (e.toString().contains("Duplicate") && e.toString().contains("email")) { //todo исключения для уникальных значений
+                log.info("Attempt to register with already existing email : {}",
+                        user.getEmail());
+                throw new DAOException("User with same email is already registered", e);}
+            else {
                 log.error("Error working with statements while registering new user", e);
                 throw new DAOException("Error while registering user", e);
             }
