@@ -60,7 +60,7 @@
             </p>
             <p>
                 <label for="email">${email}<span class="required">*</span> </label>
-                <input required id="email" type="email" name="email" value="">
+                <input required id="email" type="email" name="email" value=""> <%--//Todo сделать валидити для почты--%>
             </p>
             <p>
                 <label for="name">${name} </label>
@@ -77,7 +77,7 @@
             </p>
             <p>
                 <label for="phonenumber">${phonenumber} </label>
-                <input id="phonenumber" type="tel" name="phonenumber" value="">
+                <input id="phonenumber" type="tel" name="phonenumber" value=""> <%--//todo паттерн для телефона и плейсхолдер--%>
             </p>
             <p style="display: flex;justify-content: flex-start;">
                 <span class="required">*</span>&nbsp${requiredFields}

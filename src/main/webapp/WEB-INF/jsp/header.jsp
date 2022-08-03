@@ -21,7 +21,7 @@
     </c:when>
     <c:otherwise>
         <c:out value="Message is : ${message}"/>
-        <c:set var = "message" value="${null}"/>
+        <c:set var="message" value="${null}"/>
     </c:otherwise>
 </c:choose>
 
