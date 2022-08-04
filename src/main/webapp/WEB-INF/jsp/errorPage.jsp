@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true" %>
 
 <c:if test="${sessionScope.language==null}">
     <c:set scope="session" var="language" value="en"/>
@@ -19,8 +19,7 @@
 <body>
 <h1>${req_error}</h1>
 
-<c:set var="exception" value="${requestScope['by.sheshko.shop.controller.ControllerException']}"/>
-<c:out value="${exception}"/>
+
 <%--<!-- Stack trace -->
 <jsp:scriptlet>
   exception.printStackTrace(new java.io.PrintWriter(out));
@@ -43,6 +42,35 @@
     <li>Status code: <c:out value="${requestScope['javax.servlet.error.status_code']}" /></li>
     <li>Stack trace: <pre>${exception.printStackTrace(pageContext.response.writer)}</pre></li>
 </ul>--%>
+
+<h1>Opps...</h1>
+<table width = "100%" border = "1">
+    <tr valign = "top">
+        <td width = "40%"><b>Error:</b></td>
+        <td>${pageContext.exception}</td>
+    </tr>
+
+    <tr valign = "top">
+        <td><b>URI:</b></td>
+        <td>${pageContext.errorData.requestURI}</td>
+    </tr>
+
+    <tr valign = "top">
+        <td><b>Status code:</b></td>
+        <td>${pageContext.errorData.statusCode}</td>
+    </tr>
+
+    <tr valign = "top">
+        <td><b>Stack trace:</b></td>
+        <td>
+            <c:forEach var = "trace"
+                       items = "${pageContext.exception.stackTrace}">
+                <p>${trace}</p>
+            </c:forEach>
+        </td>
+    </tr>
+</table>
+
 <a href="controller?command=forward_command&target=homepage">${homepage}</a>
 </body>
 </html>

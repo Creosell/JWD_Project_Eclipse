@@ -98,7 +98,7 @@
     </nav>
 </header>
 
-<script type="application/javascript">
+<%--<script type="application/javascript">
     for (let navElement of document.getElementsByClassName("nav-item")) {
         if (navElement.classList.contains("active")) {
             navElement.classList.remove("active");
@@ -121,7 +121,7 @@
         }
     }
 
-</script>
+</script>--%>
 
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
