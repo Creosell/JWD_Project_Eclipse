@@ -1,3 +1,27 @@
+//Nav-items active script
+for (let navElement of document.getElementsByClassName("nav-item")) {
+    if (navElement.classList.contains("active")) {
+        navElement.classList.remove("active");
+
+        if (document.URL.indexOf("homepage") > -1) {
+            document.getElementById("nav-item-homepage").classList.add("active");
+        }
+        if (document.URL.indexOf("products") > -1) {
+            document.getElementById("nav-item-products").classList.add("active");
+        }
+        if (document.URL.indexOf("about") > -1) {
+            document.getElementById("nav-item-about").classList.add("active");
+        }
+        if (document.URL.indexOf("contact") > -1) {
+            document.getElementById("nav-item-contact").classList.add("active");
+        }
+        if (document.URL.indexOf("logIn") > -1) {
+            document.getElementById("nav-item-sign-up").classList.add("active");
+        }
+    }
+}
+
+
 jQuery(document).ready(function ($) {
 
 
@@ -6,30 +30,6 @@ jQuery(document).ready(function ($) {
 
     $(function () {
         $("#tabs").tabs();
-    });
-
-    $(function () {
-        for (let navElement of document.getElementsByClassName("nav-item")) {
-            if (navElement.classList.contains("active")) {
-                navElement.classList.remove("active");
-
-                if (document.URL.indexOf("homepage") > -1) {
-                    document.getElementById("nav-item-homepage").classList.add("active");
-                }
-                if (document.URL.indexOf("products") > -1) {
-                    document.getElementById("nav-item-products").classList.add("active");
-                }
-                if (document.URL.indexOf("about") > -1) {
-                    document.getElementById("nav-item-about").classList.add("active");
-                }
-                if (document.URL.indexOf("contact") > -1) {
-                    document.getElementById("nav-item-contact").classList.add("active");
-                }
-                if (document.URL.indexOf("logIn") > -1) {
-                    document.getElementById("nav-item-sign-up").classList.add("active");
-                }
-            }
-        }
     });
 
     // Page loading animation
@@ -196,6 +196,23 @@ jQuery(document).ready(function ($) {
 
         j.preventDefault();
     });
+
+   /* $('.nav-item').click(function (j) {
+        const dropDown = $(this).closest('li').find('.content');
+
+        $(this).closest('.nav-link').find('.content').not(dropDown).slideUp();
+
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        } else {
+            $(this).closest('.nav-link').find('.active').removeClass('active');
+            $(this).addClass('active');
+        }
+
+        dropDown.stop(false, true).slideToggle();
+
+        j.preventDefault();
+    });*/
 
 });
 

@@ -64,7 +64,7 @@
 </head>
 
 <body>
-<header class="">
+<header>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="controller?command=forward_command&target=homepage"><h2>Smart <em>Things</em>
@@ -76,9 +76,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active" id="nav-item-homepage">
-                        <a class="nav-link" href="controller?command=forward_command&target=homepage">${homepage}
-                            <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="nav-link" href="controller?command=forward_command&target=homepage">${homepage}</a>
                     </li>
                     <li class="nav-item" id="nav-item-products">
                         <a class="nav-link" href="controller?command=forward_command&target=products">${ourProducts}</a>
@@ -98,34 +96,10 @@
     </nav>
 </header>
 
-<%--<script type="application/javascript">
-    for (let navElement of document.getElementsByClassName("nav-item")) {
-        if (navElement.classList.contains("active")) {
-            navElement.classList.remove("active");
-
-            if (document.URL.indexOf("homepage") > -1) {
-                document.getElementById("nav-item-homepage").classList.add("active");
-            }
-            if (document.URL.indexOf("products") > -1) {
-                document.getElementById("nav-item-products").classList.add("active");
-            }
-            if (document.URL.indexOf("about") > -1) {
-                document.getElementById("nav-item-about").classList.add("active");
-            }
-            if (document.URL.indexOf("contact") > -1) {
-                document.getElementById("nav-item-contact").classList.add("active");
-            }
-            if (document.URL.indexOf("logIn") > -1) {
-                document.getElementById("nav-item-sign-up").classList.add("active");
-            }
-        }
-    }
-
-</script>--%>
-
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
 
 <!-- Additional Scripts -->
