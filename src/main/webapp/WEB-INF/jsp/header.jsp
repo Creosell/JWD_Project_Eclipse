@@ -74,7 +74,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" id = "navBarUL">
                     <li class="nav-item active" id="nav-item-homepage">
                         <a class="nav-link" href="controller?command=forward_command&target=homepage">${homepage}</a>
                     </li>
@@ -90,6 +90,17 @@
                     <li class="nav-item" id="nav-item-sign-up">
                         <a class="nav-link" href="controller?command=forward_command&target=logIn">${logIn}</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+                                 width="40" height="40" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+                            <a class="dropdown-item" href="#">Log Out</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -99,7 +110,6 @@
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 
 
 <!-- Additional Scripts -->

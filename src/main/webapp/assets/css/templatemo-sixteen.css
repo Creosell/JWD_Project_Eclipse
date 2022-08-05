@@ -140,6 +140,16 @@ header {
     transition: all 0.3s ease-in-out 0s;
 }
 
+#navbarDropdownMenuLink{
+    color: #d6dae0;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+#navBarUL {
+
+    display: flex;
+    align-items: baseline;
+}
 header .navbar {
     padding: 17px 0;
 }
