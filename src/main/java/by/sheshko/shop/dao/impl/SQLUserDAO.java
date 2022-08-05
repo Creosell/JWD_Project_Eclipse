@@ -24,12 +24,15 @@ public final class SQLUserDAO implements UserDAO {
     private static final String GET_USER_INFO =
             "SELECT * FROM users WHERE login = ?";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private Connection connection;
 
 
     @Override
     public void signIn(final String login,
                        final String password) throws DAOException {
-        try (Connection connection = connectToDataBase()) {
+
+        try {
+            connection = connectToDataBase();
             PreparedStatement preparedStatement;
             ResultSet resultSet;
 
@@ -46,6 +49,7 @@ public final class SQLUserDAO implements UserDAO {
 
             resultSet.close();
             preparedStatement.close();
+            connection.close();
             //todo connection.closeConnection is not used
         } catch (SQLException e) {
             log.error("Error working with statements while sign in", e);
@@ -54,9 +58,12 @@ public final class SQLUserDAO implements UserDAO {
     }
 
     @Override
-    public void registration(final String login,final String password, final User user) throws DAOException {
-        try (Connection connection = connectToDataBase()) {
+    public void registration(final String login, final String password, final User user) throws DAOException {
+
+        try {
+            connection = connectToDataBase();
             PreparedStatement preparedStatement;
+            connection.setAutoCommit(false);
 
             preparedStatement = connection.prepareStatement(ADD_NEW_USER);
             preparedStatement.setString(1, login);
@@ -64,10 +71,9 @@ public final class SQLUserDAO implements UserDAO {
             preparedStatement.execute();
 
             preparedStatement = connection.prepareStatement(ADD_NEW_USER_INFO);
-            if (user.getName()!=null){
+            if (user.getName() != null) {
                 preparedStatement.setString(1, user.getName());
-            }
-            else {
+            } else {
                 preparedStatement.setString(1, login);
             }
             preparedStatement.setString(2, user.getSurname());
@@ -76,8 +82,16 @@ public final class SQLUserDAO implements UserDAO {
             preparedStatement.setString(5, user.getPhonenumber());
             preparedStatement.execute();
 
+            connection.commit();
             preparedStatement.close();
+            connection.close();
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                log.error("Fail to rollback", e);
+                throw new DAOException("Rollback error while registering user", ex);
+            }
             if (e.toString().contains("Duplicate") && e.toString().contains("login")) {
                 log.info("Attempt to register with already existing login : {}",
                         login);
@@ -86,8 +100,8 @@ public final class SQLUserDAO implements UserDAO {
             if (e.toString().contains("Duplicate") && e.toString().contains("email")) { //todo исключения для уникальных значений
                 log.info("Attempt to register with already existing email : {}",
                         user.getEmail());
-                throw new DAOException("User with same email is already registered", e);}
-            else {
+                throw new DAOException("User with same email is already registered", e);
+            } else {
                 log.error("Error working with statements while registering new user", e);
                 throw new DAOException("Error while registering user", e);
             }

@@ -59,13 +59,17 @@ public final class Controller extends HttpServlet {
         CommandName commandName;
         Command command;
         String page;
-
+        String lastUsedPage;
 
         try {
             commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
             command = provider.getCommand(String.valueOf(commandName));
             //log.info("Command name: {}, Target: {}", commandName, request.getParameter("target"));
             page = command.execute(request, response);
+
+            lastUsedPage = request.getParameter("target");
+            //log.info("Last used page: {}", lastUsedPage);
+            session.setAttribute("lastUsedPage", lastUsedPage);
 
             switch (request.getMethod()) {
                 case "GET" -> dispatch(request, response, page);

@@ -38,5 +38,7 @@ public class Role implements Serializable {
         return roleID;
     }
 
-
+    private enum RoleName {
+        ADMIN, USER, ANONYMOUS
+    }
 }

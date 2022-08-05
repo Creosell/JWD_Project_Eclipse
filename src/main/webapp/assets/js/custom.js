@@ -1,26 +1,27 @@
 //Nav-items active script
 for (let navElement of document.getElementsByClassName("nav-item")) {
+    let currentActiveElement;
     if (navElement.classList.contains("active")) {
+        currentActiveElement = navElement;
         navElement.classList.remove("active");
 
         if (document.URL.indexOf("homepage") > -1) {
             document.getElementById("nav-item-homepage").classList.add("active");
-        }
-        if (document.URL.indexOf("products") > -1) {
+        } else if (document.URL.indexOf("products") > -1) {
             document.getElementById("nav-item-products").classList.add("active");
-        }
-        if (document.URL.indexOf("about") > -1) {
+        } else if (document.URL.indexOf("about") > -1) {
             document.getElementById("nav-item-about").classList.add("active");
-        }
-        if (document.URL.indexOf("contact") > -1) {
+        } else if (document.URL.indexOf("contact") > -1) {
             document.getElementById("nav-item-contact").classList.add("active");
-        }
-        if (document.URL.indexOf("logIn") > -1) {
+        } else if (document.URL.indexOf("logIn") > -1) {
             document.getElementById("nav-item-sign-up").classList.add("active");
+        } else if (document.URL.indexOf("registration") > -1) {
+            document.getElementById("nav-item-sign-up").classList.add("active");
+        } else {
+            currentActiveElement.classList.add("active");
         }
     }
 }
-
 
 jQuery(document).ready(function ($) {
 
@@ -197,22 +198,22 @@ jQuery(document).ready(function ($) {
         j.preventDefault();
     });
 
-   /* $('.nav-item').click(function (j) {
-        const dropDown = $(this).closest('li').find('.content');
+    /* $('.nav-item').click(function (j) {
+         const dropDown = $(this).closest('li').find('.content');
 
-        $(this).closest('.nav-link').find('.content').not(dropDown).slideUp();
+         $(this).closest('.nav-link').find('.content').not(dropDown).slideUp();
 
-        if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
-        } else {
-            $(this).closest('.nav-link').find('.active').removeClass('active');
-            $(this).addClass('active');
-        }
+         if ($(this).hasClass('active')) {
+             $(this).removeClass('active');
+         } else {
+             $(this).closest('.nav-link').find('.active').removeClass('active');
+             $(this).addClass('active');
+         }
 
-        dropDown.stop(false, true).slideToggle();
+         dropDown.stop(false, true).slideToggle();
 
-        j.preventDefault();
-    });*/
+         j.preventDefault();
+     });*/
 
 });
 

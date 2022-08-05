@@ -163,6 +163,7 @@ public final class ConnectionPool {
 
         @Override
         public void close() throws SQLException {
+
             if (connection.isClosed()) {
                 throw new SQLException("Attempting to close already closed connection");
             }

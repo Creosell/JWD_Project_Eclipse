@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <c:if test="${sessionScope.language==null}">
     <c:set scope="session" var="language" value="en"/>
@@ -11,14 +11,36 @@
 <fmt:message bundle="${loc}" key="error" var="error"/>
 <fmt:message bundle="${loc}" key="request_error" var="req_error"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
-
+<c:set var="lastUsedPage" scope="session" value="${sessionScope.lastUsedPage}"/>
+<c:set var="errorMessage" scope="session" value="${sessionScope.errorMessage}"/>
 <html>
 <head>
     <title>${error}</title>
 </head>
 <body>
-<h1>${req_error}</h1>
+<c:choose>
+    <c:when test="${errorMessage != null}">
+        <h1>${errorMessage}</h1>
+        <c:set var="errorMessage" value="${null}"/>
+    </c:when>
+    <c:otherwise><h1>${req_error}</h1></c:otherwise>
 
+</c:choose>
+
+
+<p>
+    ${pageContext.errorData.throwable}
+    <c:choose>
+        <c:when test="${!empty
+    pageContext.errorData.throwable.cause}">
+            : ${pageContext.errorData.throwable.cause}
+        </c:when>
+        <c:when test="${!empty
+    pageContext.errorData.throwable.rootCause}">
+            : ${pageContext.errorData.throwable.rootCause}
+        </c:when>
+    </c:choose>
+</p>
 
 <%--<!-- Stack trace -->
 <jsp:scriptlet>
@@ -43,7 +65,7 @@
     <li>Stack trace: <pre>${exception.printStackTrace(pageContext.response.writer)}</pre></li>
 </ul>--%>
 
-<h1>Opps...</h1>
+<%--<h1>Opps...</h1>
 <table width = "100%" border = "1">
     <tr valign = "top">
         <td width = "40%"><b>Error:</b></td>
@@ -69,8 +91,9 @@
             </c:forEach>
         </td>
     </tr>
-</table>
-
+</table>--%>
 <a href="controller?command=forward_command&target=homepage">${homepage}</a>
+<br>
+<a href="controller?command=forward_command&target=${lastUsedPage}">Last page</a>
 </body>
 </html>

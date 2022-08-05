@@ -27,7 +27,7 @@ public final class Registration implements Command {
         String surname = null;
         String address = null;
         String phonenumber = null;
-        User user;//todo ненужный параметр?
+        User user;
 
         try {
             login = request.getParameter(ResourceParameter.LOGIN);
@@ -35,7 +35,7 @@ public final class Registration implements Command {
             email = request.getParameter(ResourceParameter.EMAIL);
             name = request.getParameter(ResourceParameter.NAME);
             surname = request.getParameter(ResourceParameter.SURNAME);
-            address = request.getParameter(ResourceParameter.SURNAME);
+            address = request.getParameter(ResourceParameter.ADDRESS);
             phonenumber = request.getParameter(ResourceParameter.PHONENUMBER);
 
             user = new User(name, surname, email, address, phonenumber);
@@ -45,9 +45,10 @@ public final class Registration implements Command {
             ClientService clientService = serviceFactory.getClientServiceImpl();
             clientService.registration(login, password, user);
 
-            request.setAttribute("message", login);
+            request.getSession().setAttribute("message", login);
             log.info("Message from registration is sent: {}", login);
         } catch (ServiceException e) {
+            request.getSession().setAttribute("errorMessage", e.getMessage());
             log.error("Error while registering new user. Login: {}. Password: {}",login, password, e);
             throw new ControllerException(e.getMessage());
         }

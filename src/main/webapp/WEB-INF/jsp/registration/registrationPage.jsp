@@ -37,6 +37,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <body>
 <div class="registration-heading">
+
     <form action="controller" method="post">
         <fieldset>
             <input type="hidden" name="command" value="registration">

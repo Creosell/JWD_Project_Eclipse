@@ -8,7 +8,7 @@ public class UserSessionInfo implements Serializable {
     private String name;
     private int userId;
     private HttpSession session;
-
+//todo equals
 
     public UserSessionInfo() {
     }

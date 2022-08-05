@@ -9,7 +9,8 @@ public class Product implements Serializable {
     private double price;
     private int availableQuantity;
     private int quantityInOrders;
-//todo equals hash
+
+    //TODO equals hash
     public Product() {
     }
 

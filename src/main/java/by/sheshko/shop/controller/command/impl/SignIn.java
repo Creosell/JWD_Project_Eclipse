@@ -37,6 +37,7 @@ public final class SignIn implements Command {
             //return ResourceParameter.HOME_PAGE;
         } catch (ServiceException e) {
             log.info("Error while log on site for login {}", login, e);
+            request.getSession().setAttribute("errorMessage", e.getMessage());
             throw new ControllerException("Incorrect login or password", e);//todo ненужное описание ошибки
         }
     }
