@@ -1,6 +1,7 @@
 package by.sheshko.shop.bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class User implements Serializable {
@@ -11,11 +12,34 @@ public class User implements Serializable {
     private String email;
     private String address;
     private String phonenumber;
-    private Date registrationTime;
+    private Timestamp registrationTime;
     private String status;
     private String role;
+
     //todo equals hash
     public User() {
+    }
+
+    public User(int userID, String name, String surname, String email, String address, String phonenumber, Timestamp registrationTime, String status, String role) {
+        this.userID = userID;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.address = address;
+        this.phonenumber = phonenumber;
+        this.registrationTime = registrationTime;
+        this.status = status;
+        this.role = role;
+    }
+
+    public User(int userID, String status, String role) {
+        this.userID = userID;
+        this.status = status;
+        this.role = role;
+    }
+
+    public User(final int userID) {
+        this.userID = userID;
     }
 
     public User(String name, String surname, String email, String address, String phonenumber) {
@@ -24,10 +48,6 @@ public class User implements Serializable {
         this.email = email;
         this.address = address;
         this.phonenumber = phonenumber;
-    }
-
-    public User(final int userID) {
-        this.userID = userID;
     }
 
     public String getAddress() {
@@ -82,7 +102,7 @@ public class User implements Serializable {
         return registrationTime;
     }
 
-    public void setRegistrationTime(final Date registrationTime) {
+    public void setRegistrationTime(final Timestamp registrationTime) {
         this.registrationTime = registrationTime;
     }
 

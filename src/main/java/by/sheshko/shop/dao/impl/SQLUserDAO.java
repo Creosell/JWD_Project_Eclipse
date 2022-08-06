@@ -1,6 +1,7 @@
 package by.sheshko.shop.dao.impl;
 
 import by.sheshko.shop.bean.User;
+import by.sheshko.shop.bean.builder.UserBuilder;
 import by.sheshko.shop.dao.DAOException;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.pool.ConnectionPool;
@@ -14,6 +15,18 @@ import java.sql.SQLException;
 
 
 public final class SQLUserDAO implements UserDAO {
+    private static final String USER_ID = "id_user";
+    private static final String NAME = "name";
+    private static final String SURNAME= "surname";
+    private static final String EMAIL= "email";
+    private static final String ADDRESS= "address";
+    private static final String PHONENUMBER= "phonenumber";
+    private static final String REGISTRATION_TIME= "registered";
+    private static final String STATUS = "user_status_id";
+    private static final String ROLE = "roles_id";
+
+
+
     private static final String LOGIN =
             "SELECT * FROM users WHERE login = ? AND password = ?;";
     private static final String ADD_NEW_USER =
@@ -23,14 +36,15 @@ public final class SQLUserDAO implements UserDAO {
                     " VALUES(LAST_INSERT_ID(), LAST_INSERT_ID(), ?, ?, ?, ?, ?);";
     private static final String GET_USER_INFO =
             "SELECT * FROM users WHERE login = ?";
+    private static final String GET_USER_ADDITIONAL_INFO =
+            "SELECT * FROM user_details WHERE id = ?";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private Connection connection;
 
 
     @Override
-    public void signIn(final String login,
-                       final String password) throws DAOException {
-
+    public User signIn(final String login, final String password) throws DAOException {
+        User user = null;
         try {
             connection = connectToDataBase();
             PreparedStatement preparedStatement;
@@ -47,6 +61,8 @@ public final class SQLUserDAO implements UserDAO {
                 throw new DAOException("Wrong login or password");
             }
 
+            user = loadUserInfo(login, connection);
+
             resultSet.close();
             preparedStatement.close();
             connection.close();
@@ -55,6 +71,7 @@ public final class SQLUserDAO implements UserDAO {
             log.error("Error working with statements while sign in", e);
             throw new DAOException("Error while working with database", e);
         }
+        return user;
     }
 
     @Override
@@ -109,14 +126,15 @@ public final class SQLUserDAO implements UserDAO {
 
     }
 
-    @Override
-    public User getUserInfo(final String login) throws DAOException {
+    private User loadUserInfo(final String login,
+                              final Connection connection) throws DAOException {
         User user;
-        try (Connection connection = connectToDataBase()) {
+
+        try {
             PreparedStatement preparedStatement;
             ResultSet resultSet;
+            ResultSet additionalResultSet;
 
-            //TODO Сделать корректную выгрузку с базы
             preparedStatement = connection.prepareStatement(GET_USER_INFO);
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
@@ -124,12 +142,25 @@ public final class SQLUserDAO implements UserDAO {
             if (!resultSet.next()) {
                 return null;
             }
-            user = new User();
 
-            user.setUserID(resultSet.getInt("id_user"));
-            user.setRole(resultSet.getInt("roles_id"));
+            preparedStatement= connection.prepareStatement(GET_USER_ADDITIONAL_INFO);
+            preparedStatement.setString(1, String.valueOf(resultSet.getInt(USER_ID)));
+            additionalResultSet = preparedStatement.executeQuery();
+
+            user = new UserBuilder()
+                    .userID(resultSet.getInt(USER_ID))
+                    .status(resultSet.getString(STATUS))
+                    .role(resultSet.getString(ROLE))
+                    .name(additionalResultSet.getString(NAME))
+                    .surname(additionalResultSet.getString(SURNAME))
+                    .email(additionalResultSet.getString(EMAIL))
+                    .address(additionalResultSet.getString(ADDRESS))
+                    .phonenumber(additionalResultSet.getString(PHONENUMBER))
+                    .registrationTime(additionalResultSet.getTimestamp(REGISTRATION_TIME))
+                    .build();
 
             resultSet.close();
+            additionalResultSet.close();
             preparedStatement.close();
         } catch (SQLException e) {
             log.error("Error working with statements while getting user info", e);

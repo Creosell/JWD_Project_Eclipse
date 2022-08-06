@@ -58,18 +58,18 @@ public final class ClientServiceImpl implements ClientService {
         }
     }
 
-    @Override
-    public User getUserInfo(final String login) throws ServiceException {
+   /* @Override
+    public User loadUserInfo(final String login) throws ServiceException {
         User user = null;
         if (validateUsername(login)) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
-                return userDAO.getUserInfo(login);
+                return userDAO.loadUserInfo(login);
             } catch (DAOException e) {
                 throw new ServiceException(e.getMessage());
             }
         }
         return user;
-    }
+    }*/
 }
