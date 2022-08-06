@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
+
 
 public final class Registration implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -30,13 +32,13 @@ public final class Registration implements Command {
         User user;
 
         try {
-            login = request.getParameter(ResourceParameter.LOGIN);
-            password = request.getParameter(ResourceParameter.PASSWORD);
-            email = request.getParameter(ResourceParameter.EMAIL);
-            name = request.getParameter(ResourceParameter.NAME);
-            surname = request.getParameter(ResourceParameter.SURNAME);
-            address = request.getParameter(ResourceParameter.ADDRESS);
-            phonenumber = request.getParameter(ResourceParameter.PHONENUMBER);
+            login = request.getParameter(LOGIN);
+            password = request.getParameter(PASSWORD);
+            email = request.getParameter(EMAIL);
+            name = request.getParameter(NAME);
+            surname = request.getParameter(SURNAME);
+            address = request.getParameter(ADDRESS);
+            phonenumber = request.getParameter(PHONENUMBER);
 
             user = new User(name, surname, email, address, phonenumber);
 

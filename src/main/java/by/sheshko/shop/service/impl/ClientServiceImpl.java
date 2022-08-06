@@ -10,8 +10,7 @@ import by.sheshko.shop.service.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static by.sheshko.shop.service.validation.UserInfoValidator.validatePassword;
-import static by.sheshko.shop.service.validation.UserInfoValidator.validateUsername;
+import static by.sheshko.shop.service.validation.UserInfoValidator.*;
 
 public final class ClientServiceImpl implements ClientService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -42,7 +41,7 @@ public final class ClientServiceImpl implements ClientService {
     @Override
     public void registration(final String login, final String password, final User user) throws ServiceException {
 
-        if (validateUsername(login) && validatePassword(password)) {
+        if (validateUsername(login) && validatePassword(password) && validatePhonenumber(user.getPhonenumber())) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
@@ -52,7 +51,7 @@ public final class ClientServiceImpl implements ClientService {
                 throw new ServiceException(e.getMessage());
             }
         } else {
-            throw new ServiceException("Check your username or password");
+            throw new ServiceException("Please, check your username, password and phonenumber");
         }
     }
 

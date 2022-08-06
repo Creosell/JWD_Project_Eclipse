@@ -10,6 +10,7 @@ public final class ResourceParameter {
     public static final String SURNAME="surname";
     public static final String ADDRESS="address";
     public static final String PHONENUMBER="phonenumber";
+    public static final String LANGUAGE = "language";
 
     static final ResourceBundle pages = ResourceBundle.getBundle("pages");
     public static final String ERROR_PAGE = pages.getString("page.error");

@@ -24,11 +24,13 @@
 <fmt:message bundle="${loc}" key="address" var="address"/>
 <fmt:message bundle="${loc}" key="phonenumber" var="phonenumber"/>
 <fmt:message bundle="${loc}" key="required_fields" var="requiredFields"/>
+<fmt:message bundle="${loc}" key="phonenumber_validation_message" var="phoneMessage"/>
+<fmt:message bundle="${loc}" key="email_validation_message" var="emailMessage"/>
 
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
 <c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-]{8,30}$"/>
-
+<c:set var="phonenumberPattern" value="^\\+375\d{9}$"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,12 +47,15 @@
             <p>
                 <label for="login">${login}<span class="required">*</span> </label>
                 <input autofocus required pattern="${loginPattern}" id="login" type="text" name="login" value=""
+                       autocomplete="new-login"
                        oninvalid="this.setCustomValidity('${loginMessage}')"
                        onchange="this.setCustomValidity('')" oninput="this.setCustomValidity('')">
             </p>
             <p>
                 <label for="password">${pass}<span class="required">*</span> </label>
                 <input required id="password" pattern="${passwordPattern}" type="password" name="password" value=""
+                       autocomplete="new-password"
+
                        oninvalid="this.setCustomValidity('${passMessage}')"
                        onchange="this.setCustomValidity('')" oninput="this.setCustomValidity('')">
             </p>
@@ -59,9 +64,12 @@
                 <input required id="confirm-password" pattern="${passwordPattern}" type="password"
                        name="passwordConfirm" value="">
             </p>
+
             <p>
                 <label for="email">${email}<span class="required">*</span> </label>
-                <input required id="email" type="email" name="email" value=""> <%--//Todo сделать валидити для почты--%>
+                <input required id="email" type="email" name="email" value="" placeholder="example@gmail.com"
+                       oninvalid="this.setCustomValidity('${emailMessage}')"
+                       onchange="this.setCustomValidity('')" oninput="this.setCustomValidity('')">
             </p>
             <p>
                 <label for="name">${name} </label>
@@ -78,7 +86,10 @@
             </p>
             <p>
                 <label for="phonenumber">${phonenumber} </label>
-                <input id="phonenumber" type="tel" name="phonenumber" value=""> <%--//todo паттерн для телефона и плейсхолдер--%>
+                <input id="phonenumber" type="tel" name="phonenumber" value="" pattern="${phonenumberPattern}"
+                       placeholder="+375123456789"
+                       oninvalid="this.setCustomValidity('${phoneMessage}')"
+                       onchange="this.setCustomValidity('')" oninput="this.setCustomValidity('')">
             </p>
             <p style="display: flex;justify-content: flex-start;">
                 <span class="required">*</span>&nbsp${requiredFields}

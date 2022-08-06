@@ -13,7 +13,7 @@ public final class UserInfo implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-        return null;
+        return null; //todo useless
     }
 
     /*@Override

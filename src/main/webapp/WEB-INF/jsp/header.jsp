@@ -11,13 +11,9 @@
 </c:if>
 
 <c:set var="message" value="${sessionScope.message}" scope="session"/>
-
 <c:choose>
     <c:when test="${message == null}">
         <c:out value="Message is : null${message}"/>
-    </c:when>
-    <c:when test="${message == ''}">
-        <c:out value="Message is : empty${message}"/>
     </c:when>
     <c:otherwise>
         <c:out value="Message is : ${message}"/>
@@ -27,8 +23,18 @@
 
 
 <c:set var="user" value="${sessionScope.user}" scope="session"/>
+<jsp:useBean id="userBean" class="by.sheshko.shop.bean.User">
+    <jsp:setProperty name="userBean" property="userID" value="${user.userID}"/>
+</jsp:useBean>
+<h1>${userBean.userID}</h1>
 
-
+<c:if test="${userBean.userID != 0}">
+    <c:out value="Script start"/>
+    <script>
+        alert("Kavo")
+        document.getElementById("nav-item-sign-up");
+    </script>
+</c:if>
 
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
@@ -69,6 +75,8 @@
 </head>
 
 <body>
+
+
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -79,7 +87,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto" id = "navBarUL">
+                <ul class="navbar-nav ml-auto" id="navBarUL">
                     <li class="nav-item active" id="nav-item-homepage">
                         <a class="nav-link" href="controller?command=forward_command&target=homepage">${homepage}</a>
                     </li>
@@ -99,11 +107,11 @@
                         <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
-                                 width="40" height="40" class="rounded-circle">
+                                 width="40" height="40" class="rounded-circle" alt="userAvatar">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#">Edit Profile</a>
-                            <a class="dropdown-item" href="#">Log Out</a>
+                            <a class="dropdown-item" href="controller?command=sign_out">Log Out</a>
                         </div>
                     </li>
                 </ul>
@@ -111,6 +119,15 @@
         </div>
     </nav>
 </header>
+
+<script>
+    let user = ${user};
+    alert("in")
+    if (user !== ${null}) {
+        alert("hi")
+        document.getElementById("nav-item-sign-up").setAttribute("hidden", "hidden");
+    }
+</script>
 
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
@@ -124,6 +141,5 @@
 <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/accordions.js"></script>
 </body>
-
 
 </html>

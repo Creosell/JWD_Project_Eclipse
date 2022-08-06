@@ -17,34 +17,30 @@ import java.sql.SQLException;
 public final class SQLUserDAO implements UserDAO {
     private static final String USER_ID = "id_user";
     private static final String NAME = "name";
-    private static final String SURNAME= "surname";
-    private static final String EMAIL= "email";
-    private static final String ADDRESS= "address";
-    private static final String PHONENUMBER= "phonenumber";
-    private static final String REGISTRATION_TIME= "registered";
+    private static final String SURNAME = "surname";
+    private static final String EMAIL = "email";
+    private static final String ADDRESS = "address";
+    private static final String PHONENUMBER = "phonenumber";
+    private static final String REGISTRATION_TIME = "registered";
     private static final String STATUS = "user_status_id";
     private static final String ROLE = "roles_id";
+//todo потокобезопасные транзацкии ThreadLocal
 
 
-
-    private static final String LOGIN =
-            "SELECT * FROM users WHERE login = ? AND password = ?;";
-    private static final String ADD_NEW_USER =
-            "INSERT INTO users (login,password) VALUES(?,?);";
+    private static final String LOGIN = "SELECT * FROM users WHERE login = ? AND password = ?;";
+    private static final String ADD_NEW_USER = "INSERT INTO users (login,password) VALUES(?,?);";
     private static final String ADD_NEW_USER_INFO =
-            "INSERT INTO user_details(id, users_id_user, name, surname, email, address, phonenumber)" +
-                    " VALUES(LAST_INSERT_ID(), LAST_INSERT_ID(), ?, ?, ?, ?, ?);";
-    private static final String GET_USER_INFO =
-            "SELECT * FROM users WHERE login = ?";
-    private static final String GET_USER_ADDITIONAL_INFO =
-            "SELECT * FROM user_details WHERE id = ?";
+            "INSERT INTO user_details(id, users_id_user, name, surname, email, address, phonenumber)"
+                    + " VALUES(LAST_INSERT_ID(), LAST_INSERT_ID(), ?, ?, ?, ?, ?);";
+    private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
+    private static final String GET_USER_ADDITIONAL_INFO = "SELECT * FROM user_details WHERE id = ?";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private Connection connection;
 
 
     @Override
     public User signIn(final String login, final String password) throws DAOException {
-        User user = null;
+        User user = null; //todo disable authorization for blocked users
         try {
             connection = connectToDataBase();
             PreparedStatement preparedStatement;
@@ -56,8 +52,7 @@ public final class SQLUserDAO implements UserDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
-                log.info("Attempt to log in with incorrect data. Login :{}",
-                        login);
+                log.info("Attempt to log in with incorrect data. Login :{}", login);
                 throw new DAOException("Wrong login or password");
             }
 
@@ -110,13 +105,11 @@ public final class SQLUserDAO implements UserDAO {
                 throw new DAOException("Rollback error while registering user", ex);
             }
             if (e.toString().contains("Duplicate") && e.toString().contains("login")) {
-                log.info("Attempt to register with already existing login : {}",
-                        login);
+                log.info("Attempt to register with already existing login : {}", login);
                 throw new DAOException("User with same login is already registered", e);
             }
             if (e.toString().contains("Duplicate") && e.toString().contains("email")) { //todo исключения для уникальных значений
-                log.info("Attempt to register with already existing email : {}",
-                        user.getEmail());
+                log.info("Attempt to register with already existing email : {}", user.getEmail());
                 throw new DAOException("User with same email is already registered", e);
             } else {
                 log.error("Error working with statements while registering new user", e);
@@ -126,8 +119,7 @@ public final class SQLUserDAO implements UserDAO {
 
     }
 
-    private User loadUserInfo(final String login,
-                              final Connection connection) throws DAOException {
+    private User loadUserInfo(final String login, final Connection connection) throws DAOException {
         User user;
 
         try {
@@ -143,13 +135,10 @@ public final class SQLUserDAO implements UserDAO {
                 return null;
             }
 
-            preparedStatement= connection.prepareStatement(GET_USER_ADDITIONAL_INFO);
+            preparedStatement = connection.prepareStatement(GET_USER_ADDITIONAL_INFO);
             preparedStatement.setString(1, String.valueOf(resultSet.getInt(USER_ID)));
             additionalResultSet = preparedStatement.executeQuery();
-
-            if (!additionalResultSet.next()) {
-                return null;
-            }
+            additionalResultSet.next();
 
             user = new UserBuilder()
                     .userID(resultSet.getInt(USER_ID))

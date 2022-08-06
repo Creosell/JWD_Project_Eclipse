@@ -14,6 +14,8 @@ public class UserInfoValidator {
             "^[a-zA-Z0-9]{4,16}$";
     private static final String PASSWORD_PATTERN =
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d-]{8,30}$";
+    private static final String PHONENUMBER_PATTERN =
+            "^\\+375\\d{9}$";
     private static final Logger log = LoggerFactory.getLogger(UserInfoValidator.class);
 
 
@@ -30,4 +32,11 @@ public class UserInfoValidator {
 
         return matcher.matches();
     }
+    public static boolean validatePhonenumber(final String phonenumber) {
+        pattern = Pattern.compile(PHONENUMBER_PATTERN);
+        matcher = pattern.matcher(phonenumber);
+
+        return matcher.matches();
+    }
+
 }

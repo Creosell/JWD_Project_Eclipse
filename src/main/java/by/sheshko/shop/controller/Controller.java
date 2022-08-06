@@ -69,7 +69,7 @@ public final class Controller extends HttpServlet {
 
             lastUsedPage = request.getParameter("target");
             //log.info("Last used page: {}", lastUsedPage);
-            session.setAttribute("lastUsedPage", lastUsedPage);
+            getServletContext().setAttribute("lastUsedPage", lastUsedPage);
 
             switch (request.getMethod()) {
                 case "GET" -> dispatch(request, response, page);

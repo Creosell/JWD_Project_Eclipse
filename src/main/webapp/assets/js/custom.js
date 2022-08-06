@@ -23,6 +23,7 @@ for (let navElement of document.getElementsByClassName("nav-item")) {
     }
 }
 
+
 jQuery(document).ready(function ($) {
 
 

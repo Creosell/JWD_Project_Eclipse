@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
+
 public final class SignIn implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -23,16 +25,16 @@ public final class SignIn implements Command {
         User user;
 
         try {
-            login = request.getParameter(ResourceParameter.LOGIN);
-            password = request.getParameter(ResourceParameter.PASSWORD);
+            login = request.getParameter(LOGIN);
+            password = request.getParameter(PASSWORD);
 
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
             user = clientService.singIn(login, password);
 
-            String welcomeMsg = ResourceParameter.WELCOME_MESSAGE +", " +login;
+            String welcomeMsg = WELCOME_MESSAGE +", " +login;
             request.getSession().setAttribute("user", user);
-            log.info("User is: {}", user.toString());
+            //log.info("User is: {}", user.toString());
             request.getSession().setAttribute("message", welcomeMsg);
             log.info("Message from login is sent: {}", welcomeMsg);
             return "homepage";
