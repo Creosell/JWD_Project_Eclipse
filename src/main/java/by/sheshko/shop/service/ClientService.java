@@ -4,7 +4,7 @@ import by.sheshko.shop.bean.User;
 import by.sheshko.shop.bean.UserSessionInfo;
 
 public interface ClientService {
-    void singIn(String login, String password) throws ServiceException;
+    User singIn(String login, String password) throws ServiceException;
 
     void signOut(UserSessionInfo userSessionInfo) throws ServiceException;
 

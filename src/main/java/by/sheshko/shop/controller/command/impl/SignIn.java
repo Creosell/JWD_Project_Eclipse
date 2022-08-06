@@ -28,9 +28,11 @@ public final class SignIn implements Command {
 
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
-            clientService.singIn(login, password);
+            user = clientService.singIn(login, password);
 
             String welcomeMsg = ResourceParameter.WELCOME_MESSAGE +", " +login;
+            request.getSession().setAttribute("user", user);
+            log.info("User is: {}", user.toString());
             request.getSession().setAttribute("message", welcomeMsg);
             log.info("Message from login is sent: {}", welcomeMsg);
             return "homepage";

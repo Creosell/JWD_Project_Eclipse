@@ -25,6 +25,11 @@
     </c:otherwise>
 </c:choose>
 
+
+<c:set var="user" value="${sessionScope.user}" scope="session"/>
+
+
+
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>

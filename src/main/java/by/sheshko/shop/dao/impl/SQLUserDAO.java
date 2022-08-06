@@ -147,6 +147,10 @@ public final class SQLUserDAO implements UserDAO {
             preparedStatement.setString(1, String.valueOf(resultSet.getInt(USER_ID)));
             additionalResultSet = preparedStatement.executeQuery();
 
+            if (!additionalResultSet.next()) {
+                return null;
+            }
+
             user = new UserBuilder()
                     .userID(resultSet.getInt(USER_ID))
                     .status(resultSet.getString(STATUS))
