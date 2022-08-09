@@ -26,15 +26,33 @@
 <jsp:useBean id="userBean" class="by.sheshko.shop.bean.User">
     <jsp:setProperty name="userBean" property="userID" value="${user.userID}"/>
 </jsp:useBean>
-<h1>${userBean.userID}</h1>
+<h1>${sessionScope.user.userID}</h1>
 
-<c:if test="${userBean.userID != 0}">
-    <c:out value="Script start"/>
-    <script>
-        alert("Kavo")
-        document.getElementById("nav-item-sign-up");
-    </script>
-</c:if>
+<script>
+    document.addEventListener('DOMContentLoaded', checkAuthorization);
+
+    function checkAuthorization() {
+        let userId = ${sessionScope.user.userID};
+        if (userId !== 0) {
+            hideSignUp();
+        } else {
+            hideDropdownMenu();
+        }
+    }
+
+    function hideDropdownMenu() {
+        document.getElementById("nav-item-sign-up").classList.remove("d-none");
+        document.getElementById("nav-item-dropdown-menu").classList.add("d-none");
+    }
+
+    function hideSignUp() {
+        document.getElementById("nav-item-sign-up").classList.add("d-none");
+        document.getElementById("nav-item-dropdown-menu").classList.remove("d-none");
+    }
+
+</script>
+
+
 
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
@@ -46,16 +64,7 @@
 <fmt:message bundle="${loc}" key="contact_us" var="contactUs"/>
 <fmt:message bundle="${loc}" key="our_products" var="ourProducts"/>
 <fmt:message bundle="${loc}" key="log_in" var="logIn"/>
-<%--<c:set scope="session" var="message" value="${sessionScope.message}"/>
-<c:out value="${message}"/>
 
-<c:if test="${message!=null}">
-    <script type="text/javascript">
-        let msg = "${message}";
-        alert(msg);
-    </script>
-</c:if>
-<c:set scope="session" var="message" value="${null}"/>--%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -103,10 +112,10 @@
                     <li class="nav-item" id="nav-item-sign-up">
                         <a class="nav-link" href="controller?command=forward_command&target=logIn">${logIn}</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown d-none" id="nav-item-dropdown-menu">
                         <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+                            <img src="${pageContext.request.contextPath}/assets/images/rabbit_login.png"
                                  width="40" height="40" class="rounded-circle" alt="userAvatar">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -120,14 +129,6 @@
     </nav>
 </header>
 
-<script>
-    let user = ${user};
-    alert("in")
-    if (user !== ${null}) {
-        alert("hi")
-        document.getElementById("nav-item-sign-up").setAttribute("hidden", "hidden");
-    }
-</script>
 
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
@@ -140,6 +141,10 @@
 <script src="${pageContext.request.contextPath}/assets/js/slick.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/accordions.js"></script>
+
+
+
+
 </body>
 
 </html>

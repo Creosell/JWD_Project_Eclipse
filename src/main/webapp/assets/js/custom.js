@@ -1,3 +1,25 @@
+//Hiding nav-items for not authorised users
+/*document.addEventListener('DOMContentLoaded', checkAuthorization);
+
+function checkAuthorization(userId) {
+    alert(userId)
+    if (userId !== 0) {
+        hideSignUp();
+    } else {
+        hideDropdownMenu();
+    }
+}
+
+function hideDropdownMenu() {
+    document.getElementById("nav-item-sign-up").classList.remove("d-none");
+    document.getElementById("nav-item-dropdown-menu").classList.add("d-none");
+}
+
+function hideSignUp() {
+    document.getElementById("nav-item-sign-up").classList.add("d-none");
+    document.getElementById("nav-item-dropdown-menu").classList.remove("d-none");
+}*/
+
 //Nav-items active script
 for (let navElement of document.getElementsByClassName("nav-item")) {
     let currentActiveElement;
