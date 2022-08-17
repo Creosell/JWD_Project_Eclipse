@@ -34,8 +34,9 @@ public final class SQLUserDAO implements UserDAO {
                     + " VALUES(LAST_INSERT_ID(), LAST_INSERT_ID(), ?, ?, ?, ?, ?);";
     private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
     private static final String GET_USER_ADDITIONAL_INFO = "SELECT * FROM user_details WHERE id = ?";
-    private static final String UPDATE_USER_INFO = "SELECT * FROM users WHERE login = ?";
-    private static final String UPDATE_USER_ADDITIONAL_INFO = "SELECT * FROM user_details WHERE id = ?";
+    private static final String UPDATE_USER_INFO = "UPDATE users SET password = ? WHERE id_user=?;";
+    private static final String UPDATE_USER_ADDITIONAL_INFO = "UPDATE user_details " +
+            "SET name = ?, surname = ?, email = ?, address = ?, phonenumber = ? WHERE id=?;";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private Connection connection;
 
@@ -122,33 +123,46 @@ public final class SQLUserDAO implements UserDAO {
     }
 
     @Override
-    public User editUserInfo(User user, String newPassword) throws DAOException {
+    public void editUserInfo(User user, String newPassword) throws DAOException {
         try {
             connection = connectToDataBase();
+            connection.setAutoCommit(false);
             PreparedStatement preparedStatement;
             ResultSet resultSet;
 
-            preparedStatement = connection.prepareStatement(LOGIN);
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password);
+            preparedStatement = connection.prepareStatement(UPDATE_USER_INFO);
+            preparedStatement.setString(1, newPassword);
+            preparedStatement.setInt(2, user.getUserID());
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
-                log.info("Attempt to log in with incorrect data. Login :{}", login);
-                throw new DAOException("Wrong login or password");
+                log.info("Error changing password for user (id): {}", user.getUserID());
+                throw new DAOException("Unable to change password");
             }
 
-            user = loadUserInfo(login, connection);
+            preparedStatement = connection.prepareStatement(UPDATE_USER_ADDITIONAL_INFO);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getSurname());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setString(5, user.getPhonenumber());
+            preparedStatement.setInt(6, user.getUserID());
+            preparedStatement.execute();
 
+            connection.commit();
             resultSet.close();
             preparedStatement.close();
             connection.close();
-            //todo connection.closeConnection is not used
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                log.error("Fail to rollback", e);
+                throw new DAOException("Rollback error while edit user info", ex);
+            }
             log.error("Error working with statements while sign in", e);
             throw new DAOException("Error while working with database", e);
         }
-        return user;
     }
 
     private User loadUserInfo(final String login, final Connection connection) throws DAOException {

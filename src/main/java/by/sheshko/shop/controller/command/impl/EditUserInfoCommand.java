@@ -40,9 +40,8 @@ public class EditUserInfoCommand implements Command {
 
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
-            user = clientService.editUserInfo(user, newPassword);
-
-            request.getSession().setAttribute("user", user);
+            clientService.editUserInfo(user, newPassword);
+            request.getSession().invalidate();
 
             log.info("Message from editUser method was sent: New user info{}", user);
         } catch (ServiceException e) {

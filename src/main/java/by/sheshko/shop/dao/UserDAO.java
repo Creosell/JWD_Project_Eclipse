@@ -7,6 +7,6 @@ public interface UserDAO {
 
     void registration(String login, String password, User user) throws DAOException;
 
-    User editUserInfo(User user, String newPassword) throws DAOException;
+    void editUserInfo(User user, String newPassword) throws DAOException;
 
 }

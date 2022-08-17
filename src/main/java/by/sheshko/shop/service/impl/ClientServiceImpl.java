@@ -56,7 +56,7 @@ public final class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public User editUserInfo(User user, String newPassword) throws ServiceException {
+    public void editUserInfo(User user, String newPassword) throws ServiceException {
         log.info("NEW PASSWORD: {}", newPassword);
         /*if (!String.valueOf(newPassword).equals("")){
         validatePassword(newPassword)
@@ -66,7 +66,7 @@ public final class ClientServiceImpl implements ClientService {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
-                user = userDAO.editUserInfo(user, newPassword);
+                userDAO.editUserInfo(user, newPassword);
             } catch (DAOException e) {
                 log.error("Error while edit user info. User: {}", user, e);
                 throw new ServiceException(e.getMessage());
@@ -74,7 +74,6 @@ public final class ClientServiceImpl implements ClientService {
         } else {
             throw new ServiceException("Something go wrong. Please, check your username, password and phonenumber");
         }
-        return user;
     }
 
 
