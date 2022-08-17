@@ -23,10 +23,10 @@
 
 
 <c:set var="user" value="${sessionScope.user}" scope="session"/>
-<jsp:useBean id="userBean" class="by.sheshko.shop.bean.User">
-    <jsp:setProperty name="userBean" property="userID" value="${user.userID}"/>
+<jsp:useBean id="userBean" class="by.sheshko.shop.bean.User" scope="session">
+    <jsp:setProperty name="userBean" property="userID" value="${sessionScope.user.userID}"/>
 </jsp:useBean>
-<h1>${sessionScope.user.userID}</h1>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', checkAuthorization);
@@ -53,7 +53,6 @@
 </script>
 
 
-
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>
@@ -64,6 +63,8 @@
 <fmt:message bundle="${loc}" key="contact_us" var="contactUs"/>
 <fmt:message bundle="${loc}" key="our_products" var="ourProducts"/>
 <fmt:message bundle="${loc}" key="log_in" var="logIn"/>
+<fmt:message bundle="${loc}" key="my_profile" var="myProfile"/>
+<fmt:message bundle="${loc}" key="log_out" var="logOut"/>
 
 <html>
 <head>
@@ -119,8 +120,9 @@
                                  width="40" height="40" class="rounded-circle" alt="userAvatar">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Edit Profile</a>
-                            <a class="dropdown-item" href="controller?command=sign_out">Log Out</a>
+                            <a class="dropdown-item"
+                               href="controller?command=forward_command&target=userProfile">${myProfile}</a>
+                            <a class="dropdown-item" href="controller?command=sign_out">${logOut}</a>
                         </div>
                     </li>
                 </ul>
@@ -141,8 +143,6 @@
 <script src="${pageContext.request.contextPath}/assets/js/slick.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/accordions.js"></script>
-
-
 
 
 </body>

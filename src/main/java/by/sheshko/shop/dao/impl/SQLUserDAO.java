@@ -34,6 +34,8 @@ public final class SQLUserDAO implements UserDAO {
                     + " VALUES(LAST_INSERT_ID(), LAST_INSERT_ID(), ?, ?, ?, ?, ?);";
     private static final String GET_USER_INFO = "SELECT * FROM users WHERE login = ?";
     private static final String GET_USER_ADDITIONAL_INFO = "SELECT * FROM user_details WHERE id = ?";
+    private static final String UPDATE_USER_INFO = "SELECT * FROM users WHERE login = ?";
+    private static final String UPDATE_USER_ADDITIONAL_INFO = "SELECT * FROM user_details WHERE id = ?";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private Connection connection;
 
@@ -117,6 +119,36 @@ public final class SQLUserDAO implements UserDAO {
             }
         }
 
+    }
+
+    @Override
+    public User editUserInfo(User user, String newPassword) throws DAOException {
+        try {
+            connection = connectToDataBase();
+            PreparedStatement preparedStatement;
+            ResultSet resultSet;
+
+            preparedStatement = connection.prepareStatement(LOGIN);
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+
+            if (!resultSet.next()) {
+                log.info("Attempt to log in with incorrect data. Login :{}", login);
+                throw new DAOException("Wrong login or password");
+            }
+
+            user = loadUserInfo(login, connection);
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+            //todo connection.closeConnection is not used
+        } catch (SQLException e) {
+            log.error("Error working with statements while sign in", e);
+            throw new DAOException("Error while working with database", e);
+        }
+        return user;
     }
 
     private User loadUserInfo(final String login, final Connection connection) throws DAOException {

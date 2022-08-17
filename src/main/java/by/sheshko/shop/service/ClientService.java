@@ -10,4 +10,5 @@ public interface ClientService {
 
     void registration(String login, String password, User user) throws ServiceException;
 
+    User editUserInfo(User user, String newPassword) throws ServiceException;
 }

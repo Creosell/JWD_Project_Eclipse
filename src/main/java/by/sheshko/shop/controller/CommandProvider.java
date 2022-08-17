@@ -23,6 +23,7 @@ final class CommandProvider {
         repository.put(FORWARD_COMMAND, new ForwardCommand());
         repository.put(CHANGE_LOCAL, new ChangeLocal());
         repository.put(SIGN_OUT, new SignOut());
+        repository.put(EDIT_USER_INFO, new EditUserInfoCommand());
     }
 
     Command getCommand(final String name) {

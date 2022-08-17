@@ -12,7 +12,7 @@
 <fmt:message bundle="${loc}" key="address" var="address"/>
 <fmt:message bundle="${loc}" key="phonenumber" var="phonenumber"/>
 <fmt:message bundle="${loc}" key="registration_time" var="registrationTime"/>
-<fmt:message bundle="${loc}" key="change_info" var="changeInfo"/>
+<fmt:message bundle="${loc}" key="edit_profile" var="editProfile"/>
 
 <html>
 <head>
@@ -31,7 +31,12 @@
         <p>${phonenumber} : ${sessionScope.user.phonenumber}</p>
         <p>${registrationTime} : ${sessionScope.user.registrationTime}</p>
 
-        <button formaction="">${changeInfo}</button>
+        <form action="controller" method="get">
+            <input type="hidden" name="command" value="forward_command">
+            <input type="hidden" name="target" value="editProfile">
+            <input type="submit" value="${editProfile}">
+        </form>
+
 
 
     </div>
