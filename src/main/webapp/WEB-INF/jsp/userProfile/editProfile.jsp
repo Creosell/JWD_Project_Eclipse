@@ -35,11 +35,11 @@
 
     <form action="controller" method="post">
         <fieldset>
-            <input type="hidden" name="command" value="registration">
+            <input type="hidden" name="command" value="EDIT_USER_INFO">
             <legend>${title}</legend>
             <p>
                 <label for="name">${name} </label>
-                <input id="name" type="text" name="name" value="${sessionScope.user.name}">
+                <input autofocus id="name" type="text" name="name" value="${sessionScope.user.name}">
             </p>
             <p>
                 <label for="surname">${surname} </label>

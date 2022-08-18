@@ -19,14 +19,14 @@ public class EditUserInfoCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-        User testUser = (User) request.getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
         String name = null;
         String surname = null;
         String email = null;
         String address = null;
         String phonenumber = null;
         String newPassword = null;
-        User user = null;
+
 
         try {
             name = request.getParameter(NAME);
@@ -35,15 +35,21 @@ public class EditUserInfoCommand implements Command {
             address = request.getParameter(ADDRESS);
             phonenumber = request.getParameter(PHONENUMBER);
             newPassword = request.getParameter(NEW_PASSWORD);
+            //log.info("TestUser: {}", user);
 
-            user = new User(name, surname, email, address, phonenumber);
+            user.setName(name);
+            user.setSurname(surname);
+            user.setEmail(email);
+            user.setAddress(address);
+            user.setPhonenumber(phonenumber);
 
+            //log.info("TestUser after edit: {}", user);
             ServiceFactory serviceFactory = ServiceFactory.getInstance();
             ClientService clientService = serviceFactory.getClientServiceImpl();
             clientService.editUserInfo(user, newPassword);
             request.getSession().invalidate();
 
-            log.info("Message from editUser method was sent: New user info{}", user);
+            //log.info("Message from editUser method was sent: New user info{}", user);
         } catch (ServiceException e) {
             request.getSession().setAttribute("errorMessage", e.getMessage());
             log.error("Error while edit user info. User: {}", user, e);

@@ -36,13 +36,13 @@ public final class SignIn implements Command {
             request.getSession().setAttribute("user", user);
             //log.info("User is: {}", user.toString());
             request.getSession().setAttribute("message", welcomeMsg);
-            log.info("Message from login is sent: {}", welcomeMsg);
+            //log.info("Message from login is sent: {}", welcomeMsg);
             return "homepage";
             //return ResourceParameter.HOME_PAGE;
         } catch (ServiceException e) {
             log.info("Error while log on site for login {}", login, e);
             request.getSession().setAttribute("errorMessage", e.getMessage());
-            throw new ControllerException("Incorrect login or password", e);//todo ненужное описание ошибки
+            throw new ControllerException(e.getMessage(), e);//todo ненужное описание ошибки
         }
     }
 }

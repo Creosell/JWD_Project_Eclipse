@@ -57,12 +57,15 @@ public final class ClientServiceImpl implements ClientService {
 
     @Override
     public void editUserInfo(User user, String newPassword) throws ServiceException {
-        log.info("NEW PASSWORD: {}", newPassword);
-        /*if (!String.valueOf(newPassword).equals("")){
-        validatePassword(newPassword)
-        }*/
+        if (!String.valueOf(newPassword).equals("")) {
+            if (!validatePassword(newPassword)){
+                log.error("Error validating user's new password. User: {}", user);
+                throw new ServiceException("Error validating user's new password. UserID is:"+user.getUserID());
+            }
+        }
 
-        if (validateUsername(user.getName()) && validatePassword(newPassword) && validatePhonenumber(user.getPhonenumber())) {
+        log.info("Pass validation {}, phone validation {}", validatePassword(newPassword), validatePhonenumber(user.getPhonenumber()));
+        if (validatePhonenumber(user.getPhonenumber())) {
             try {
                 DAOFactory daoFactory = DAOFactory.getInstance();
                 UserDAO userDAO = daoFactory.getUserDAOImpl();
@@ -76,19 +79,4 @@ public final class ClientServiceImpl implements ClientService {
         }
     }
 
-
-   /* @Override
-    public User loadUserInfo(final String login) throws ServiceException {
-        User user = null;
-        if (validateUsername(login)) {
-            try {
-                DAOFactory daoFactory = DAOFactory.getInstance();
-                UserDAO userDAO = daoFactory.getUserDAOImpl();
-                return userDAO.loadUserInfo(login);
-            } catch (DAOException e) {
-                throw new ServiceException(e.getMessage());
-            }
-        }
-        return user;
-    }*/
 }
