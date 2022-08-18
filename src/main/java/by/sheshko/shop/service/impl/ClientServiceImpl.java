@@ -57,26 +57,29 @@ public final class ClientServiceImpl implements ClientService {
 
     @Override
     public void editUserInfo(User user, String newPassword) throws ServiceException {
-        if (!String.valueOf(newPassword).equals("")) {
-            if (!validatePassword(newPassword)){
-                log.error("Error validating user's new password. User: {}", user);
-                throw new ServiceException("Error validating user's new password. UserID is:"+user.getUserID());
+        try {
+            if (!String.valueOf(newPassword).equals("")) {
+                if (!validatePassword(newPassword)) {
+                    log.error("Error validating user's new password. User: {}", user);
+                    throw new ServiceException("Error validating user's new password. UserID is:" + user.getUserID());
+                }
             }
-        }
+            if (!String.valueOf(user.getPhonenumber()).equals("")) {
+                if (!validatePhonenumber(user.getPhonenumber())) {
+                    log.error("Error validating user's phonenumber. User: {}", user);
+                    throw new ServiceException("Error validating user's phonenumber. UserID is:" + user.getUserID());
+                }
+            }
+            log.info("Pass validation {}, phone validation {}", validatePassword(newPassword), validatePhonenumber(user.getPhonenumber()));
 
-        log.info("Pass validation {}, phone validation {}", validatePassword(newPassword), validatePhonenumber(user.getPhonenumber()));
-        if (validatePhonenumber(user.getPhonenumber())) {
-            try {
-                DAOFactory daoFactory = DAOFactory.getInstance();
-                UserDAO userDAO = daoFactory.getUserDAOImpl();
-                userDAO.editUserInfo(user, newPassword);
-            } catch (DAOException e) {
-                log.error("Error while edit user info. User: {}", user, e);
-                throw new ServiceException(e.getMessage());
-            }
-        } else {
-            throw new ServiceException("Something go wrong. Please, check your username, password and phonenumber");
+            DAOFactory daoFactory = DAOFactory.getInstance();
+            UserDAO userDAO = daoFactory.getUserDAOImpl();
+            userDAO.editUserInfo(user, newPassword);
+        } catch (DAOException e) {
+            log.error("Error while edit user info. User: {}", user, e);
+            throw new ServiceException(e.getMessage());
         }
     }
-
 }
+
+

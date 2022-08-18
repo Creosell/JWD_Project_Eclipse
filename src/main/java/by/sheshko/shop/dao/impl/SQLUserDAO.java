@@ -111,7 +111,7 @@ public final class SQLUserDAO implements UserDAO {
                 log.info("Attempt to register with already existing login : {}", login);
                 throw new DAOException("User with same login is already registered", e);
             }
-            if (e.toString().contains("Duplicate") && e.toString().contains("email")) { //todo исключения для уникальных значений
+            if (e.toString().contains("Duplicate") && e.toString().contains("email")) {
                 log.info("Attempt to register with already existing email : {}", user.getEmail());
                 throw new DAOException("User with same email is already registered", e);
             } else {
@@ -119,7 +119,6 @@ public final class SQLUserDAO implements UserDAO {
                 throw new DAOException("Error while registering user", e);
             }
         }
-
     }
 
     @Override
@@ -128,27 +127,20 @@ public final class SQLUserDAO implements UserDAO {
             connection = connectToDataBase();
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement;
-            ResultSet resultSet = null;
 
-            if (!String.valueOf(newPassword).equals("")){
+            if (!String.valueOf(newPassword).equals("")) {
                 preparedStatement = connection.prepareStatement(UPDATE_USER_INFO);
                 preparedStatement.setString(1, newPassword);
                 preparedStatement.setInt(2, user.getUserID());
                 preparedStatement.executeUpdate();
-
-           /*     if (!resultSet.next()) {
-                    log.info("Error changing password for user (id): {}", user.getUserID());
-                    throw new DAOException("Unable to change password");
-                }
-                resultSet.close();*/
             }
 
             preparedStatement = connection.prepareStatement(UPDATE_USER_ADDITIONAL_INFO);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
-            preparedStatement.setString(3, user.getEmail()); //todo unique check
+            preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getAddress());
-            preparedStatement.setString(5, user.getPhonenumber()); //todo unique check
+            preparedStatement.setString(5, user.getPhonenumber());
             preparedStatement.setInt(6, user.getUserID());
             preparedStatement.executeUpdate();
 
@@ -161,6 +153,14 @@ public final class SQLUserDAO implements UserDAO {
             } catch (SQLException ex) {
                 log.error("Fail to rollback", e);
                 throw new DAOException("Rollback error while edit user info", ex);
+            }
+            if (e.toString().contains("Duplicate") && e.toString().contains("email")) {
+                log.info("Attempt to change email to already existing value: {}", user.getEmail());
+                throw new DAOException("User with same email is already existing", e);
+            }
+            if (e.toString().contains("Duplicate") && e.toString().contains("phonenumber")) {
+                log.info("Attempt to change phonenumber to already existing value: {}", user.getPhonenumber());
+                throw new DAOException("User with same phonenumber is already existing", e);
             }
             log.error("Error working with statements while edit user information", e);
             throw new DAOException("Error while working with database", e);
