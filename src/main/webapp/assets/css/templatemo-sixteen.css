@@ -828,6 +828,24 @@ footer .inner-content p a {
 .login-heading .login-fields-input form label {
     padding: 10px 0 0 0;
 }
+/* Profile page */
+.profile-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 200px 0 100px 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.profile-heading .text-center {
+    padding: 0.5em;
+}
+.profile-heading form {
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+}
 
 /* Registration Page */
 

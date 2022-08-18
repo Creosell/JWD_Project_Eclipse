@@ -31,7 +31,7 @@
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <body>
-<div class="registration-heading">
+<div class="profile-heading">
 
     <form action="controller" method="post">
         <fieldset>

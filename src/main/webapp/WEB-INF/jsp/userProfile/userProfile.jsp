@@ -21,7 +21,7 @@
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <body>
-<div class="registration-heading">
+<div class="profile-heading">
     <div>
         <h2 class="text-center">${title}</h2>
         <p>${name} : ${sessionScope.user.name}</p>
