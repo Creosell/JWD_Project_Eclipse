@@ -34,7 +34,7 @@
     function checkAuthorization() {
         let userId = ${sessionScope.user.userID};
         if (userId !== 0) {
-            hideSignUp();
+            hideSignUpItem();
         } else {
             hideDropdownMenu();
         }
@@ -45,7 +45,7 @@
         document.getElementById("nav-item-dropdown-menu").classList.add("d-none");
     }
 
-    function hideSignUp() {
+    function hideSignUpItem() {
         document.getElementById("nav-item-sign-up").classList.add("d-none");
         document.getElementById("nav-item-dropdown-menu").classList.remove("d-none");
     }
@@ -64,6 +64,7 @@
 <fmt:message bundle="${loc}" key="our_products" var="ourProducts"/>
 <fmt:message bundle="${loc}" key="log_in" var="logIn"/>
 <fmt:message bundle="${loc}" key="my_profile" var="myProfile"/>
+<fmt:message bundle="${loc}" key="my_orders" var="myOrders"/>
 <fmt:message bundle="${loc}" key="log_out" var="logOut"/>
 
 <html>
@@ -122,7 +123,10 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item"
                                href="controller?command=forward_command&target=userProfile">${myProfile}</a>
+                            <a class="dropdown-item"
+                                 href="#">${myOrders}</a>
                             <a class="dropdown-item" href="controller?command=sign_out">${logOut}</a>
+
                         </div>
                     </li>
                 </ul>

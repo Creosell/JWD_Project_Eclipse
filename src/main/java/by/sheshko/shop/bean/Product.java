@@ -4,14 +4,32 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
     private static final long serialVersionUID = 574829538859146812L;
+    private String productID;
     private String title;
     private String description;
+    private String category;
     private double price;
     private int availableQuantity;
     private int quantityInOrders;
 
     //TODO equals hash
     public Product() {
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getTitle() {

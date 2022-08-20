@@ -24,6 +24,7 @@ public final class SQLUserDAO implements UserDAO {
     private static final String REGISTRATION_TIME = "registered";
     private static final String STATUS = "user_status_id";
     private static final String ROLE = "roles_id";
+    private static final Integer BLOCKED = 2;
 //todo потокобезопасные транзацкии ThreadLocal
 
 
@@ -43,7 +44,7 @@ public final class SQLUserDAO implements UserDAO {
 
     @Override
     public User signIn(final String login, final String password) throws DAOException {
-        User user = null; //todo disable authorization for blocked users
+        User user = null;
         try {
             connection = connectToDataBase();
             PreparedStatement preparedStatement;
@@ -59,6 +60,11 @@ public final class SQLUserDAO implements UserDAO {
                 throw new DAOException("Wrong login or password");
             }
 
+            if (resultSet.getInt(STATUS) == BLOCKED){
+                log.info("Attempt to log in from blocked user. Login :{}", login);
+                throw new DAOException("Sorry, you are blocked on this website.");
+            }
+            log.info("Result set result: {}", resultSet.getInt("user_status_id"));
             user = loadUserInfo(login, connection);
 
             resultSet.close();
