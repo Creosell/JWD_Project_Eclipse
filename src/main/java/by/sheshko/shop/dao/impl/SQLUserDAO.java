@@ -218,7 +218,6 @@ public final class SQLUserDAO implements UserDAO {
 
     private Connection connectToDataBase() throws DAOException {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
-        Connection connection;
         try {
             connection = connectionPool.takeConnection();
         } catch (InterruptedException e) {

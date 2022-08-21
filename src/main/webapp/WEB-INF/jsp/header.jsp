@@ -67,12 +67,15 @@
 <fmt:message bundle="${loc}" key="my_orders" var="myOrders"/>
 <fmt:message bundle="${loc}" key="log_out" var="logOut"/>
 
+
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
           rel="stylesheet">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/images/icon.png" type="image/png">
+
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css"

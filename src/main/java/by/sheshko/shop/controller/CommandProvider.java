@@ -21,9 +21,10 @@ final class CommandProvider {
         repository.put(WRONG_REQUEST, new WrongRequest());
         repository.put(USER_INFO, new UserInfo());
         repository.put(FORWARD_COMMAND, new ForwardCommand());
-        repository.put(CHANGE_LOCAL, new ChangeLocal());
+        repository.put(CHANGE_LOCAL, new ChangeLocalCommand());
         repository.put(SIGN_OUT, new SignOut());
         repository.put(EDIT_USER_INFO, new EditUserInfoCommand());
+        repository.put(LOAD_PRODUCT, new ProductLoadCommand());
     }
 
     Command getCommand(final String name) {

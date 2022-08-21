@@ -33,15 +33,15 @@ public final class SignIn implements Command {
             user = clientService.singIn(login, password);
 
             String welcomeMsg = WELCOME_MESSAGE +", " +login;
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute(USER, user);
             //log.info("User is: {}", user.toString());
-            request.getSession().setAttribute("message", welcomeMsg);
+            request.getSession().setAttribute(MESSAGE, welcomeMsg);
             //log.info("Message from login is sent: {}", welcomeMsg);
             return "homepage";
             //return ResourceParameter.HOME_PAGE;
         } catch (ServiceException e) {
             log.info("Error while log on site for login {}", login, e);
-            request.getSession().setAttribute("errorMessage", e.getMessage());
+            request.getSession().setAttribute(ERROR_MESSAGE, e.getMessage());
             throw new ControllerException(e.getMessage(), e);//todo ненужное описание ошибки
         }
     }

@@ -7,11 +7,16 @@ public final class ResourceParameter {
     public static final String PASSWORD = "password";
     public static final String NEW_PASSWORD = "newPassword";
     public static final String EMAIL = "email";
-    public static final String NAME ="name";
-    public static final String SURNAME="surname";
-    public static final String ADDRESS="address";
-    public static final String PHONENUMBER="phonenumber";
+    public static final String NAME = "name";
+    public static final String SURNAME = "surname";
+    public static final String ADDRESS = "address";
+    public static final String PHONENUMBER = "phonenumber";
     public static final String LANGUAGE = "language";
+    public static final String PRODUCT_ID = "productID";
+    public static final String USER = "user";
+    public static final String MESSAGE = "message";
+    public static final String ERROR_MESSAGE = "errorMessage";
+    public static final String PRODUCT = "product";
 
     static final ResourceBundle pages = ResourceBundle.getBundle("pages");
     public static final String ERROR_PAGE = pages.getString("page.error");

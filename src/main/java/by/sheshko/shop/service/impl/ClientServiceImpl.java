@@ -34,11 +34,6 @@ public final class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void signOut(final UserSessionInfo userSessionInfo) {
-        userSessionInfo.signOut();
-    }
-
-    @Override
     public void registration(final String login, final String password, final User user) throws ServiceException {
 
         if (validateUsername(login) && validatePassword(password) && validatePhonenumber(user.getPhonenumber())) {
