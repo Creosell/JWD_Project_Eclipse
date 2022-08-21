@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SQLProductDAO implements ProductDAO {
 
@@ -23,6 +24,8 @@ public class SQLProductDAO implements ProductDAO {
     private static final String AVAILABLE_QUANTITY = "available_quantity";
     private static final String QUANTITY_IN_ORDERS = "quantity_in_orders";
     private static final String CATEGORIES = "SELECT * FROM products_categories";
+    private static final String PRODUCT_CATEGORY = "SELECT * FROM products_has_products_categories WHERE products_id_product = ?";
+    private static final String LOAD_PRODUCT = "SELECT * FROM products WHERE id_product = ?";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final Map<Integer, String> categoriesMap = new HashMap<>();
     private Connection connection;
@@ -36,9 +39,47 @@ public class SQLProductDAO implements ProductDAO {
     }
 
     @Override
-    public Product loadProduct(Integer productId) throws DAOException {
-        //loadCategories();
-        return null;
+    public Product loadProduct(Integer productID) throws DAOException {
+        Product product = null;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        //ResultSet categoryResultSet;
+        log.info("Product id is {}", productID);
+
+        try {
+            connection = connectToDataBase();
+            preparedStatement = connection.prepareStatement(LOAD_PRODUCT);
+            preparedStatement.setInt(1, productID);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                product = new Product();
+                product.setProductID(resultSet.getInt(PRODUCT_ID));
+                product.setTitle(resultSet.getString(TITLE));
+                product.setDescription(resultSet.getString(DESCRIPTION));
+                product.setPrice(resultSet.getDouble(PRICE));
+                product.setAvailableQuantity(resultSet.getInt(AVAILABLE_QUANTITY));
+                product.setQuantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS));
+            }
+
+            preparedStatement = connection.prepareStatement(PRODUCT_CATEGORY);
+            preparedStatement.setInt(1, productID);
+            resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+            for (String categoryName : categoriesMap.values()) {
+                Objects.requireNonNull(product).setCategory(categoryName);
+            }
+
+
+            resultSet.close();
+            //categoryResultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return product;
     }
 
     private Connection connectToDataBase() throws DAOException {
@@ -53,7 +94,6 @@ public class SQLProductDAO implements ProductDAO {
     }
 
     private void loadCategories() throws DAOException {
-
         PreparedStatement preparedStatement;
         ResultSet resultSet;
 

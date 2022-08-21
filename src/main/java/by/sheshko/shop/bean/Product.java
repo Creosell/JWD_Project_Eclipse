@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
     private static final long serialVersionUID = 574829538859146812L;
-    private String productID;
+    private int productID;
     private String title;
     private String description;
     private String category;
@@ -12,15 +12,28 @@ public class Product implements Serializable {
     private int availableQuantity;
     private int quantityInOrders;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productID=" + productID +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", availableQuantity=" + availableQuantity +
+                ", quantityInOrders=" + quantityInOrders +
+                '}';
+    }
+
     //TODO equals hash
     public Product() {
     }
 
-    public String getProductID() {
+    public int getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 
