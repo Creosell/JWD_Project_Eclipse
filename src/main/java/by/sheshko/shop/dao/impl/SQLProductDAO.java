@@ -18,6 +18,7 @@ import java.util.Objects;
 public class SQLProductDAO implements ProductDAO {
 
     private static final String PRODUCT_ID = "id_product";
+    private static final String PRODUCTS_CATEGORIES_ID = "products_categories_id";
     private static final String TITLE = "title";
     private static final String DESCRIPTION = "description";
     private static final String PRICE = "price";
@@ -59,7 +60,7 @@ public class SQLProductDAO implements ProductDAO {
                 product.setDescription(resultSet.getString(DESCRIPTION));
                 product.setPrice(resultSet.getDouble(PRICE));
                 product.setAvailableQuantity(resultSet.getInt(AVAILABLE_QUANTITY));
-                product.setQuantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS));
+                product.setQuantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS)); //todo Product Builder
             }
 
             preparedStatement = connection.prepareStatement(PRODUCT_CATEGORY);
@@ -67,8 +68,10 @@ public class SQLProductDAO implements ProductDAO {
             resultSet = preparedStatement.executeQuery();
 
             resultSet.next();
-            for (String categoryName : categoriesMap.values()) {
-                Objects.requireNonNull(product).setCategory(categoryName);
+            for (Map.Entry<Integer, String> categoryItem : categoriesMap.entrySet()) {
+                if (categoryItem.getKey().equals(resultSet.getInt(PRODUCTS_CATEGORIES_ID))){
+                    Objects.requireNonNull(product).setCategory(categoryItem.getValue());
+                }
             }
 
 
