@@ -40,6 +40,6 @@ public class ProductLoadCommand implements Command {
             throw new RuntimeException(e);
         }
 
-        return HOME_PAGE; //todo
+        return "homepage"; //todo
     }
 }
