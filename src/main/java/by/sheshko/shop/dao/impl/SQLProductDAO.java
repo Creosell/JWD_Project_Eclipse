@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -30,6 +31,7 @@ public class SQLProductDAO implements ProductDAO {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final Map<Integer, String> categoriesMap = new HashMap<>();
     private Connection connection;
+
 
     {
         try {
@@ -69,7 +71,7 @@ public class SQLProductDAO implements ProductDAO {
 
             resultSet.next();
             for (Map.Entry<Integer, String> categoryItem : categoriesMap.entrySet()) {
-                if (categoryItem.getKey().equals(resultSet.getInt(PRODUCTS_CATEGORIES_ID))){
+                if (categoryItem.getKey().equals(resultSet.getInt(PRODUCTS_CATEGORIES_ID))) {
                     Objects.requireNonNull(product).setCategory(categoryItem.getValue());
                 }
             }
@@ -83,6 +85,13 @@ public class SQLProductDAO implements ProductDAO {
             throw new DAOException(e);
         }
         return product;
+    }
+
+    @Override
+    public List<Product> loadProductList() throws DAOException {
+
+
+        return null;
     }
 
     private Connection connectToDataBase() throws DAOException {
