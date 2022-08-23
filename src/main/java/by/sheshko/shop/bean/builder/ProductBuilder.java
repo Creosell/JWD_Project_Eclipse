@@ -2,7 +2,7 @@ package by.sheshko.shop.bean.builder;
 
 import by.sheshko.shop.bean.Product;
 
-public class ProductBuilder implements BuilderInterface {
+public final class ProductBuilder implements BuilderInterface {
     private int productID;
     private String title;
     private String description;

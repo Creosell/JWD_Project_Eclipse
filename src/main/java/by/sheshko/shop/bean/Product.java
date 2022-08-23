@@ -13,7 +13,13 @@ public class Product implements Serializable {
     private int quantityInOrders;
 
     public Product(int productID, String title, String description, String category, double price, int availableQuantity, int quantityInOrders) {
-
+        this.productID = productID;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.price = price;
+        this.availableQuantity = availableQuantity;
+        this.quantityInOrders = quantityInOrders;
     }
 
     @Override

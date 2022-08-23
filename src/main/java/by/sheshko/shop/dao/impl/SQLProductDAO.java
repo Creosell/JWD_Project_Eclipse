@@ -36,24 +36,23 @@ public class SQLProductDAO implements ProductDAO {
         try {
             loadCategories();
         } catch (DAOException e) {
-            log.error("Fail to load categories Map: {}", categoriesMap);
+            log.error("Fail to load categories Map: {}", categoriesMap, e);
         }
     }
- /*   {
+    {
         try {
             loadProductList();
         } catch (DAOException e) {
             log.error("Fail to load product list");
         }
-    }*/
+    }
 
     @Override
     public Product loadProduct(Integer productID) throws DAOException {
         Product product = null;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        //ResultSet categoryResultSet;
-        log.info("Product id is {}", productID);
+        //log.info("ProductID is {}", productID);
 
         try {
             connection = connectToDataBase();
@@ -70,7 +69,9 @@ public class SQLProductDAO implements ProductDAO {
                         .availableQuantity(resultSet.getInt(AVAILABLE_QUANTITY))
                         .quantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS))
                         .build();
+
             }
+            //log.info("Product is: {}", product);
 
             preparedStatement = connection.prepareStatement(PRODUCT_CATEGORY);
             preparedStatement.setInt(1, productID);
@@ -82,44 +83,42 @@ public class SQLProductDAO implements ProductDAO {
                     Objects.requireNonNull(product).setCategory(categoryItem.getValue());
                 }
             }
-            log.info("Product is: {}", product);
+
 
             resultSet.close();
-            //categoryResultSet.close();
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
-            throw new DAOException(e);
+            throw new DAOException(e.getMessage(), e); //todo exception
         }
         return product;
     }
 
     @Override
     public List<Product> loadProductList() throws DAOException {
-        List<Product> productList = null;
+        List<Product> productList = new ArrayList<>();
         PreparedStatement preparedStatement;
         ResultSet resultSet;
+        Connection productListConnection;
 
         try {
-            connection = connectToDataBase();
-            preparedStatement = connection.prepareStatement(LOAD_PRODUCTS_ID);
+            productListConnection = connectToDataBase();
+            preparedStatement = productListConnection.prepareStatement(LOAD_PRODUCTS_ID);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                productList = new ArrayList<>();
-                productList.add(loadProduct(1));
+                productList.add(loadProduct(resultSet.getInt(PRODUCT_ID)));
             }
 
-            if (productList != null) {
-                for (Product product : productList) {
-                    log.info("List item: {}", product);
-                }
-            }
+            /*for (Product product : productList) {
+                log.info("List item: {}", product);
+            }*/
+
             resultSet.close();
             preparedStatement.close();
-            connection.close();
+            productListConnection.close();
         } catch (SQLException e) {
-            throw new DAOException(e); //todo log
+            throw new DAOException(e.getMessage(), e); //todo log
         }
 
         return productList;

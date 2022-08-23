@@ -33,7 +33,7 @@ public class ProductLoadCommand implements Command {
             product = productService.loadProduct(productId);
 
             request.getSession().setAttribute(MESSAGE, product);
-            log.info("Product is loaded: {}", product);
+            //log.info("Product is loaded: {}", product);
             request.getSession().setAttribute(PRODUCT, product);
 
         } catch (ServiceException e) {

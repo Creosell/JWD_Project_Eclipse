@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
             productList = productDAO.loadProductList();
         } catch (DAOException e) {
             log.error("Error loading product list");
-            throw new ServiceException(e.getMessage());
+            throw new ServiceException(e.getMessage(),e);
         }
         return productList;
     }
