@@ -17,6 +17,7 @@ public final class ResourceParameter {
     public static final String MESSAGE = "message";
     public static final String ERROR_MESSAGE = "errorMessage";
     public static final String PRODUCT = "product";
+    public static final String PRODUCT_LIST = "productList";
 
     static final ResourceBundle pages = ResourceBundle.getBundle("pages");
     public static final String ERROR_PAGE = pages.getString("page.error");

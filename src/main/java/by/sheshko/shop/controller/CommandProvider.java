@@ -25,6 +25,7 @@ final class CommandProvider {
         repository.put(SIGN_OUT, new SignOut());
         repository.put(EDIT_USER_INFO, new EditUserInfoCommand());
         repository.put(LOAD_PRODUCT, new ProductLoadCommand());
+        repository.put(LOAD_PRODUCT_LIST, new ProductListLoadCommand());
     }
 
     Command getCommand(final String name) {

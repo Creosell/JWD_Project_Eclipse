@@ -11,6 +11,9 @@ public class ProductBuilder implements BuilderInterface {
     private int availableQuantity;
     private int quantityInOrders;
 
+    public ProductBuilder() {
+    }
+
     public ProductBuilder productID(Integer productID) {
         this.productID = productID;
         return this;

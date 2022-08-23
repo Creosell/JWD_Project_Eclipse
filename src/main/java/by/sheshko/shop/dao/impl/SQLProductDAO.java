@@ -12,10 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class SQLProductDAO implements ProductDAO {
 
@@ -29,7 +26,7 @@ public class SQLProductDAO implements ProductDAO {
     private static final String CATEGORIES = "SELECT * FROM products_categories";
     private static final String PRODUCT_CATEGORY = "SELECT * FROM products_has_products_categories WHERE products_id_product = ?";
     private static final String LOAD_PRODUCT = "SELECT * FROM products WHERE id_product = ?";
-    private static final String LOAD_ALL_PRODUCTS = "SELECT * FROM products";
+    private static final String LOAD_PRODUCTS_ID = "SELECT id_product FROM products";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final Map<Integer, String> categoriesMap = new HashMap<>();
     private Connection connection;
@@ -42,6 +39,13 @@ public class SQLProductDAO implements ProductDAO {
             log.error("Fail to load categories Map: {}", categoriesMap);
         }
     }
+ /*   {
+        try {
+            loadProductList();
+        } catch (DAOException e) {
+            log.error("Fail to load product list");
+        }
+    }*/
 
     @Override
     public Product loadProduct(Integer productID) throws DAOException {
@@ -78,7 +82,7 @@ public class SQLProductDAO implements ProductDAO {
                     Objects.requireNonNull(product).setCategory(categoryItem.getValue());
                 }
             }
-
+            log.info("Product is: {}", product);
 
             resultSet.close();
             //categoryResultSet.close();
@@ -98,7 +102,22 @@ public class SQLProductDAO implements ProductDAO {
 
         try {
             connection = connectToDataBase();
-            preparedStatement = connection.prepareStatement(LOAD_ALL_PRODUCTS);
+            preparedStatement = connection.prepareStatement(LOAD_PRODUCTS_ID);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                productList = new ArrayList<>();
+                productList.add(loadProduct(1));
+            }
+
+            if (productList != null) {
+                for (Product product : productList) {
+                    log.info("List item: {}", product);
+                }
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
         } catch (SQLException e) {
             throw new DAOException(e); //todo log
         }
@@ -129,9 +148,9 @@ public class SQLProductDAO implements ProductDAO {
             while (resultSet.next()) {
                 categoriesMap.put(resultSet.getInt(1), resultSet.getString(2));
             }
-            for (Map.Entry<Integer, String> entry : categoriesMap.entrySet()) {
+            /*for (Map.Entry<Integer, String> entry : categoriesMap.entrySet()) {
                 log.info("Value is {}, {}", entry.getKey(), entry.getValue()); //todo delete log
-            }
+            }*/
 
             resultSet.close();
             preparedStatement.close();

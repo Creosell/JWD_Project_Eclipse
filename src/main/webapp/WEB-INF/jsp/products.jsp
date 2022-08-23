@@ -78,11 +78,6 @@
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
                                     </ul>
-                                    <form action="controller" method="post">
-                                        <input type="hidden" name="command" value="LOAD_PRODUCT">
-                                        <input type="hidden" name="productID" value="1">
-                                        <input type="submit">
-                                    </form>
                                     <span>Reviews (24)</span>
                                 </div>
                             </div>
