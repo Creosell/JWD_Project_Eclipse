@@ -12,6 +12,10 @@ public class Product implements Serializable {
     private int availableQuantity;
     private int quantityInOrders;
 
+    public Product(int productID, String title, String description, String category, double price, int availableQuantity, int quantityInOrders) {
+
+    }
+
     @Override
     public String toString() {
         return "Product{" +

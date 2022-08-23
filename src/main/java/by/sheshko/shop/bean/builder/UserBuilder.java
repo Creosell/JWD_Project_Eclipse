@@ -4,7 +4,7 @@ import by.sheshko.shop.bean.User;
 
 import java.sql.Timestamp;
 
-public final class UserBuilder {
+public final class UserBuilder implements BuilderInterface {
     private int userID;
     private String name;
     private String surname;
@@ -63,6 +63,8 @@ public final class UserBuilder {
         return this;
     }
 
+
+    @Override
     public User build() {
         return new User(userID, name, surname, email, address, phonenumber, registrationTime, status, role);
     }

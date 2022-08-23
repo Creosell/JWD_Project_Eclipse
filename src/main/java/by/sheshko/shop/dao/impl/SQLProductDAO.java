@@ -1,6 +1,7 @@
 package by.sheshko.shop.dao.impl;
 
 import by.sheshko.shop.bean.Product;
+import by.sheshko.shop.bean.builder.ProductBuilder;
 import by.sheshko.shop.dao.DAOException;
 import by.sheshko.shop.dao.ProductDAO;
 import by.sheshko.shop.dao.pool.ConnectionPool;
@@ -28,6 +29,7 @@ public class SQLProductDAO implements ProductDAO {
     private static final String CATEGORIES = "SELECT * FROM products_categories";
     private static final String PRODUCT_CATEGORY = "SELECT * FROM products_has_products_categories WHERE products_id_product = ?";
     private static final String LOAD_PRODUCT = "SELECT * FROM products WHERE id_product = ?";
+    private static final String LOAD_ALL_PRODUCTS = "SELECT * FROM products";
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final Map<Integer, String> categoriesMap = new HashMap<>();
     private Connection connection;
@@ -56,13 +58,14 @@ public class SQLProductDAO implements ProductDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                product = new Product();
-                product.setProductID(resultSet.getInt(PRODUCT_ID));
-                product.setTitle(resultSet.getString(TITLE));
-                product.setDescription(resultSet.getString(DESCRIPTION));
-                product.setPrice(resultSet.getDouble(PRICE));
-                product.setAvailableQuantity(resultSet.getInt(AVAILABLE_QUANTITY));
-                product.setQuantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS)); //todo Product Builder
+                product = new ProductBuilder()
+                        .productID(resultSet.getInt(PRODUCT_ID))
+                        .title(resultSet.getString(TITLE))
+                        .description(resultSet.getString(DESCRIPTION))
+                        .price(resultSet.getDouble(PRICE))
+                        .availableQuantity(resultSet.getInt(AVAILABLE_QUANTITY))
+                        .quantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS))
+                        .build();
             }
 
             preparedStatement = connection.prepareStatement(PRODUCT_CATEGORY);
@@ -89,9 +92,18 @@ public class SQLProductDAO implements ProductDAO {
 
     @Override
     public List<Product> loadProductList() throws DAOException {
+        List<Product> productList = null;
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
 
+        try {
+            connection = connectToDataBase();
+            preparedStatement = connection.prepareStatement(LOAD_ALL_PRODUCTS);
+        } catch (SQLException e) {
+            throw new DAOException(e); //todo log
+        }
 
-        return null;
+        return productList;
     }
 
     private Connection connectToDataBase() throws DAOException {

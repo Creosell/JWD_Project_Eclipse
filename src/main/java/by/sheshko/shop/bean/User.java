@@ -38,7 +38,7 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public User(final int userID) {
+    public User(int userID) {
         this.userID = userID;
     }
 
