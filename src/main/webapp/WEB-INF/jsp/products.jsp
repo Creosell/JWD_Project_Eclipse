@@ -6,6 +6,13 @@
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="title_our_products" var="title"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
+
+<script>
+    document.addEventListener('DOMContentLoaded', loadProducts);
+
+    function loadProducts() {
+    }
+</script>
 <html>
 <head>
     <title>${title}</title>

@@ -30,9 +30,8 @@ public class ProductListLoadCommand implements Command {
             log.info("Product list is loaded");
             request.getSession().setAttribute(PRODUCT_LIST, productList);
         } catch (ServiceException e) {
-
-            throw new ControllerException(e.getMessage(),e);
+            throw new ControllerException(e.getMessage(),e); //todo exception
         }
-        return "homepage";
+        return "products";
     }
 }
