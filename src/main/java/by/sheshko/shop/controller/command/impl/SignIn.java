@@ -3,7 +3,6 @@ package by.sheshko.shop.controller.command.impl;
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.controller.ControllerException;
 import by.sheshko.shop.controller.command.Command;
-import by.sheshko.shop.controller.command.util.ResourceParameter;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
@@ -32,7 +31,7 @@ public final class SignIn implements Command {
             ClientService clientService = serviceFactory.getClientServiceImpl();
             user = clientService.singIn(login, password);
 
-            String welcomeMsg = WELCOME_MESSAGE +", " +login;
+            String welcomeMsg = WELCOME_MESSAGE + ", " + login;
             request.getSession().setAttribute(USER, user);
             //log.info("User is: {}", user.toString());
             request.getSession().setAttribute(MESSAGE, welcomeMsg);

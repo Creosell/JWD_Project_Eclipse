@@ -60,7 +60,7 @@ public final class SQLUserDAO implements UserDAO {
                 throw new DAOException("Wrong login or password");
             }
 
-            if (resultSet.getInt(STATUS) == BLOCKED){
+            if (resultSet.getInt(STATUS) == BLOCKED) {
                 log.info("Attempt to log in from blocked user. Login :{}", login);
                 throw new DAOException("Sorry, you are blocked on this website.");
             }

@@ -7,7 +7,8 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
+import static by.sheshko.shop.controller.command.util.ResourceParameter.HOME_PAGE;
+import static by.sheshko.shop.controller.command.util.ResourceParameter.LANGUAGE;
 
 public final class ChangeLocalCommand implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());

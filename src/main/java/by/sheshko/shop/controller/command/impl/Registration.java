@@ -3,7 +3,6 @@ package by.sheshko.shop.controller.command.impl;
 import by.sheshko.shop.bean.User;
 import by.sheshko.shop.controller.ControllerException;
 import by.sheshko.shop.controller.command.Command;
-import by.sheshko.shop.controller.command.util.ResourceParameter;
 import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
@@ -51,7 +50,7 @@ public final class Registration implements Command {
             log.info("Message from registration is sent: {}", login);
         } catch (ServiceException e) {
             request.getSession().setAttribute("errorMessage", e.getMessage());
-            log.error("Error while registering new user. Login: {}. Password: {}",login, password, e);
+            log.error("Error while registering new user. Login: {}. Password: {}", login, password, e);
             throw new ControllerException(e.getMessage());
         }
         return "registrationSuccess";

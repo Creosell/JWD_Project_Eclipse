@@ -140,16 +140,18 @@ header {
     transition: all 0.3s ease-in-out 0s;
 }
 
-#navbarDropdownMenuLink{
+#navbarDropdownMenuLink {
     color: #d6dae0;
     background-color: var(--bs-nav-tabs-link-active-bg);
     border-color: var(--bs-nav-tabs-link-active-border-color);
 }
+
 #navBarUL {
 
     display: flex;
     align-items: baseline;
 }
+
 header .navbar {
     padding: 17px 0;
 }
@@ -866,9 +868,10 @@ footer .inner-content p a {
     padding: 10px 0 0 0;
 }
 
-.registration-heading .required{
+.registration-heading .required {
     color: #bd2130;
 }
+
 #login-submit {
     display: flex;
     margin-left: auto;

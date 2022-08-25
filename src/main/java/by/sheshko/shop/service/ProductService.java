@@ -1,7 +1,6 @@
 package by.sheshko.shop.service;
 
 import by.sheshko.shop.bean.Product;
-import by.sheshko.shop.dao.DAOException;
 
 import java.util.List;
 

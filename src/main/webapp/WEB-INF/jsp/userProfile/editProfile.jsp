@@ -67,7 +67,7 @@
 
             <p>
                 <label for="password">${newPass}</label>
-                <input  id="password" pattern="${passwordPattern}" type="password" name="newPassword" value=""
+                <input id="password" pattern="${passwordPattern}" type="password" name="newPassword" value=""
                        autocomplete="new-password"
 
                        oninvalid="this.setCustomValidity('${passMessage}')"

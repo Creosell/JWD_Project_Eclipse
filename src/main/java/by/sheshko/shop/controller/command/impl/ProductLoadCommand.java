@@ -3,8 +3,6 @@ package by.sheshko.shop.controller.command.impl;
 import by.sheshko.shop.bean.Product;
 import by.sheshko.shop.controller.ControllerException;
 import by.sheshko.shop.controller.command.Command;
-import by.sheshko.shop.controller.command.util.ResourceParameter;
-import by.sheshko.shop.service.ClientService;
 import by.sheshko.shop.service.ProductService;
 import by.sheshko.shop.service.ServiceException;
 import by.sheshko.shop.service.factory.ServiceFactory;
@@ -23,7 +21,6 @@ public class ProductLoadCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
         Product product;
         int productId;
-
 
         try {
             productId = Integer.parseInt(request.getParameter(PRODUCT_ID));

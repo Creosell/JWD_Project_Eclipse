@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
+import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST;
 
 public class ProductListLoadCommand implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -30,7 +30,7 @@ public class ProductListLoadCommand implements Command {
             log.info("Product list is loaded");
             request.getSession().setAttribute(PRODUCT_LIST, productList);
         } catch (ServiceException e) {
-            throw new ControllerException(e.getMessage(),e); //todo exception
+            throw new ControllerException(e.getMessage(), e); //todo exception
         }
         return "products";
     }

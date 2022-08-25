@@ -2,7 +2,6 @@ package by.sheshko.shop.controller;
 
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.command.CommandName;
-import by.sheshko.shop.controller.command.util.ResourceParameter;
 import by.sheshko.shop.dao.pool.ConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
+import static by.sheshko.shop.controller.command.util.ResourceParameter.ERROR_PAGE;
 
 
 public final class Controller extends HttpServlet {
@@ -75,8 +74,7 @@ public final class Controller extends HttpServlet {
 
             switch (request.getMethod()) {
                 case "GET" -> dispatch(request, response, page);
-                case "POST" ->
-                        response.sendRedirect("controller?command=forward_command&target=" + page);
+                case "POST" -> response.sendRedirect("controller?command=forward_command&target=" + page);
             }
         } catch (ControllerException e) {
             log.error("Exception while processing request", e);

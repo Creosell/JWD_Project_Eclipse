@@ -22,6 +22,10 @@ public class Product implements Serializable {
         this.quantityInOrders = quantityInOrders;
     }
 
+    //TODO equals hash
+    public Product() {
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -33,10 +37,6 @@ public class Product implements Serializable {
                 ", availableQuantity=" + availableQuantity +
                 ", quantityInOrders=" + quantityInOrders +
                 '}';
-    }
-
-    //TODO equals hash
-    public Product() {
     }
 
     public int getProductID() {

@@ -57,5 +57,5 @@ public class EditUserInfoCommand implements Command {
         }
         return "editUserInfoSuccess";
     }
-    }
+}
 

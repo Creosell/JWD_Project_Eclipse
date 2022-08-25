@@ -1,7 +1,6 @@
 package by.sheshko.shop.service.impl;
 
 import by.sheshko.shop.bean.User;
-import by.sheshko.shop.bean.UserSessionInfo;
 import by.sheshko.shop.dao.DAOException;
 import by.sheshko.shop.dao.UserDAO;
 import by.sheshko.shop.dao.factory.DAOFactory;

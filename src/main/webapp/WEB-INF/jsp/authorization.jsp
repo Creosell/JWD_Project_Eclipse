@@ -24,8 +24,6 @@
 <c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-]{8,30}$"/>
 
 
-
-
 <head>
     <title>${title}</title>
 </head>
@@ -33,23 +31,23 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <div class="login-heading">
     <h2>${authorization}</h2>
-        <div class="login-fields-input">
-            <form action="controller" method="post">
-                <input type="hidden" name="command" value="sign_in">
-                <label for="login">${login}</label>
-                <input autofocus required pattern="${loginPattern}" id="login" type="text" name="login" value=""
-                       oninvalid="this.setCustomValidity('${loginMessage}')" oninput="this.setCustomValidity('')">
-                <label for="pass">${password}</label>
-                <input required id="pass" pattern="${passwordPattern}" type="password" name="password" value=""
-                       oninvalid="this.setCustomValidity('${passMessage}')" oninput="this.setCustomValidity('')">
-                <input class="login-input-button" type="submit" value="${log_in}">
-            </form>
-            <form action="controller" method="get">
-                <input type="hidden" name="command" value="forward_command">
-                <input type="hidden" name="target" value="registration">
-                <input type="submit" value="${registration}">
-            </form>
-        </div>
+    <div class="login-fields-input">
+        <form action="controller" method="post">
+            <input type="hidden" name="command" value="sign_in">
+            <label for="login">${login}</label>
+            <input autofocus required pattern="${loginPattern}" id="login" type="text" name="login" value=""
+                   oninvalid="this.setCustomValidity('${loginMessage}')" oninput="this.setCustomValidity('')">
+            <label for="pass">${password}</label>
+            <input required id="pass" pattern="${passwordPattern}" type="password" name="password" value=""
+                   oninvalid="this.setCustomValidity('${passMessage}')" oninput="this.setCustomValidity('')">
+            <input class="login-input-button" type="submit" value="${log_in}">
+        </form>
+        <form action="controller" method="get">
+            <input type="hidden" name="command" value="forward_command">
+            <input type="hidden" name="target" value="registration">
+            <input type="submit" value="${registration}">
+        </form>
+    </div>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 

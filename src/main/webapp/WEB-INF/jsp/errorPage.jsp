@@ -28,7 +28,6 @@
 </c:choose>
 
 
-
 <p>
     ${pageContext.errorData.throwable}
     <c:choose>
