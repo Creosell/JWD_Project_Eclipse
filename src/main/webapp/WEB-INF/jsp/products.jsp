@@ -11,6 +11,17 @@
     document.addEventListener('DOMContentLoaded', loadProducts);
 
     function loadProducts() {
+        fetch("/controller",
+            {
+                method: "POST",
+                body: "command=LOAD_PRODUCT_LIST",
+                headers:
+                    {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    }
+            }).then((response) => {
+            response.ok// do something awesome that makes the world a better place
+        });
     }
 </script>
 <html>

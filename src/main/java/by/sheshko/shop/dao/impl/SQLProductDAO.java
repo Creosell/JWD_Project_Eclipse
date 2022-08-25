@@ -110,9 +110,9 @@ public class SQLProductDAO implements ProductDAO {
                 productList.add(loadProduct(resultSet.getInt(PRODUCT_ID)));
             }
 
-            /*for (Product product : productList) {
+            for (Product product : productList) {
                 log.info("List item: {}", product);
-            }*/
+            }
 
             resultSet.close();
             preparedStatement.close();

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
+
 
 public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
@@ -78,10 +80,10 @@ public final class Controller extends HttpServlet {
             }
         } catch (ControllerException e) {
             log.error("Exception while processing request", e);
-            dispatch(request, response, ResourceParameter.ERROR_PAGE);
+            dispatch(request, response, ERROR_PAGE);
         } catch (NullPointerException e) {
             log.error("Null command name", e);
-            dispatch(request, response, ResourceParameter.ERROR_PAGE);
+            dispatch(request, response, ERROR_PAGE);
         }
     }
 
@@ -92,7 +94,7 @@ public final class Controller extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (NullPointerException e) {
             log.error("Null page", e);
-            dispatch(request, response, ResourceParameter.ERROR_PAGE);
+            dispatch(request, response, ERROR_PAGE);
         }
     }
 }
