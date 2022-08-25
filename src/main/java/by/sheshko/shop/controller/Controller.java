@@ -34,7 +34,6 @@ public final class Controller extends HttpServlet {
         } catch (SQLException e) {
             log.error("Error while connection pool working with database", e);
             throw new ServletException("Error initializing connection pool");
-
         }
         super.init();
     }

@@ -64,7 +64,6 @@ public final class SQLUserDAO implements UserDAO {
                 log.info("Attempt to log in from blocked user. Login :{}", login);
                 throw new DAOException("Sorry, you are blocked on this website.");
             }
-            log.info("Result set result: {}", resultSet.getInt("user_status_id"));
             user = loadUserInfo(login, connection);
 
             resultSet.close();

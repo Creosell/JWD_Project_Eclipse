@@ -5,10 +5,12 @@
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="title_our_products" var="title"/>
+<fmt:message bundle="${loc}" key="currency" var="currency"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
 
-<script>
-    document.addEventListener('DOMContentLoaded', loadProducts);
+
+<%--<script>
+    /*document.addEventListener('DOMContentLoaded', loadProducts);
 
     function loadProducts() {
         fetch("/controller",
@@ -20,10 +22,24 @@
                         "Content-Type": "application/x-www-form-urlencoded"
                     }
             }).then((response) => {
-            response.ok// do something awesome that makes the world a better place
+            response.ok
+        });
+    }*/
+    if (document.readyState === "loading") {
+        fetch("/controller",
+            {
+                method: "POST",
+                body: "command=LOAD_PRODUCT_LIST",
+                headers:
+                    {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    }
+            }).then((response) => {
+            response.ok
         });
     }
-</script>
+</script>--%>
+
 <html>
 <head>
     <title>${title}</title>
@@ -61,7 +77,27 @@
             <div class="col-md-12">
                 <div class="filters-content">
                     <div class="row grid">
-                        <div class="col-lg-4 col-md-4 all des">
+                        <c:forEach var="productListItem" items="${sessionScope.productList}">
+                            <div class="col-lg-4 col-md-4 all des">
+                                <div class="product-item">
+                                    <a href="#"><img alt="" src="../../assets/images/product_01.jpg"></a>
+                                    <div class="down-content">
+                                        <a href="#"><h4>${productListItem.title}</h4></a>
+                                        <h6>${productListItem.price} ${currency}</h6>
+                                        <p>${productListItem.description}</p>
+                                        <ul class="stars">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                        <span>Reviews (12)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                        <%--<div class="col-lg-4 col-md-4 all des">
                             <div class="product-item">
                                 <a href="#"><img alt="" src="../../assets/images/product_01.jpg"></a>
                                 <div class="down-content">
@@ -175,7 +211,7 @@
                                     <span>Reviews (72)</span>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>

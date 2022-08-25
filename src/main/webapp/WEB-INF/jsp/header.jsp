@@ -21,6 +21,30 @@
     </c:otherwise>
 </c:choose>
 
+<c:set var="productListLoaded" value="${false}"/>
+
+<script>
+    document.addEventListener('DOMContentLoaded', loadProducts);
+
+
+        function loadProducts() {
+            if (${productListLoaded == false}){
+            fetch("/controller",
+                {
+                    method: "POST",
+                    body: "command=LOAD_PRODUCT_LIST",
+                    headers:
+                        {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        }
+                }).then((response) => {
+                response.ok
+            });
+        }
+
+    }
+</script>
+
 
 <c:set var="user" value="${sessionScope.user}" scope="session"/>
 <jsp:useBean id="userBean" class="by.sheshko.shop.bean.User" scope="session">
@@ -69,7 +93,7 @@
 
 
 <html>
-<form action="controller" method="post">
+<%--<form action="controller" method="post">
     <input type="hidden" name="command" value="LOAD_PRODUCT">
     <input type="hidden" name="productID" value="1">
     <input type="submit" value="Single product">
@@ -77,7 +101,7 @@
 <form action="controller" method="post">
     <input type="hidden" name="command" value="LOAD_PRODUCT_LIST">
     <input type="submit" value="Product list">
-</form>
+</form>--%>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
