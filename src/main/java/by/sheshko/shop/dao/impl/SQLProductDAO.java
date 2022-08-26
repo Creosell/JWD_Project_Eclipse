@@ -62,14 +62,22 @@ public class SQLProductDAO implements ProductDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                product = new ProductBuilder()
+               /* product = new ProductBuilder()
                         .productID(resultSet.getInt(PRODUCT_ID))
                         .title(resultSet.getString(TITLE))
                         .description(resultSet.getString(DESCRIPTION))
                         .price(resultSet.getDouble(PRICE))
                         .availableQuantity(resultSet.getInt(AVAILABLE_QUANTITY))
                         .quantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS))
-                        .build();
+                        .build();*/
+
+                product = new Product();
+                product.setProductID(resultSet.getInt(PRODUCT_ID));
+                product.setTitle(resultSet.getString(TITLE));
+                product.setDescription(resultSet.getString(DESCRIPTION));
+                product.setPrice(resultSet.getDouble(PRICE));
+                product.setAvailableQuantity(resultSet.getInt(AVAILABLE_QUANTITY));
+                product.setQuantityInOrders(resultSet.getInt(QUANTITY_IN_ORDERS));
 
             }
             //log.info("Product is: {}", product);

@@ -29,7 +29,7 @@ public class ProductListLoadCommand implements Command {
             ProductService productService = serviceFactory.getProductServiceImpl();
             productList = productService.loadProductList();
 
-            log.info("Product list is loaded");
+            //log.info("Product list is loaded");
             request.getSession().setAttribute(PRODUCT_LIST, productList);
         } catch (ServiceException e) {
             throw new ControllerException(e.getMessage(), e); //todo exception

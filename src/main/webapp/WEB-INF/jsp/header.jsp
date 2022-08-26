@@ -26,7 +26,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', loadProducts);
 
-
         function loadProducts() {
             if (${productListLoaded == false}){
             fetch("/controller",
@@ -41,16 +40,8 @@
                 response.ok
             });
         }
-
     }
 </script>
-
-
-<c:set var="user" value="${sessionScope.user}" scope="session"/>
-<jsp:useBean id="userBean" class="by.sheshko.shop.bean.User" scope="session">
-    <jsp:setProperty name="userBean" property="userID" value="${sessionScope.user.userID}"/>
-</jsp:useBean>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', checkAuthorization);
@@ -73,9 +64,7 @@
         document.getElementById("nav-item-sign-up").classList.add("d-none");
         document.getElementById("nav-item-dropdown-menu").classList.remove("d-none");
     }
-
 </script>
-
 
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
@@ -91,24 +80,13 @@
 <fmt:message bundle="${loc}" key="my_orders" var="myOrders"/>
 <fmt:message bundle="${loc}" key="log_out" var="logOut"/>
 
-
 <html>
-<%--<form action="controller" method="post">
-    <input type="hidden" name="command" value="LOAD_PRODUCT">
-    <input type="hidden" name="productID" value="1">
-    <input type="submit" value="Single product">
-</form>
-<form action="controller" method="post">
-    <input type="hidden" name="command" value="LOAD_PRODUCT_LIST">
-    <input type="submit" value="Product list">
-</form>--%>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
           rel="stylesheet">
     <link rel="icon" href="${pageContext.request.contextPath}/assets/images/icon.png" type="image/png">
-
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css"
@@ -122,8 +100,6 @@
 </head>
 
 <body>
-
-
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -153,7 +129,7 @@
                     <li class="nav-item dropdown d-none" id="nav-item-dropdown-menu">
                         <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="${pageContext.request.contextPath}/assets/images/rabbit_login.png"
+                            <img src="${pageContext.request.contextPath}/assets/images/avatars/0.png"
                                  width="40" height="40" class="rounded-circle" alt="userAvatar">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -171,7 +147,6 @@
     </nav>
 </header>
 
-
 <!-- Bootstrap core JavaScript -->
 <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -183,7 +158,6 @@
 <script src="${pageContext.request.contextPath}/assets/js/slick.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/isotope.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/accordions.js"></script>
-
 
 </body>
 
