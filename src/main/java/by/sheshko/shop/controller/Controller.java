@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static by.sheshko.shop.controller.command.CommandName.*;
 import static by.sheshko.shop.controller.command.util.ResourceParameter.ERROR_PAGE;
 
 
@@ -23,6 +24,10 @@ public final class Controller extends HttpServlet {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
     private String target;
+    private CommandName commandName;
+    private Command command;
+    private String page;
+    private String lastUsedPage;
 
     @Override
     public void init() throws ServletException {
@@ -56,13 +61,9 @@ public final class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
         HttpSession session = request.getSession(true);
-        CommandName commandName;
-        Command command;
-        String page;
-        String lastUsedPage;
 
         try {
-            commandName = CommandName.valueOf(request.getParameter("command").toUpperCase());
+            commandName = valueOf(request.getParameter("command").toUpperCase());
             command = provider.getCommand(String.valueOf(commandName));
             //log.info("Command name: {}, Target: {}", commandName, request.getParameter("target"));
             page = command.execute(request, response);
@@ -93,5 +94,10 @@ public final class Controller extends HttpServlet {
             log.error("Null page", e);
             dispatch(request, response, ERROR_PAGE);
         }
+    }
+
+    private void initProductsList(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
+            command = provider.getCommand(String.valueOf(LOAD_PRODUCT_LIST));
+            command.execute(request, response);
     }
 }

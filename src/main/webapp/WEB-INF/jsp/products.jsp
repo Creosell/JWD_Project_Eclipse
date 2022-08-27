@@ -51,17 +51,9 @@
                                     <a href="#"><img alt="" src="../../assets/images/product_01.jpg"></a>
                                     <div class="down-content">
                                         <a href="#"><h4>${productListItem.title}</h4></a>
-
                                         <p>${productListItem.description}</p>
-                                        <ul class="stars">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                        </ul>
-                                        <span>${productListItem.price} ${currency}</span>
                                     </div>
+                                    <span>${productListItem.price} ${currency}</span>
                                 </div>
                             </div>
                         </c:forEach>
