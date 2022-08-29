@@ -48,7 +48,7 @@
                         <c:forEach var="productListItem" items="${sessionScope.productList}" end="8">
                             <div class="col-lg-4 col-md-4 all des">
                                 <div class="product-item">
-                                    <a href="#"><img alt="" src="../../assets/images/product_01.jpg"></a>
+                                    <a href="#"><img alt="" src="../../assets/images/products/${productListItem.productID}.png"></a>
                                     <div class="down-content">
                                         <a href="#"><h4>${productListItem.title}</h4></a>
                                         <p>${productListItem.description}</p>
