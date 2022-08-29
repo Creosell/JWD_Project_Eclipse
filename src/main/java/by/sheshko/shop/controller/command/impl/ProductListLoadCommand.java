@@ -13,6 +13,7 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST;
@@ -30,7 +31,8 @@ public class ProductListLoadCommand implements Command {
             productList = productService.loadProductList();
 
             //log.info("Product list is loaded");
-            request.getSession().setAttribute(PRODUCT_LIST, productList);
+
+            request.getSession().setAttribute(PRODUCT_LIST, );
         } catch (ServiceException e) {
             throw new ControllerException(e.getMessage(), e); //todo exception
         }
