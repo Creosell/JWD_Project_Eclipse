@@ -18,4 +18,5 @@ public class SignOut implements Command {
         request.getSession().invalidate();
         return HOME_PAGE;
     }
+
 }

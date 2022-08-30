@@ -20,4 +20,5 @@ public final class ChangeLocalCommand implements Command {
         log.info("Language is changed. Value is: {}", sessionLanguage);//todo delete log
         return HOME_PAGE;
     }
+
 }

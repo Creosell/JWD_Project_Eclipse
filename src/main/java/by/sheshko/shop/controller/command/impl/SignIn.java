@@ -44,4 +44,5 @@ public final class SignIn implements Command {
             throw new ControllerException(e.getMessage(), e);//todo ненужное описание ошибки
         }
     }
+
 }

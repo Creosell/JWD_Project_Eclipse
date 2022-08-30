@@ -13,4 +13,5 @@ public final class WrongRequest implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
         return ERROR_PAGE;
     }
+
 }

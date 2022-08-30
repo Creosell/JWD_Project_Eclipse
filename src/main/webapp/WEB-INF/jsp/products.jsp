@@ -6,7 +6,10 @@
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="title_our_products" var="title"/>
 <fmt:message bundle="${loc}" key="currency" var="currency"/>
+<fmt:message bundle="${loc}" key="stock" var="stock"/>
+<fmt:message bundle="${loc}" key="quantity" var="quantity"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
+
 
 <html>
 <head>
@@ -45,7 +48,7 @@
             <div class="col-md-12">
                 <div class="filters-content">
                     <div class="row grid">
-                        <c:forEach var="productListItem" items="${sessionScope.productList}" end="8">
+                        <c:forEach var="productListItem" items="${applicationScope.productList}" end="8">
                             <div class="col-lg-4 col-md-4 all des">
                                 <div class="product-item">
                                     <a href="#"><img alt="" src="../../assets/images/products/${productListItem.productID}.png"></a>
@@ -53,7 +56,10 @@
                                         <a href="#"><h4>${productListItem.title}</h4></a>
                                         <p>${productListItem.description}</p>
                                     </div>
-                                    <span>${productListItem.price} ${currency}</span>
+                                    <div class="product-item-footer">
+                                        <p>${stock}: ${productListItem.availableQuantity} ${quantity}</p>
+                                        <span>${productListItem.price} ${currency}</span>
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>

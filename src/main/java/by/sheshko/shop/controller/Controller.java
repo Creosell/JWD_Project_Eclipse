@@ -23,7 +23,7 @@ public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
-    private String target;
+    private String target; //todo useless param?
     private CommandName commandName;
     private Command command;
     private String page;
@@ -31,7 +31,7 @@ public final class Controller extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        try {
+       /* try {
             ConnectionPool.getInstance().initPoolData();
         } catch (ClassNotFoundException e) {
             log.error("Error while trying to find driver class for connection pool", e);
@@ -39,7 +39,7 @@ public final class Controller extends HttpServlet {
         } catch (SQLException e) {
             log.error("Error while connection pool working with database", e);
             throw new ServletException("Error initializing connection pool");
-        }
+        }*/
         super.init();
     }
 
@@ -97,7 +97,7 @@ public final class Controller extends HttpServlet {
     }
 
     private void initProductsList(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-            command = provider.getCommand(String.valueOf(LOAD_PRODUCT_LIST));
-            command.execute(request, response);
+                    command = provider.getCommand(String.valueOf(LOAD_PRODUCT_LIST));
+                    command.execute(request, response);
     }
 }

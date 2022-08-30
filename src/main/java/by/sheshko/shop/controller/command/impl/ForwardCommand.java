@@ -27,5 +27,6 @@ public final class ForwardCommand implements Command {
         }
         return page;
     }
+
 }
 

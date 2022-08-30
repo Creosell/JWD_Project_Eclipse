@@ -38,4 +38,7 @@
         <location>/WEB-INF/jsp/errorPage.jsp</location>
     </error-page>
 
+    <listener>
+        <listener-class>by.sheshko.shop.controller.AppContextListener</listener-class>
+    </listener>
 </web-app>

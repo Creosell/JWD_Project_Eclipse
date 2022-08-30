@@ -21,13 +21,14 @@
     </c:otherwise>
 </c:choose>
 
+
 <c:set var="productListLoaded" value="${false}"/>
 
 <script>
     document.addEventListener('DOMContentLoaded', loadProducts);
 
         function loadProducts() {
-            if (${productListLoaded == false}){
+            if (${productListLoaded == false}){ //todo False true  loading
             fetch("/controller",
                 {
                     method: "POST",

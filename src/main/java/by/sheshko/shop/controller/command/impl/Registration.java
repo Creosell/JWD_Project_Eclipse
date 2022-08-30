@@ -55,4 +55,5 @@ public final class Registration implements Command {
         }
         return "registrationSuccess";
     }
+
 }
