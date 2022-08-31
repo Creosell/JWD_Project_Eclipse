@@ -19,6 +19,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST;
+import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST_SIZE;
 
 public class ProductListLoadCommand implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -35,6 +36,7 @@ public class ProductListLoadCommand implements Command {
             productList.sort(new ProductComparator());
             //log.info("Product list is loaded");
 
+            request.getServletContext().setAttribute(PRODUCT_LIST_SIZE, productList.size());
             request.getServletContext().setAttribute(PRODUCT_LIST, productList);
         } catch (ServiceException e) {
             throw new ControllerException(e.getMessage(), e); //todo exception

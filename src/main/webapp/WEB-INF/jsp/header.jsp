@@ -20,7 +20,7 @@
         <c:set var="message" value="${null}"/>
     </c:otherwise>
 </c:choose>
-
+<br>
 
 <c:set var="productListLoaded" value="${false}"/>
 
@@ -71,7 +71,6 @@
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>
 <fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
-<%--<fmt:message bundle="${loc}" key="" var=""/>--%>
 <fmt:message bundle="${loc}" key="about_us" var="aboutUs"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
 <fmt:message bundle="${loc}" key="contact_us" var="contactUs"/>
@@ -80,6 +79,7 @@
 <fmt:message bundle="${loc}" key="my_profile" var="myProfile"/>
 <fmt:message bundle="${loc}" key="my_orders" var="myOrders"/>
 <fmt:message bundle="${loc}" key="log_out" var="logOut"/>
+<%--<fmt:message bundle="${loc}" key="" var=""/>--%>
 
 <html>
 <head>

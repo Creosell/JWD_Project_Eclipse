@@ -10,7 +10,6 @@
 <fmt:message bundle="${loc}" key="quantity" var="quantity"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
 
-
 <html>
 <head>
     <title>${title}</title>
@@ -48,10 +47,13 @@
             <div class="col-md-12">
                 <div class="filters-content">
                     <div class="row grid">
-                        <c:forEach var="productListItem" items="${applicationScope.productList}" end="8">
+                        <c:forEach var="productListItem" items="${applicationScope.productList}"
+                                   begin="${applicationScope.productListSize-1}" end="${applicationScope.productListSize-6}"
+                        step="-1">
                             <div class="col-lg-4 col-md-4 all des">
                                 <div class="product-item">
-                                    <a href="#"><img alt="" src="../../assets/images/products/${productListItem.productID}.png"></a>
+                                    <a href="#"><img alt=""
+                                                     src="../../assets/images/products/${productListItem.productID}.png"></a>
                                     <div class="down-content">
                                         <a href="#"><h4>${productListItem.title}</h4></a>
                                         <p>${productListItem.description}</p>
@@ -66,15 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <ul class="pages">
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </div>
