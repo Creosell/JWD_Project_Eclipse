@@ -9,7 +9,7 @@
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="error" var="error"/>
-<fmt:message bundle="${loc}" key="request_error" var="reqError"/>
+<fmt:message bundle="${loc}" key="requestError" var="reqError"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
 <c:set var="lastUsedPage" scope="request" value="${sessionScope.lastUsedPage}"/>
 <c:set var="errorMessage" scope="session" value="${sessionScope.errorMessage}"/>

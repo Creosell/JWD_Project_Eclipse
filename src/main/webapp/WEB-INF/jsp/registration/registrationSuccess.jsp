@@ -10,8 +10,8 @@
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
 <fmt:message bundle="${loc}" key="registration" var="registration"/>
-<fmt:message bundle="${loc}" key="new_user" var="newUser"/>
-<fmt:message bundle="${loc}" key="was_successfully_registered" var="success"/>
+<fmt:message bundle="${loc}" key="newUser" var="newUser"/>
+<fmt:message bundle="${loc}" key="wasSuccessfullyRegistered" var="success"/>
 
 <!DOCTYPE html>
 <html>

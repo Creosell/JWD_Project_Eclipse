@@ -4,15 +4,15 @@
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
-<fmt:message bundle="${loc}" key="title_user_profile" var="title"/>
+<fmt:message bundle="${loc}" key="titleUserProfile" var="title"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
 <fmt:message bundle="${loc}" key="name" var="name"/>
 <fmt:message bundle="${loc}" key="surname" var="surname"/>
 <fmt:message bundle="${loc}" key="email" var="email"/>
 <fmt:message bundle="${loc}" key="address" var="address"/>
 <fmt:message bundle="${loc}" key="phonenumber" var="phonenumber"/>
-<fmt:message bundle="${loc}" key="registration_time" var="registrationTime"/>
-<fmt:message bundle="${loc}" key="edit_profile" var="editProfile"/>
+<fmt:message bundle="${loc}" key="registrationTime" var="registrationTime"/>
+<fmt:message bundle="${loc}" key="editProfile" var="editProfile"/>
 
 <html>
 <head>

@@ -2,7 +2,6 @@ package by.sheshko.shop.controller;
 
 import by.sheshko.shop.controller.command.Command;
 import by.sheshko.shop.controller.command.CommandName;
-import by.sheshko.shop.dao.pool.ConnectionPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 
-import static by.sheshko.shop.controller.command.CommandName.*;
+import static by.sheshko.shop.controller.command.CommandName.LOAD_PRODUCT_LIST;
+import static by.sheshko.shop.controller.command.CommandName.valueOf;
 import static by.sheshko.shop.controller.command.util.ResourceParameter.ERROR_PAGE;
 
 
@@ -23,29 +22,14 @@ public final class Controller extends HttpServlet {
     private static final long serialVersionUID = 4296569594467128804L;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final CommandProvider provider = new CommandProvider();
-    private String target; //todo useless param?
-    private CommandName commandName;
-    private Command command;
-    private String page;
-    private String lastUsedPage;
 
     @Override
     public void init() throws ServletException {
-       /* try {
-            ConnectionPool.getInstance().initPoolData();
-        } catch (ClassNotFoundException e) {
-            log.error("Error while trying to find driver class for connection pool", e);
-            throw new ServletException("Error finding connection pool class");
-        } catch (SQLException e) {
-            log.error("Error while connection pool working with database", e);
-            throw new ServletException("Error initializing connection pool");
-        }*/
         super.init();
     }
 
     @Override
     public void destroy() {
-        ConnectionPool.getInstance().dispose();
         super.destroy();
     }
 
@@ -59,8 +43,12 @@ public final class Controller extends HttpServlet {
         processRequest(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
+        CommandName commandName;
+        Command command;
+        String page;
+        String lastUsedPage;
 
         try {
             commandName = valueOf(request.getParameter("command").toUpperCase());
@@ -85,7 +73,7 @@ public final class Controller extends HttpServlet {
         }
     }
 
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, String page) throws javax.servlet.ServletException, java.io.IOException {
+    private void dispatch(HttpServletRequest request, HttpServletResponse response, String page) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
 
         try {
@@ -94,10 +82,5 @@ public final class Controller extends HttpServlet {
             log.error("Null page", e);
             dispatch(request, response, ERROR_PAGE);
         }
-    }
-
-    private void initProductsList(HttpServletRequest request, HttpServletResponse response) throws ControllerException {
-                    command = provider.getCommand(String.valueOf(LOAD_PRODUCT_LIST));
-                    command.execute(request, response);
     }
 }

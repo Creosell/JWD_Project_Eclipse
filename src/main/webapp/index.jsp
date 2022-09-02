@@ -8,17 +8,23 @@
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
-<fmt:message bundle="${loc}" key="title_homepage" var="title"/>
-<fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
-<fmt:message bundle="${loc}" key="log_in" var="log_in"/>
+<fmt:message bundle="${loc}" key="titleHomepage" var="title"/>
+<fmt:message bundle="${loc}" key="localizationButtonRu" var="ru_button"/>
+<fmt:message bundle="${loc}" key="logIn" var="log_in"/>
 <fmt:message bundle="${loc}" key="registration" var="registration"/>
-<fmt:message bundle="${loc}" key="sign_out" var="sign_out"/>
-<fmt:message bundle="${loc}" key="best_offer" var="bestOffer"/>
+<fmt:message bundle="${loc}" key="signOut" var="sign_out"/>
+<fmt:message bundle="${loc}" key="bestOffer" var="bestOffer"/>
 <fmt:message bundle="${loc}" key="overclocking" var="overclocking"/>
 <fmt:message bundle="${loc}" key="ultimate_gaming" var="ultimateGaming"/>
 <fmt:message bundle="${loc}" key="currency" var="currency"/>
 <fmt:message bundle="${loc}" key="stock" var="stock"/>
 <fmt:message bundle="${loc}" key="quantity" var="quantity"/>
+<fmt:message bundle="${loc}" key="ourProducts" var="ourProducts"/>
+<fmt:message bundle="${loc}" key="viewAllProducts" var="viewAllProducts"/>
+<fmt:message bundle="${loc}" key="aboutSmartThings" var="aboutSmartThings"/>
+<fmt:message bundle="${loc}" key="aboutDescription" var="aboutDescription"/>
+<fmt:message bundle="${loc}" key="loginAndRegistration" var="loginAndRegistration"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,9 +62,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-heading">
-                    <h2>Latest Products</h2>
-                    <a href="controller?command=forward_command&target=products">view all products <i
-                            class="fa fa-angle-right"></i></a>
+                    <h2>${ourProducts}</h2>
+                    <a href="controller?command=forward_command&target=products">${viewAllProducts}
+                        <i class="fa fa-angle-right"></i></a>
                 </div>
             </div>
             <c:forEach var="productListItem" items="${applicationScope.productList}" end="2">
@@ -85,19 +91,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-heading">
-                    <h2>About Sixteen Clothing</h2>
+                    <h2>${aboutSmartThings}</h2>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="left-content">
-                    <h4>Looking for the best products?</h4>
-                    <p><a rel="nofollow" href="https://templatemo.com/tm-546-sixteen-clothing" target="_parent">This
-                        template</a> is free to use for your business websites. However, you have no permission to
-                        redistribute the downloadable ZIP file on any template collection website. <a rel="nofollow"
-                                                                                                      href="https://templatemo.com/contact">Contact
-                            us</a> for more info.</p>
+
+                    <p>${aboutDescription}</p>
+
                     <ul class="featured-list">
-                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a> ${loginAndRegistration} </a></li>
                         <li><a href="#">Consectetur an adipisicing elit</a></li>
                         <li><a href="#">It aquecorporis nulla aspernatur</a></li>
                         <li><a href="#">Corporis, omnis doloremque</a></li>

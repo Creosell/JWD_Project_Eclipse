@@ -4,22 +4,22 @@
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
-<fmt:message bundle="${loc}" key="edit_profile" var="title"/>
+<fmt:message bundle="${loc}" key="editProfile" var="title"/>
 <fmt:message bundle="${loc}" key="name" var="name"/>
 <fmt:message bundle="${loc}" key="surname" var="surname"/>
 <fmt:message bundle="${loc}" key="email" var="email"/>
 <fmt:message bundle="${loc}" key="address" var="address"/>
 <fmt:message bundle="${loc}" key="phonenumber" var="phonenumber"/>
-<fmt:message bundle="${loc}" key="registration_time" var="registrationTime"/>
+<fmt:message bundle="${loc}" key="registrationTime" var="registrationTime"/>
 <fmt:message bundle="${loc}" key="change_info" var="changeInfo"/>
-<fmt:message bundle="${loc}" key="old_password" var="oldPass"/>
-<fmt:message bundle="${loc}" key="phonenumber_validation_message" var="phoneMessage"/>
-<fmt:message bundle="${loc}" key="email_validation_message" var="emailMessage"/>
-<fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
-<fmt:message bundle="${loc}" key="confirm_password" var="confirmPassword"/>
-<fmt:message bundle="${loc}" key="new_password" var="newPass"/>
-<fmt:message bundle="${loc}" key="pass_is_not_match" var="passError"/>
-<fmt:message bundle="${loc}" key="required_fields" var="requiredFields"/>
+<fmt:message bundle="${loc}" key="oldPassword" var="oldPass"/>
+<fmt:message bundle="${loc}" key="phonenumberValidationMessage" var="phoneMessage"/>
+<fmt:message bundle="${loc}" key="emailValidationMessage" var="emailMessage"/>
+<fmt:message bundle="${loc}" key="passwordValidationMessage" var="passMessage"/>
+<fmt:message bundle="${loc}" key="confirmPassword" var="confirmPassword"/>
+<fmt:message bundle="${loc}" key="newPassword" var="newPass"/>
+<fmt:message bundle="${loc}" key="passIsNotMatch" var="passError"/>
+<fmt:message bundle="${loc}" key="requiredFields" var="requiredFields"/>
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
 <c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-]{8,30}$"/>

@@ -69,16 +69,16 @@
 
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
-<fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>
-<fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
-<fmt:message bundle="${loc}" key="about_us" var="aboutUs"/>
+<fmt:message bundle="${loc}" key="localizationButtonEn" var="en_button"/>
+<fmt:message bundle="${loc}" key="localizationButtonRu" var="ru_button"/>
+<fmt:message bundle="${loc}" key="aboutUs" var="aboutUs"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
-<fmt:message bundle="${loc}" key="contact_us" var="contactUs"/>
-<fmt:message bundle="${loc}" key="our_products" var="ourProducts"/>
-<fmt:message bundle="${loc}" key="log_in" var="logIn"/>
-<fmt:message bundle="${loc}" key="my_profile" var="myProfile"/>
-<fmt:message bundle="${loc}" key="my_orders" var="myOrders"/>
-<fmt:message bundle="${loc}" key="log_out" var="logOut"/>
+<fmt:message bundle="${loc}" key="contactUs" var="contactUs"/>
+<fmt:message bundle="${loc}" key="ourProducts" var="ourProducts"/>
+<fmt:message bundle="${loc}" key="logIn" var="logIn"/>
+<fmt:message bundle="${loc}" key="myProfile" var="myProfile"/>
+<fmt:message bundle="${loc}" key="myOrders" var="myOrders"/>
+<fmt:message bundle="${loc}" key="logOut" var="logOut"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
 
 <html>

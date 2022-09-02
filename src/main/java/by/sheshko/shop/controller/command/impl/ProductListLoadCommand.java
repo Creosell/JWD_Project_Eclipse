@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletRequestEvent;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.List;
 import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST;
 import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST_SIZE;
 
-public class ProductListLoadCommand implements Command {
+public final class ProductListLoadCommand implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override

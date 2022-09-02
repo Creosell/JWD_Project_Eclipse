@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class ProductServiceImpl implements ProductService {
+public final class ProductServiceImpl implements ProductService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override

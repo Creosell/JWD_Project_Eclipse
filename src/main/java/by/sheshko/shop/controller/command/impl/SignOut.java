@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import static by.sheshko.shop.controller.command.util.ResourceParameter.HOME_PAGE;
 
-public class SignOut implements Command {
+public final class SignOut implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override

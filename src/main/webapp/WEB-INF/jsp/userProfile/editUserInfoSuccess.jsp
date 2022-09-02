@@ -8,8 +8,8 @@
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
-<fmt:message bundle="${loc}" key="edit_profile" var="title"/>
-<fmt:message bundle="${loc}" key="your_data_success" var="success"/>
+<fmt:message bundle="${loc}" key="editProfile" var="title"/>
+<fmt:message bundle="${loc}" key="yourDataSuccess" var="success"/>
 
 <!DOCTYPE html>
 <html>

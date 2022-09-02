@@ -12,20 +12,20 @@
 <fmt:message bundle="${loc}" key="registration" var="registration"/>
 <fmt:message bundle="${loc}" key="login" var="login"/>
 <fmt:message bundle="${loc}" key="password" var="pass"/>
-<fmt:message bundle="${loc}" key="sign_up" var="signUp"/>
-<fmt:message bundle="${loc}" key="confirm_password" var="confirmPassword"/>
-<fmt:message bundle="${loc}" key="login_validation_message" var="loginMessage"/>
-<fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
-<fmt:message bundle="${loc}" key="confirm_password_message" var="passConfirmMessage"/>
-<fmt:message bundle="${loc}" key="pass_is_not_match" var="passError"/>
+<fmt:message bundle="${loc}" key="signUp" var="signUp"/>
+<fmt:message bundle="${loc}" key="confirmPassword" var="confirmPassword"/>
+<fmt:message bundle="${loc}" key="loginValidationMessage" var="loginMessage"/>
+<fmt:message bundle="${loc}" key="passwordValidationMessage" var="passMessage"/>
+<fmt:message bundle="${loc}" key="confirmPasswordMessage" var="passConfirmMessage"/>
+<fmt:message bundle="${loc}" key="passIsNotMatch" var="passError"/>
 <fmt:message bundle="${loc}" key="name" var="name"/>
 <fmt:message bundle="${loc}" key="surname" var="surname"/>
 <fmt:message bundle="${loc}" key="email" var="email"/>
 <fmt:message bundle="${loc}" key="address" var="address"/>
 <fmt:message bundle="${loc}" key="phonenumber" var="phonenumber"/>
-<fmt:message bundle="${loc}" key="required_fields" var="requiredFields"/>
-<fmt:message bundle="${loc}" key="phonenumber_validation_message" var="phoneMessage"/>
-<fmt:message bundle="${loc}" key="email_validation_message" var="emailMessage"/>
+<fmt:message bundle="${loc}" key="requiredFields" var="requiredFields"/>
+<fmt:message bundle="${loc}" key="phonenumberValidationMessage" var="phoneMessage"/>
+<fmt:message bundle="${loc}" key="emailValidationMessage" var="emailMessage"/>
 
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>

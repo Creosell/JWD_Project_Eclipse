@@ -4,9 +4,9 @@
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
-<fmt:message bundle="${loc}" key="title_about_page" var="title"/>
+<fmt:message bundle="${loc}" key="titleAboutPage" var="title"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
-<fmt:message bundle="${loc}" key="about_us" var="aboutUs"/>
+<fmt:message bundle="${loc}" key="aboutUs" var="aboutUs"/>
 
 <html>
 <head>

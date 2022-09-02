@@ -11,14 +11,14 @@
 <fmt:setBundle basename="localization" var="loc"/>
 <fmt:message bundle="${loc}" key="homepage" var="homepage"/>
 <fmt:message bundle="${loc}" key="authorization" var="authorization"/>
-<fmt:message bundle="${loc}" key="log_in" var="log_in"/>
+<fmt:message bundle="${loc}" key="logIn" var="log_in"/>
 <fmt:message bundle="${loc}" key="login" var="login"/>
 <fmt:message bundle="${loc}" key="password" var="password"/>
 <fmt:message bundle="${loc}" key="registration" var="registration"/>
-<fmt:message bundle="${loc}" key="enter_your_password" var="enter_pass"/>
-<fmt:message bundle="${loc}" key="title_log_in" var="title"/>
-<fmt:message bundle="${loc}" key="login_validation_message" var="loginMessage"/>
-<fmt:message bundle="${loc}" key="password_validation_message" var="passMessage"/>
+<fmt:message bundle="${loc}" key="enterYourPassword" var="enter_pass"/>
+<fmt:message bundle="${loc}" key="titleLogIn" var="title"/>
+<fmt:message bundle="${loc}" key="loginValidationMessage" var="loginMessage"/>
+<fmt:message bundle="${loc}" key="passwordValidationMessage" var="passMessage"/>
 
 <c:set var="loginPattern" value="^[a-zA-Z0-9]{4,16}$"/>
 <c:set var="passwordPattern" value="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d-]{8,30}$"/>

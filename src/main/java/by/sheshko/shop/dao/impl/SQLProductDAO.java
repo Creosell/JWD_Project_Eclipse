@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class SQLProductDAO implements ProductDAO {
+public final class SQLProductDAO implements ProductDAO {
 
     private static final String PRODUCT_ID = "id_product";
     private static final String PRODUCTS_CATEGORIES_ID = "products_categories_id";

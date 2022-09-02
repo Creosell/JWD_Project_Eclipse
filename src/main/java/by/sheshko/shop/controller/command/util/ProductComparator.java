@@ -5,7 +5,7 @@ import by.sheshko.shop.dao.pool.ConnectionPool;
 
 import java.util.Comparator;
 
-public class ProductComparator implements Comparator<Product> {
+public final class ProductComparator implements Comparator<Product> {
     private static final ProductComparator INSTANCE = new ProductComparator();
 
     public static ProductComparator getInstance() {

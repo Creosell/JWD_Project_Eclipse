@@ -4,7 +4,7 @@
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
-<fmt:message bundle="${loc}" key="title_our_products" var="title"/>
+<fmt:message bundle="${loc}" key="titleOurProducts" var="title"/>
 <fmt:message bundle="${loc}" key="currency" var="currency"/>
 <fmt:message bundle="${loc}" key="stock" var="stock"/>
 <fmt:message bundle="${loc}" key="quantity" var="quantity"/>
@@ -47,9 +47,7 @@
             <div class="col-md-12">
                 <div class="filters-content">
                     <div class="row grid">
-                        <c:forEach var="productListItem" items="${applicationScope.productList}"
-                                   begin="${applicationScope.productListSize-1}" end="${applicationScope.productListSize-6}"
-                        step="-1">
+                        <c:forEach var="productListItem" items="${applicationScope.productList}">
                             <div class="col-lg-4 col-md-4 all des">
                                 <div class="product-item">
                                     <a href="#"><img alt=""

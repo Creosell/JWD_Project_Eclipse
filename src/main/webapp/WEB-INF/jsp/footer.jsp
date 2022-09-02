@@ -5,10 +5,10 @@
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="localization" var="loc"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
-<fmt:message bundle="${loc}" key="my_profile" var="myProfile"/>
+<fmt:message bundle="${loc}" key="myProfile" var="myProfile"/>
 <fmt:message bundle="${loc}" key="vkontakte" var="vkontakte"/>
-<fmt:message bundle="${loc}" key="localization_button.en" var="en_button"/>
-<fmt:message bundle="${loc}" key="localization_button.ru" var="ru_button"/>
+<fmt:message bundle="${loc}" key="localizationButtonEn" var="en_button"/>
+<fmt:message bundle="${loc}" key="localizationButtonRu" var="ru_button"/>
 <!DOCTYPE html>
 <html>
 <body>

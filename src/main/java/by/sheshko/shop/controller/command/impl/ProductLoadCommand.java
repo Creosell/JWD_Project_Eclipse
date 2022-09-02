@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
 
-public class ProductLoadCommand implements Command {
+public final class ProductLoadCommand implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
