@@ -9,6 +9,7 @@
 <fmt:message bundle="${loc}" key="stock" var="stock"/>
 <fmt:message bundle="${loc}" key="quantity" var="quantity"/>
 <%--<fmt:message bundle="${loc}" key="" var=""/>--%>
+<fmt:message bundle="${loc}" key="allProducts" var="allProducts"/>
 
 <html>
 <head>
@@ -37,7 +38,7 @@
             <div class="col-md-12">
                 <div class="filters">
                     <ul>
-                        <li class="active" data-filter="*">All Products</li>
+                        <li class="active" data-filter="*">${allProducts}</li>
                         <li data-filter=".des">Featured</li>
                         <li data-filter=".dev">Flash Deals</li>
                         <li data-filter=".gra">Last Minute</li>

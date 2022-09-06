@@ -23,9 +23,15 @@
 <fmt:message bundle="${loc}" key="viewAllProducts" var="viewAllProducts"/>
 <fmt:message bundle="${loc}" key="aboutSmartThings" var="aboutSmartThings"/>
 <fmt:message bundle="${loc}" key="aboutDescription" var="aboutDescription"/>
-<fmt:message bundle="${loc}" key="loginAndRegistration" var="loginAndRegistration"/>
+<fmt:message bundle="${loc}" key="loginAndSingOut" var="loginAndSingOut"/>
+<fmt:message bundle="${loc}" key="productInformation" var="productInformation"/>
+<fmt:message bundle="${loc}" key="informationDelete" var="informationDelete"/>
+<fmt:message bundle="${loc}" key="informationCheck" var="informationCheck"/>
+<fmt:message bundle="${loc}" key="readMore" var="readMore"/>
+<fmt:message bundle="${loc}" key="productAvailability" var="productAvailability"/>
+<fmt:message bundle="${loc}" key="productRequest" var="productRequest"/>
+<fmt:message bundle="${loc}" key="checkNow" var="checkNow"/>
 
-<!DOCTYPE html>
 <html>
 <head>
     <title>${title}</title>
@@ -100,13 +106,13 @@
                     <p>${aboutDescription}</p>
 
                     <ul class="featured-list">
-                        <li><a> ${loginAndRegistration} </a></li>
-                        <li><a href="#">Consectetur an adipisicing elit</a></li>
-                        <li><a href="#">It aquecorporis nulla aspernatur</a></li>
-                        <li><a href="#">Corporis, omnis doloremque</a></li>
-                        <li><a href="#">Non cum id reprehenderit</a></li>
+                        <li><a> ${loginAndSingOut} </a></li>
+                        <li><a href="#">${registration}</a></li>
+                        <li><a href="#">${informationCheck}</a></li>
+                        <li><a href="#">${informationDelete}</a></li>
+                        <li><a href="#">${productInformation}</a></li>
                     </ul>
-                    <a href="controller?command=forward_command&target=about" class="filled-button">Read More</a>
+                    <a href="controller?command=forward_command&target=about" class="filled-button">${readMore}</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -126,12 +132,11 @@
                 <div class="inner-content">
                     <div class="row">
                         <div class="col-md-8">
-                            <h4>Creative &amp; Unique <em>Sixteen</em> Products</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque corporis amet elite
-                                author nulla.</p>
+                            <h4>${productAvailability}</h4>
+                            <p>${productRequest}</p>
                         </div>
                         <div class="col-md-4">
-                            <a href="#" class="filled-button">Purchase Now</a>
+                            <a href="controller?command=forward_command&target=contact" class="filled-button">${checkNow}</a>
                         </div>
                     </div>
                 </div>
@@ -139,30 +144,6 @@
         </div>
     </div>
 </div>
-
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
-
-
-<%--
-<div id="loginButton">
-    <form name="loginForm" action="controller" method="post">
-        <input type="hidden" name="command" value="forward_command">
-        <input type="hidden" name="target" value="log_in">
-        <input type="submit" value="${log_in}">
-    </form>
-</div>
-<div id="registrationButton">
-    <form action="controller" method="post">
-        <input type="hidden" name="command" value="forward_command">
-        <input type="hidden" name="target" value="registration">
-        <input type="submit" value="${registration}">
-    </form>
-</div>
-<br>
-<form action="controller" method="post">
-    <input type="hidden" name="command" value="sign_out">
-    <input type="submit" value="${sign_out}">
-</form>
---%>
 </body>
 </html>
