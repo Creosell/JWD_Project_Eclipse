@@ -76,7 +76,7 @@
             <c:forEach var="productListItem" items="${applicationScope.productList}" end="2">
                 <div class="col-lg-4 col-md-4 all des">
                     <div class="product-item">
-                        <a href="#"><img alt="" src="../../assets/images/products/${productListItem.productID}.png"></a>
+                        <a href="controller?command=forward_command&target=productPage"><img alt="" src="../../assets/images/products/${productListItem.productID}.png"></a>
                         <div class="down-content">
                             <a href="#"><h4>${productListItem.title}</h4></a>
                             <p>${productListItem.description}</p>

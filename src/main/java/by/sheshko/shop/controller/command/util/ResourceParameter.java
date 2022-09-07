@@ -25,9 +25,11 @@ public final class ResourceParameter {
     public static final String REGISTRATION_PAGE = pages.getString("page.registration");
     public static final String HOME_PAGE = pages.getString("page.homepage");
     public static final String LOG_IN_PAGE = pages.getString("page.logIn");
-    public static final String PRODUCT_PAGE = pages.getString("page.products");
+    public static final String PRODUCTS_PAGE = pages.getString("page.products");
+    public static final String PRODUCT_PAGE = pages.getString("page.productPage");
     public static final String CONTACT_PAGE = pages.getString("page.contact");
     public static final String REGISTRATION_SUCCESS = pages.getString("page.registrationSuccess");
     static final ResourceBundle localization = ResourceBundle.getBundle("localization");
     public static final String WELCOME_MESSAGE = localization.getString("welcomeMessage");
+
 }

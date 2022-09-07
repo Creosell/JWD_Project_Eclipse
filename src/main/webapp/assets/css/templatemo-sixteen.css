@@ -1021,6 +1021,40 @@ footer .inner-content p a {
     padding: 15px 0;
 }
 
+/*Product page*/
+
+.count {
+    display: flex;
+}
+
+.count .change {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #f33f3f;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.count input {
+    max-width: 55px;
+    text-align: center;
+    font-weight: 700;
+    background-color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin: 0 5px;
+}
+
+.count .minus.min {
+    background-color: #989797;
+}
+
+
 /* Responsive Style */
 @media (max-width: 768px) {
     .banner .text-content {
@@ -1176,4 +1210,6 @@ footer .inner-content p a {
         right: 0;
         bottom: 0;
     }
+
+
 }

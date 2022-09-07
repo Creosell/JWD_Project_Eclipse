@@ -19,6 +19,41 @@ function hideSignUp() {
     document.getElementById("nav-item-sign-up").classList.add("d-none");
     document.getElementById("nav-item-dropdown-menu").classList.remove("d-none");
 }*/
+//Product page item counter
+document.querySelectorAll('.count .plus').forEach(item => {
+
+    item.addEventListener('click', function () {
+
+        ++item.parentElement.querySelector('input').value;
+
+        if (item.parentElement.querySelector('input').value > 1) {
+
+            item.parentElement.querySelector('.minus').classList.remove('min');
+
+        }
+
+    });
+
+});
+
+document.querySelectorAll('.count .minus').forEach(item => {
+
+    item.addEventListener('click', function () {
+
+        --item.parentElement.querySelector('input').value;
+
+        if (item.parentElement.querySelector('input').value < 2) {
+
+            item.parentElement.querySelector('input').value = 1
+
+            item.classList.add('min');
+
+        }
+
+    });
+
+});
+
 
 //Nav-items active script
 for (let navElement of document.getElementsByClassName("nav-item")) {
