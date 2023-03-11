@@ -20,7 +20,7 @@ public final class ProductServiceImpl implements ProductService {
         ProductDAO productDAO = daoFactory.getProductDAOImpl();
         Product product = null;
         try {
-            product = productDAO.loadProduct(1);
+            product = productDAO.loadProduct(productID);
         } catch (DAOException e) {
             log.error("Error loading product. ProductID: {}", productID);
             throw new ServiceException(e.getMessage());

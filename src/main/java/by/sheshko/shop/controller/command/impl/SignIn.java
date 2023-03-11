@@ -36,7 +36,7 @@ public final class SignIn implements Command {
             //log.info("User is: {}", user.toString());
             request.getSession().setAttribute(MESSAGE, welcomeMsg);
             //log.info("Message from login is sent: {}", welcomeMsg);
-            return "homepage";
+            return HOME_PAGE_POST;
             //return ResourceParameter.HOME_PAGE;
         } catch (ServiceException e) {
             log.info("Error while log on site for login {}", login, e);

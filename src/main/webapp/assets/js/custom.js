@@ -20,7 +20,7 @@ function hideSignUp() {
     document.getElementById("nav-item-dropdown-menu").classList.remove("d-none");
 }*/
 //Product page item counter
-document.querySelectorAll('.count .plus').forEach(item => {
+/*document.querySelectorAll('.count .plus').forEach(item => {
 
     item.addEventListener('click', function () {
 
@@ -52,7 +52,7 @@ document.querySelectorAll('.count .minus').forEach(item => {
 
     });
 
-});
+});*/
 
 
 //Nav-items active script

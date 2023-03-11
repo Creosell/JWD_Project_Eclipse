@@ -29,17 +29,17 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
 <div class="container page-heading" >
   <div class="section-heading">
-    <h3>ASUS EKWB GeForce RTX 3090</h3>
+    <h3>${sessionScope.product.title}</h3>
   </div>
   <div class="container" style="display: flex; flex-direction: row;">
-    <div class="container"> <img src="${pageContext.request.contextPath}/assets/images/products/1.png" alt="product-item">
+    <div class="container"> <img src="${pageContext.request.contextPath}/assets/images/products/${sessionScope.product.productID}.png" alt="product-item">
     </div>
     <div class="container">
-      <p>NVIDIA GeForce RTX 3090 24 ГБ GDDR6X, базовая частота 1400 МГц, макс. частота 1725 МГц, 10496sp, 82 RT-ядер, частота памяти 19500 МГц, 384 бит, доп. питание: 8+8 pin, 1 слот, HDMI, DisplayPort, трассировка лучей</p>
+      <p>${sessionScope.product.description}</p>
     </div>
   </div>
   <div class="section-heading" style="display: flex; flex-direction: row;">
-    <button>Добавить в корзину</button>
+
 
     <span class="count"><span class="change minus min">
                     <span>-</span>
@@ -49,12 +49,48 @@
                     <span>+</span>
                 </span>
 			</span>
-
+      <button>Добавить в корзину</button>
   </div>
 </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
 
 <script>
+    document.querySelectorAll('.count .plus').forEach(item => {
+
+        item.addEventListener('click', function () {
+            if (item.parentElement.querySelector('input').value < ${sessionScope.product.availableQuantity}){
+                ++item.parentElement.querySelector('input').value;
+            }
+
+
+
+            if (item.parentElement.querySelector('input').value > 1) {
+
+                item.parentElement.querySelector('.minus').classList.remove('min');
+
+            }
+
+        });
+
+    });
+
+    document.querySelectorAll('.count .minus').forEach(item => {
+
+        item.addEventListener('click', function () {
+
+            --item.parentElement.querySelector('input').value;
+
+            if (item.parentElement.querySelector('input').value < 2) {
+
+                item.parentElement.querySelector('input').value = 1
+
+                item.classList.add('min');
+
+            }
+
+        });
+
+    });
 </script>
 </body>
 </html>

@@ -85,7 +85,7 @@
                 <input id="address" type="text" name="address" value="">
             </p>
             <p>
-                <label for="phonenumber">${phonenumber} </label>
+                <label for="phonenumber">${phonenumber}<span class="required">*</span> </label>
                 <input id="phonenumber" type="tel" name="phonenumber" value="" pattern="${phonenumberPattern}"
                        placeholder="+375123456789"
                        oninvalid="this.setCustomValidity('${phoneMessage}')"

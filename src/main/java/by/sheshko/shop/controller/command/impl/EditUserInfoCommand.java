@@ -55,7 +55,7 @@ public final class EditUserInfoCommand implements Command {
             log.error("Error while edit user info. User: {}", user, e);
             throw new ControllerException(e.getMessage());
         }
-        return "editUserInfoSuccess";
+        return EDIT_USER_INFO_SUCCESS_POST;
     }
 
 }

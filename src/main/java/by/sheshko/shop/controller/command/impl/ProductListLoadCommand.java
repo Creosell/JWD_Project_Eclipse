@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST;
-import static by.sheshko.shop.controller.command.util.ResourceParameter.PRODUCT_LIST_SIZE;
+import static by.sheshko.shop.controller.command.util.ResourceParameter.*;
 
 public final class ProductListLoadCommand implements Command {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -42,7 +41,7 @@ public final class ProductListLoadCommand implements Command {
         } catch (ServiceException e) {
             throw new ControllerException(e.getMessage(), e); //todo exception
         }
-        return "products";
+        return PRODUCTS_PAGE_POST;
     }
 
 }

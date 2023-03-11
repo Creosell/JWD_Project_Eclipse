@@ -30,6 +30,17 @@ public final class ResourceParameter {
     public static final String CONTACT_PAGE = pages.getString("page.contact");
     public static final String REGISTRATION_SUCCESS = pages.getString("page.registrationSuccess");
     static final ResourceBundle localization = ResourceBundle.getBundle("localization");
+
     public static final String WELCOME_MESSAGE = localization.getString("welcomeMessage");
 
+
+    public static final String ERROR_PAGE_POST = "error";
+    public static final String REGISTRATION_PAGE_POST = "registration";
+    public static final String HOME_PAGE_POST = "homepage";
+    public static final String LOG_IN_PAGE_POST ="logIn";
+    public static final String PRODUCTS_PAGE_POST = "products";
+    public static final String PRODUCT_PAGE_POST = "productPage";
+    public static final String CONTACT_PAGE_POST = "contact";
+    public static final String REGISTRATION_SUCCESS_POST = "registrationSuccess";
+    public static final String EDIT_USER_INFO_SUCCESS_POST = "editUserInfoSuccess";
 }
