@@ -16,7 +16,7 @@
     <title>${title}</title>
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <!-- Page Content -->
 <div class="page-heading products-heading header-text">
     <div class="container">
@@ -51,9 +51,9 @@
                         <c:forEach var="productListItem" items="${applicationScope.productList}">
                             <div class="col-lg-4 col-md-4 all des">
                                 <div class="product-item">
-                                    <a href="#"><img alt=""
-                                                     src="../../assets/images/products/${productListItem.productID}.png"></a>
-                                    <div class="down-content">
+                                    <a href="#"><img alt="хз"
+                                                     src="assets/images/products/${productListItem.productID}.png"></a>
+                                    <div class="down-content">    
                                         <a href="#"><h4>${productListItem.title}</h4></a>
                                         <p>${productListItem.description}</p>
                                     </div>
@@ -71,6 +71,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

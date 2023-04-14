@@ -37,8 +37,8 @@
     <title>${title}</title>
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
-
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
+//${pageContext.request.contextPath}
 <div class="banner header-text">
     <div class="owl-banner owl-carousel">
         <div class="banner-item-01">
@@ -77,7 +77,7 @@
                 <div class="col-lg-4 col-md-4 all des">
                     <div class="product-item">
                         <a href="controller?command=load_product&productID=${productListItem.productID}">
-                            <img alt="" src="../../assets/images/products/${productListItem.productID}.png"></a>
+                            <img alt="" src="assets/images/products/${productListItem.productID}.png"></a>
                         <div class="down-content">
                             <a href="controller?command=load_product&productID=${productListItem.productID}">
                                 <h4>${productListItem.title}</h4></a>
@@ -146,6 +146,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

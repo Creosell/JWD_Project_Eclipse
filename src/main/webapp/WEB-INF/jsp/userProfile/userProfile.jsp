@@ -19,7 +19,7 @@
     <title>${title}</title>
 
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <body>
 <div class="registration-heading">
     <div>
@@ -41,5 +41,5 @@
     </div>
 </div>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>

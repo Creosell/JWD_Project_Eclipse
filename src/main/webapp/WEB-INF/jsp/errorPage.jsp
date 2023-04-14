@@ -28,7 +28,7 @@
 </c:choose>
 
 
-<p>
+<%-- <p>
     ${pageContext.errorData.throwable}
     <c:choose>
         <c:when test="${!empty
@@ -40,7 +40,7 @@
             : ${pageContext.errorData.throwable.rootCause}
         </c:when>
     </c:choose>
-</p>
+</p> --%>
 
 <a href="controller?command=forward_command&target=homepage">${homepage}</a>
 <br>

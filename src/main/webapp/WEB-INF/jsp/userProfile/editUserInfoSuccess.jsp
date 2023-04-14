@@ -17,10 +17,10 @@
     <title>${title}</title>
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <div class="registration-heading">
     <h2>${success}</h2>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>

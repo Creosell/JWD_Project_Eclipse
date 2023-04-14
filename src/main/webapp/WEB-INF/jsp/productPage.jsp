@@ -26,13 +26,13 @@
   <title>${title}</title>
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <div class="container page-heading" >
   <div class="section-heading">
     <h3>${sessionScope.product.title}</h3>
   </div>
   <div class="container" style="display: flex; flex-direction: row;">
-    <div class="container"> <img src="${pageContext.request.contextPath}/assets/images/products/${sessionScope.product.productID}.png" alt="product-item">
+    <div class="container"> <img src="assets/images/products/${sessionScope.product.productID}.png" alt="product-item">
     </div>
     <div class="container">
       <p>${sessionScope.product.description}</p>
@@ -52,7 +52,7 @@
       <button>Добавить в корзину</button>
   </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 <script>
     document.querySelectorAll('.count .plus').forEach(item => {

@@ -28,7 +28,7 @@
     <title>${title}</title>
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <div class="login-heading">
     <h2>${authorization}</h2>
     <div class="login-fields-input">
@@ -49,7 +49,7 @@
         </form>
     </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 <script>
 </script>

@@ -13,7 +13,7 @@
     <title>${title}</title>
 
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <body>
 <div class="page-heading about-heading header-text">
     <div class="container">
@@ -294,6 +294,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/footer.jsp"/>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>
