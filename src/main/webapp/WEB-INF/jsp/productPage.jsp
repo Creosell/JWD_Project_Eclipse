@@ -44,25 +44,30 @@
     <span class="count"><span class="change minus min">
                     <span>-</span>
                 </span>
-                <input type="text" name="productСount" value="1" disabled="">
+                <input type="text" name="productСount" value="${sessionScope.product.availableQuantity}" disabled="">
                 <span class="change plus">
                     <span>+</span>
                 </span>
 			</span>
-      <button>Добавить в корзину</button>
+      <button>Добавить в корзину</button> <!-- TODO translate -->
   </div>
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
 <script>
     document.querySelectorAll('.count .plus').forEach(item => {
+    	
+    	if (item.parentElement.querySelector('input').value > 1) {
+
+            item.parentElement.querySelector('.minus').classList.remove('min');
+
+        } 
+    	
 
         item.addEventListener('click', function () {
             if (item.parentElement.querySelector('input').value < ${sessionScope.product.availableQuantity}){
                 ++item.parentElement.querySelector('input').value;
             }
-
-
 
             if (item.parentElement.querySelector('input').value > 1) {
 
@@ -70,6 +75,9 @@
 
             }
 
+            if (item.parentElement.querySelector('input').value = ${sessionScope.product.availableQuantity}){
+            	item.parentElement.querySelector('.plus').classList.add('min');
+            }
         });
 
     });
