@@ -21,7 +21,7 @@ public final class SQLUserDAO implements UserDAO {
     private static final String EMAIL = "email";
     private static final String ADDRESS = "address";
     private static final String PHONENUMBER = "phonenumber";
-    private static final String REGISTRATION_TIME = "registered";
+    private static final String REGISTRATION_TIME = "registred";
     private static final String STATUS = "user_status_id";
     private static final String ROLE = "roles_id";
     private static final Integer BLOCKED = 2;
@@ -114,11 +114,11 @@ public final class SQLUserDAO implements UserDAO {
             }
             if (e.toString().contains("Duplicate") && e.toString().contains("login")) {
                 log.info("Attempt to register with already existing login : {}", login);
-                throw new DAOException("User with same login is already registered", e);
+                throw new DAOException("User with same login is already registred", e);
             }
             if (e.toString().contains("Duplicate") && e.toString().contains("email")) {
                 log.info("Attempt to register with already existing email : {}", user.getEmail());
-                throw new DAOException("User with same email is already registered", e);
+                throw new DAOException("User with same email is already registred", e);
             } else {
                 log.error("Error working with statements while registering new user", e);
                 throw new DAOException("Error while registering user", e);
