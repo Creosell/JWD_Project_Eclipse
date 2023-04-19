@@ -1050,9 +1050,14 @@ footer .inner-content p a {
     margin: 0 5px;
 }
 
-.count .minus.min {
+.count .plus.max{
     background-color: #989797;
 }
+
+.count .minus.min {
+    background-color: yellow;
+}
+
 
 
 /* Responsive Style */
