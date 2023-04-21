@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static by.sheshko.shop.controller.command.CommandName.LOAD_PRODUCT_LIST;
 import static by.sheshko.shop.controller.command.CommandName.valueOf;
 import static by.sheshko.shop.controller.command.util.ResourceParameter.ERROR_PAGE;
 

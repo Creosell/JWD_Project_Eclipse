@@ -38,18 +38,19 @@
       <p>${sessionScope.product.description}</p>
     </div>
   </div>
-  <div class="section-heading" style="display: flex; flex-direction: row;">
+  <div class="section-heading" style="display: flex; flex-direction: row; justify-content: space-between;">
 
 
-    <span class="count"><span class="change minus min">
-                    <span>-</span>
-                </span>
-                <input type="text" name="productСount" value="${sessionScope.product.availableQuantity}" disabled="">
-                <span class="change plus">
-                    <span>+</span>
-                </span>
+    <span class="count">
+    	<span class="change minus min">
+    		<span>-</span>
+    	</span>
+		<input type="text" name="productСount" value="${sessionScope.product.availableQuantity}" disabled="">
+        	<span class="change plus">
+            	<span>+</span>
 			</span>
-      <button>Добавить в корзину</button> <!-- TODO translate -->
+	</span>
+	<button>Добавить в корзину</button> <!-- TODO translate -->
   </div>
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
@@ -63,7 +64,13 @@
 
         } 
     	
+    	if (item.parentElement.querySelector('input').value >= ${sessionScope.product.availableQuantity}) {
 
+            item.parentElement.querySelector('.plus').classList.add('max');
+
+        }
+    	
+    	
         item.addEventListener('click', function () {
             if (item.parentElement.querySelector('input').value < ${sessionScope.product.availableQuantity}){
                 ++item.parentElement.querySelector('input').value;
@@ -74,10 +81,13 @@
                 item.parentElement.querySelector('.minus').classList.remove('min');
 
             }
+            
+            if (item.parentElement.querySelector('input').value >= ${sessionScope.product.availableQuantity}) {
 
-            if (item.parentElement.querySelector('input').value = ${sessionScope.product.availableQuantity}){
-            	item.parentElement.querySelector('.plus').classList.add('min');
+                item.parentElement.querySelector('.plus').classList.add('max');
+
             }
+            
         });
 
     });
@@ -93,6 +103,12 @@
                 item.parentElement.querySelector('input').value = 1
 
                 item.classList.add('min');
+
+            }
+            
+            if (item.parentElement.querySelector('input').value < ${sessionScope.product.availableQuantity}) {
+
+                item.parentElement.querySelector('.plus').classList.remove('max');
 
             }
 

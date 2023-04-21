@@ -1,8 +1,6 @@
 package by.sheshko.shop.controller.command.util;
 
 import by.sheshko.shop.bean.Product;
-import by.sheshko.shop.dao.pool.ConnectionPool;
-
 import java.util.Comparator;
 
 public final class ProductComparator implements Comparator<Product> {

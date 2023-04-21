@@ -1,7 +1,6 @@
 package by.sheshko.shop.dao.impl;
 
 import by.sheshko.shop.bean.Product;
-import by.sheshko.shop.bean.builder.ProductBuilder;
 import by.sheshko.shop.dao.DAOException;
 import by.sheshko.shop.dao.ProductDAO;
 import by.sheshko.shop.dao.pool.ConnectionPool;
