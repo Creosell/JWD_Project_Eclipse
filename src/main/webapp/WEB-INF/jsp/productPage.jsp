@@ -6,8 +6,14 @@
 	<c:set scope="session" var="language" value="en" />
 </c:if>
 
+<c:set scope="page" var="defaultProductQuantity" value="0" />
+<c:if test="${sessionScope.product.availableQuantity > 0}">
+	<c:set scope="page" var="defaultProductQuantity" value="1" />
+</c:if>
+
 <fmt:setLocale value="${sessionScope.language}" />
 <fmt:setBundle basename="localization" var="loc" />
+<fmt:message bundle="${loc}" key="addToCart" var="addToCart" />
 <%--<fmt:message bundle="${loc}" key="" var=""/>
 <fmt:message bundle="${loc}" key="" var=""/>
 <fmt:message bundle="${loc}" key="" var=""/>
@@ -19,6 +25,7 @@
 <fmt:message bundle="${loc}" key="" var=""/>
 <fmt:message bundle="${loc}" key="" var=""/>
 <fmt:message bundle="${loc}" key="" var=""/>--%>
+
 
 <!DOCTYPE html>
 <html>
@@ -45,14 +52,15 @@
 			style="display: flex; flex-direction: row; justify-content: space-between;">
 
 
-			<span class="count"> <span class="change minus min"> <span>-</span>
+			<span class="count"> <span class="change minus min"> <span
+					class="noselect">-</span>
+
 			</span> <input type="text" name="productСount"
-				value="${sessionScope.product.availableQuantity}" disabled="">
-				<span class="change plus"> <span>+</span>
+				value="${defaultProductQuantity}"> <span class="change plus">
+					<span class="noselect">+</span>
 			</span>
 			</span>
-			<button>Добавить в корзину</button>
-			<!-- TODO translate -->
+			<button>${addToCart}</button>
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
@@ -61,15 +69,11 @@
     document.querySelectorAll('.count .plus').forEach(item => {
     	
     	if (item.parentElement.querySelector('input').value > 1) {
-
             item.parentElement.querySelector('.minus').classList.remove('min');
-
         } 
     	
     	if (item.parentElement.querySelector('input').value >= ${sessionScope.product.availableQuantity}) {
-
             item.parentElement.querySelector('.plus').classList.add('max');
-
         }
     	
     	
@@ -81,17 +85,11 @@
             if (item.parentElement.querySelector('input').value > 1) {
 
                 item.parentElement.querySelector('.minus').classList.remove('min');
-
             }
             
             if (item.parentElement.querySelector('input').value >= ${sessionScope.product.availableQuantity}) {
 
-                item.parentElement.querySelector('.plus').classList.add('max');
-
-            }
-            
-        
-            
+                item.parentElement.querySelector('.plus').classList.add('max');}
         });
 
     });
@@ -100,25 +98,19 @@
 
         item.addEventListener('click', function () {
         	 if (item.parentElement.querySelector('input').value > 1) {
+        		 
 				--item.parentElement.querySelector('input').value;}
 						
-
             if (item.parentElement.querySelector('input').value < 2 &&
             		item.parentElement.querySelector('input').value > 0) {
-
-                item.parentElement.querySelector('input').value = 1
-
-                item.classList.add('min');
-
-            }
+               
+				item.parentElement.querySelector('input').value = 1
+                item.classList.add('min');}
             
             if (item.parentElement.querySelector('input').value < ${sessionScope.product.availableQuantity}) {
 
-                item.parentElement.querySelector('.plus').classList.remove('max');
-
-            }
+                item.parentElement.querySelector('.plus').classList.remove('max');}
         });
-
     });
 </script>
 </body>

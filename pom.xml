@@ -31,10 +31,33 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-		<dependency>
+		<!--	<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
+		<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.glassfish.web/jstl-impl -->
+		<!--	<dependency>
+			<groupId>org.glassfish.web</groupId>
+		<artifactId>jstl-impl</artifactId>
+			<version>1.2</version>
+		<scope>runtime</scope>
+		</dependency>-->
+		<!--
+		http://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-spec -->
+		<dependency>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-spec</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
+		<!-- taglibs-standard-impl-*.jar -->
+		<!--
+		http://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+		<dependency>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-impl</artifactId>
+			<version>1.2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
