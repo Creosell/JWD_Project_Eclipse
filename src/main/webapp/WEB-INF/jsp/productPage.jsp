@@ -51,15 +51,16 @@
 		<div class="section-heading"
 			style="display: flex; flex-direction: row; justify-content: space-between;">
 
+			<div class = "product-price-section" style="display: flex; flex-direction: row;">
+				<span class="price">8240.0 BYN</span> <span class="count"> <span
+					class="change minus min"> <span class="noselect">-</span>
 
-			<span class="count"> <span class="change minus min"> <span
-					class="noselect">-</span>
-
-			</span> <input type="text" name="productСount"
-				value="${defaultProductQuantity}"> <span class="change plus">
-					<span class="noselect">+</span>
-			</span>
-			</span>
+				</span> <input type="text" name="productСount"
+					value="${defaultProductQuantity}"> <span
+					class="change plus"> <span class="noselect">+</span>
+				</span>
+				</span>
+			</div>
 			<button>${addToCart}</button>
 		</div>
 	</div>

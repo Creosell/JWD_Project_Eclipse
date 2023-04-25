@@ -1034,6 +1034,14 @@ footer .inner-content p a {
 	background-color: #989797;
 }
 
+.section-heading .price{
+    right: 30px;
+    bottom: 30px;
+    font-size: 25px;
+    color: #f33f3f;
+    font-weight: 500;
+}
+
 /* Responsive Style */
 @media ( max-width : 768px) {
 	.banner .text-content {
